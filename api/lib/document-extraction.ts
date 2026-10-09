@@ -13,12 +13,10 @@
 import { DocumentLimits } from "@contracts/constants";
 
 /**
- * pdf.js is loaded at runtime via createRequire (shadowing `require`, so the
- * bundler leaves it external). This keeps the server bundle lean and avoids
+ * pdf.js is loaded at runtime via dynamic import. This keeps the server bundle lean and avoids
  * pulling in the optional `canvas` native dependency, which pdf.js only needs
  * for rendering — never for text extraction.
  */
-const nodeRequire = require;
 
 interface PdfTextItem {
   str: string;
@@ -47,9 +45,9 @@ interface PdfJsModule {
 
 let pdfjsModule: PdfJsModule | null = null;
 
-function loadPdfJs(): PdfJsModule {
+async function loadPdfJs(): Promise<PdfJsModule> {
   if (!pdfjsModule) {
-    pdfjsModule = nodeRequire("pdfjs-dist/legacy/build/pdf.js") as PdfJsModule;
+    pdfjsModule = (await import("pdfjs-dist/legacy/build/pdf.js")) as unknown as PdfJsModule;
   }
   return pdfjsModule;
 }
@@ -135,7 +133,7 @@ function truncate(text: string): { text: string; truncated: boolean } {
  * layout so clause boundaries survive for the analyzer's verbatim quoting.
  */
 async function extractPdf(bytes: Uint8Array): Promise<{ text: string; pageCount: number }> {
-  const pdfjs = loadPdfJs();
+  const pdfjs = await loadPdfJs();
 
   let doc: PdfDocumentProxy;
   try {

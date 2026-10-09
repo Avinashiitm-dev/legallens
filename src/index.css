@@ -68,6 +68,13 @@
 
 @layer base {
   * { @apply border-border; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
   body { @apply bg-background text-foreground; }
 }
 
@@ -78,8 +85,8 @@
   --ll-bg-elevated:        #1A2540;
   --ll-border-subtle:      #1E293B;
   --ll-border-glow:        rgba(52, 211, 153, 0.25);
-  --ll-accent-emerald:     #10B981;
-  --ll-accent-emerald-bright: #34D399;
+  --ll-accent-emerald: #d4d4d8;
+  --ll-accent-emerald-bright: #ffffff;
   --ll-accent-amber:       #F59E0B;
   --ll-accent-rose:        #F43F5E;
   --ll-accent-blue:        #3B82F6;
@@ -216,7 +223,7 @@ input {
 }
 
 /* ── Status Badges ── */
-.badge-emerald {
+.badge-zinc {
   background: rgba(16, 185, 129, 0.12);
   border: 1px solid rgba(52, 211, 153, 0.28);
   color: #34d399;
@@ -306,14 +313,14 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ── Custom Scrollbars ── */
-.custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
-.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(52, 211, 153, 0.2);
+.custom-scrollbar::-webkit-scrollbar, .scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track, .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb, .scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(52, 211, 153, 0.4);
+.custom-scrollbar::-webkit-scrollbar-thumb:hover, .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* ── 120Hz Hardware-Accelerated Animations ── */
@@ -378,7 +385,7 @@ input:focus, textarea:focus, select:focus {
   0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4); }
   50%       { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
 }
-.animate-emerald-pulse { animation: emeraldRing 2.2s ease infinite; }
+.animate-pulse { animation: emeraldRing 2.2s ease infinite; }
 
 @keyframes floatUp {
   0%, 100% { transform: translate3d(0, 0, 0); }

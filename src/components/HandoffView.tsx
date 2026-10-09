@@ -278,9 +278,9 @@ export default function HandoffView({
               : "Connect with verified Bar Council advocates or file escalations directly."}
           </p>
         </div>
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 shrink-0">
-          <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-emerald-pulse" />
-          <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider font-bold">
+        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-300/10 border border-zinc-300/20 shrink-0">
+          <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+          <span className="text-[10px] font-mono text-white uppercase tracking-wider font-bold">
             {language === "hi" ? "सत्यापित" : "BCI Verified"}
           </span>
         </div>
@@ -292,7 +292,7 @@ export default function HandoffView({
         {/* Left Column: Active Escalations Tracker table */}
         <section className="lg:col-span-7 space-y-4">
           <h3 className="font-bold text-sm text-slate-100 flex items-center gap-2 uppercase tracking-wider">
-            <FileCheck className="w-4 h-4 text-emerald-400" />
+            <FileCheck className="w-4 h-4 text-white" />
             {language === "hi" ? "सक्रिय एस्केलेशन" : "Active Escalations"}
           </h3>
 
@@ -331,12 +331,12 @@ export default function HandoffView({
                         key={esc.id} 
                         onClick={() => { setActiveChatCase(esc); }}
                         className={`hover:bg-white/[0.03] transition-all cursor-pointer group ${
-                          isSelected ? "bg-emerald-500/[0.06] border-l-2 border-emerald-500" : ""
+                          isSelected ? "bg-zinc-300/[0.06] border-l-2 border-zinc-300" : ""
                         }`}
                       >
-                        <td className="py-4 px-4 font-semibold text-slate-200 group-hover:text-emerald-300 transition-colors">
+                        <td className="py-4 px-4 font-semibold text-slate-200 group-hover:text-zinc-200 transition-colors">
                           <div className="flex items-center gap-2">
-                            <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isSelected ? "bg-emerald-400 animate-emerald-pulse" : "bg-slate-500"}`} />
+                            <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isSelected ? "bg-white animate-pulse" : "bg-slate-500"}`} />
                             {esc.contractName}
                           </div>
                         </td>
@@ -357,12 +357,12 @@ export default function HandoffView({
                         <td className="py-4 px-4">
                           <div className="flex items-center gap-1.5 text-slate-400">
                             {esc.assignedAttorney ? (
-                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                              <CheckCircle2 className="w-3.5 h-3.5 text-zinc-300 shrink-0" />
                             ) : (
                               <RefreshCw className="w-3 h-3 text-slate-500 animate-spin shrink-0" />
                             )}
                             <span className={`truncate max-w-[120px] text-xs ${
-                              esc.assignedAttorney ? "text-emerald-400 font-semibold" : "text-slate-500"
+                              esc.assignedAttorney ? "text-white font-semibold" : "text-slate-500"
                             }`}>
                               {esc.status}
                             </span>
@@ -384,7 +384,7 @@ export default function HandoffView({
         {/* Right Column: Direct Attorney Chat Widget */}
         <section className="lg:col-span-5 space-y-4">
           <h3 className="font-bold text-sm text-slate-100 flex items-center gap-2 uppercase tracking-wider">
-            <MessageSquare className="w-4 h-4 text-emerald-400" />
+            <MessageSquare className="w-4 h-4 text-white" />
             {language === "hi" ? "सीधा वकील चैट" : "Direct Attorney Chat"}
           </h3>
 
@@ -395,11 +395,11 @@ export default function HandoffView({
               const caseMessages = chatsByCase[activeChatCase.id] || [];
               
               return (
-                <div className="glass-panel rounded-2xl overflow-hidden flex flex-col h-[400px] shadow-lg border-emerald-500/15">
+                <div className="glass-panel rounded-2xl overflow-hidden flex flex-col h-[400px] shadow-lg border-zinc-300/15">
                   {/* Attorney Header */}
                   <div className="p-3 bg-slate-950/70 border-b border-white/[0.06] flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-9 h-9 rounded-full overflow-hidden border border-emerald-500/25 shrink-0">
+                      <div className="w-9 h-9 rounded-full overflow-hidden border border-zinc-300/25 shrink-0">
                         <img 
                           referrerPolicy="no-referrer"
                           src={attorneyObj.avatar} 
@@ -410,7 +410,7 @@ export default function HandoffView({
                       <div className="min-w-0">
                         <h4 className="text-xs font-bold text-slate-100 truncate flex items-center gap-1.5">
                           <span>{attorneyObj.name}</span>
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 animate-pulse shrink-0" />
                         </h4>
                         <p className="text-[10px] text-indigo-300 truncate font-medium">{attorneyObj.firm}</p>
                       </div>

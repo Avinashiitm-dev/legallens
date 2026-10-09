@@ -82,9 +82,9 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
 
         {/* Left — brand pitch */}
         <div className="relative z-10 flex-1 p-8 lg:p-12 flex flex-col justify-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 w-fit">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-emerald-pulse" />
-            <span className="font-mono text-[9px] font-bold text-emerald-400 tracking-[0.2em] uppercase">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-300/10 border border-zinc-300/25 w-fit">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span className="font-mono text-[9px] font-bold text-white tracking-[0.2em] uppercase">
               {language === "hi" ? "सिस्टम ऑनलाइन" : "SYSTEM ONLINE"}
             </span>
           </div>
@@ -120,18 +120,18 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
         <div className="flex-1 relative min-h-[240px] lg:min-h-full border-t lg:border-t-0 lg:border-l border-white/5 flex items-center justify-center p-8">
           <div className="relative w-full max-w-[300px] space-y-3 animate-float">
             {/* Scanner card */}
-            <div className="rounded-xl border border-emerald-500/20 bg-slate-900/60 p-4 space-y-3">
+            <div className="rounded-xl border border-zinc-300/20 bg-slate-900/60 p-4 space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-[10px] font-mono text-emerald-400 tracking-wider">LEGAL_SCAN v3.1</span>
-                <Cpu className="w-3.5 h-3.5 text-emerald-400 animate-spin" style={{ animationDuration: "6s" }} />
+                <span className="text-[10px] font-mono text-white tracking-wider">LEGAL_SCAN v3.1</span>
+                <Cpu className="w-3.5 h-3.5 text-white animate-spin" style={{ animationDuration: "6s" }} />
               </div>
               <div className="space-y-2">
                 {["Clause extraction", "Risk scoring", "Compliance check"].map((label, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <CheckCircle className="w-3 h-3 text-emerald-400 shrink-0" />
+                    <CheckCircle className="w-3 h-3 text-white shrink-0" />
                     <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full"
+                        className="h-full bg-gradient-to-r from-zinc-300 to-white rounded-full"
                         style={{ width: `${[92, 87, 100][i]}%` }}
                       />
                     </div>
@@ -141,13 +141,13 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
               </div>
               <div className="pt-2 border-t border-white/5 flex justify-between items-center">
                 <span className="text-[10px] text-slate-500">Precision Rating</span>
-                <span className="text-xs font-mono font-bold text-emerald-400">99.84%</span>
+                <span className="text-xs font-mono font-bold text-white">99.84%</span>
               </div>
             </div>
             {/* Mini trust badge */}
             <div className="flex gap-2">
               <div className="flex-1 rounded-lg border border-white/5 bg-slate-900/40 p-2.5 flex items-center gap-2">
-                <Lock className="w-3 h-3 text-emerald-400" />
+                <Lock className="w-3 h-3 text-white" />
                 <span className="text-[9px] text-slate-400 font-mono">E2E Encrypted</span>
               </div>
               <div className="flex-1 rounded-lg border border-white/5 bg-slate-900/40 p-2.5 flex items-center gap-2">
@@ -169,11 +169,11 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
           return (
             <div key={stat.label} className="glass-card rounded-xl p-4 flex flex-col gap-3">
               <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                isEmerald ? "bg-emerald-500/10 border border-emerald-500/20" :
+                isEmerald ? "bg-zinc-300/10 border border-zinc-300/20" :
                 isBlue    ? "bg-blue-500/10 border border-blue-500/20" :
                             "bg-amber-500/10 border border-amber-500/20"
               }`}>
-                <Icon className={`w-4 h-4 ${isEmerald ? "text-emerald-400" : isBlue ? "text-blue-400" : "text-amber-400"}`} />
+                <Icon className={`w-4 h-4 ${isEmerald ? "text-white" : isBlue ? "text-blue-400" : "text-amber-400"}`} />
               </div>
               <div>
                 <p className={`text-xl font-bold font-mono tracking-tight ${
@@ -200,7 +200,7 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
             </div>
             <button
               onClick={() => onNavigate("vault")}
-              className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors font-medium flex items-center gap-1 spring-bounce"
+              className="text-xs text-white hover:text-zinc-200 transition-colors font-medium flex items-center gap-1 spring-bounce"
             >
               {language === "hi" ? "सभी देखें" : "View All"}
               <ArrowUpRight className="w-3 h-3" />
@@ -218,15 +218,15 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
             {!documentsQuery.isLoading && recentFiles.length === 0 && (
               <div
                 onClick={() => onNavigate("analyzer")}
-                className="flex flex-col items-center justify-center py-12 rounded-xl border-2 border-dashed border-slate-800 hover:border-emerald-500/30 hover:bg-emerald-500/[0.03] cursor-pointer transition-all duration-200 group"
+                className="flex flex-col items-center justify-center py-12 rounded-xl border-2 border-dashed border-slate-800 hover:border-zinc-300/30 hover:bg-zinc-300/[0.03] cursor-pointer transition-all duration-200 group"
               >
-                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:bg-emerald-500/10 transition-colors">
-                  <FileText className="w-4.5 h-4.5 text-slate-500 group-hover:text-emerald-400 transition-colors" />
+                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:bg-zinc-300/10 transition-colors">
+                  <FileText className="w-4.5 h-4.5 text-slate-500 group-hover:text-white transition-colors" />
                 </div>
                 <p className="text-xs text-slate-500 group-hover:text-slate-400 transition-colors text-center">
                   {language === "hi" ? "अभी तक कोई विश्लेषण नहीं — पहला अनुबंध स्कैन करें" : "No analyses yet — scan your first contract"}
                 </p>
-                <span className="mt-3 text-[10px] text-emerald-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="mt-3 text-[10px] text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                   {language === "hi" ? "क्लिक करें →" : "Click to start →"}
                 </span>
               </div>
@@ -237,7 +237,7 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
                 <div
                   key={file.id}
                   onClick={() => { onSelectContract(file.rawText, file.title, file.id); onNavigate("analyzer"); }}
-                  className="flex items-center justify-between p-4 rounded-xl bg-slate-950/40 border border-white/5 hover:border-emerald-500/20 hover:bg-slate-900/40 transition-all cursor-pointer group spring-bounce"
+                  className="flex items-center justify-between p-4 rounded-xl bg-slate-950/40 border border-white/5 hover:border-zinc-300/20 hover:bg-slate-900/40 transition-all cursor-pointer group spring-bounce"
                 >
                   <div className="flex items-center gap-3.5">
                     <div className={`w-9 h-9 rounded-lg flex items-center justify-center border relative ${iconConfig.colorClass}`}>
@@ -250,9 +250,9 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
                     </div>
                   </div>
                   <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono border shrink-0 ${
-                    file.status === "clean" ? "badge-emerald" : "badge-amber"
+                    file.status === "clean" ? "badge-zinc" : "badge-amber"
                   }`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${file.status === "clean" ? "bg-emerald-400" : "bg-amber-400"}`} />
+                    <span className={`w-1.5 h-1.5 rounded-full ${file.status === "clean" ? "bg-white" : "bg-amber-400"}`} />
                     {file.risksText}
                   </div>
                 </div>
@@ -271,15 +271,15 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
           </div>
 
           <div className="grid grid-cols-2 gap-3 mb-5">
-            <div className="p-3.5 rounded-xl bg-slate-950/50 border border-white/5 hover:border-emerald-500/15 transition-all">
+            <div className="p-3.5 rounded-xl bg-slate-950/50 border border-white/5 hover:border-zinc-300/15 transition-all">
               <FolderOpen className="w-3.5 h-3.5 text-slate-400 mb-2" />
               <p className="text-xl font-bold font-mono stat-number">{(documentsQuery.data ?? []).length}</p>
               <p className="text-[9px] uppercase font-mono tracking-wider text-slate-500 mt-1">{language === "hi" ? "स्कैन डॉक्स" : "Docs Scanned"}</p>
             </div>
-            <div className="p-3.5 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 mb-2" />
+            <div className="p-3.5 rounded-xl bg-zinc-300/5 border border-zinc-300/15">
+              <ShieldCheck className="w-3.5 h-3.5 text-white mb-2" />
               <p className="text-xl font-bold font-mono stat-number-emerald">100%</p>
-              <p className="text-[9px] uppercase font-mono tracking-wider text-emerald-600 mt-1">{language === "hi" ? "सुरक्षित" : "Secure"}</p>
+              <p className="text-[9px] uppercase font-mono tracking-wider text-zinc-400 mt-1">{language === "hi" ? "सुरक्षित" : "Secure"}</p>
             </div>
           </div>
 
@@ -291,7 +291,7 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
             ].map((row) => (
               <div key={row.label} className="flex justify-between items-center px-3 py-2 rounded-lg bg-slate-950/40 border border-white/5">
                 <span className="text-[10px] text-slate-500 font-mono">{row.label}</span>
-                <span className={`text-[10px] font-mono font-bold ${row.color === "emerald" ? "text-emerald-400" : "text-blue-400"}`}>{row.value}</span>
+                <span className={`text-[10px] font-mono font-bold ${row.color === "emerald" ? "text-white" : "text-blue-400"}`}>{row.value}</span>
               </div>
             ))}
           </div>
@@ -313,12 +313,12 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
               className="glass-card rounded-xl p-5 flex items-center gap-4 text-left spring-bounce outline-none"
             >
               <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
-                item.color === "emerald" ? "bg-emerald-500/10 border border-emerald-500/20" :
+                item.color === "emerald" ? "bg-zinc-300/10 border border-zinc-300/20" :
                 item.color === "blue" ? "bg-blue-500/10 border border-blue-500/20" :
                 "bg-amber-500/10 border border-amber-500/20"
               }`}>
                 <Icon className={`w-4.5 h-4.5 ${
-                  item.color === "emerald" ? "text-emerald-400" : item.color === "blue" ? "text-blue-400" : "text-amber-400"
+                  item.color === "emerald" ? "text-white" : item.color === "blue" ? "text-blue-400" : "text-amber-400"
                 }`} />
               </div>
               <div className="min-w-0">

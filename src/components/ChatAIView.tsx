@@ -18,7 +18,9 @@ import {
   BookOpen,
   Bolt,
   Scale,
-  ArrowUpRight
+  ArrowUpRight,
+  Sparkles,
+  Plus
 } from "lucide-react";
 import { Message } from "../types";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
@@ -228,14 +230,21 @@ Here are some core areas we can cover:
   const renderFormattedText = (text: string) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return (
-      <p className="whitespace-pre-wrap font-sans">
+      <div className="whitespace-pre-wrap font-sans space-y-2">
         {parts.map((part, i) => {
           if (part.startsWith('**') && part.endsWith('**')) {
-            return <strong key={i} className="font-bold text-slate-100">{part.slice(2, -2)}</strong>;
+            return (
+              <strong 
+                key={i} 
+                className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-400"
+              >
+                {part.slice(2, -2)}
+              </strong>
+            );
           }
-          return <span key={i}>{part}</span>;
+          return <span key={i} className="text-zinc-300">{part}</span>;
         })}
-      </p>
+      </div>
     );
   };
 
@@ -265,20 +274,27 @@ Here are some core areas we can cover:
   };
 
   return (
-    <div className="flex flex-col xl:flex-row min-h-[620px] w-full border border-white/[0.06] rounded-2xl bg-slate-900/30 overflow-hidden shadow-2xl animate-fade-in-up-snappy">
+    <div className="flex flex-col xl:flex-row min-h-[620px] w-full border border-white/[0.06] rounded-2xl bg-zinc-950/40 backdrop-blur-2xl overflow-hidden shadow-2xl animate-fade-in-up-snappy relative z-0">
       
+      {/* Ambient Sarvam AI Animated Background Glows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl z-0">
+        <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-orange-500/20 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '7s' }} />
+        <div className="absolute -top-[10%] -right-[10%] w-[500px] h-[500px] bg-violet-600/20 blur-[100px] rounded-full animate-pulse" style={{ animationDuration: '10s' }} />
+        <div className="absolute top-[20%] left-[30%] w-[400px] h-[400px] bg-amber-500/10 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '8s' }} />
+      </div>
+
       {/* Left/Center Interactive Chat Canvas */}
-      <div className="flex-1 flex flex-col justify-between bg-[#0B0F17]/40 relative min-w-0">
+      <div className="flex-1 flex flex-col justify-between bg-zinc-950/20 relative min-w-0 z-10">
         
         {/* Dynamic Context Custom Header Bar */}
         <div className="px-6 py-4 border-b border-white/[0.06] bg-slate-950/50 backdrop-blur-md shrink-0 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 mb-1">
               <span className="flex gap-1 items-center mr-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-emerald-pulse" />
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-emerald-pulse" style={{ animationDelay: '0.3s' }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" style={{ animationDelay: '0.3s' }} />
               </span>
-              <span className="text-[10px] uppercase font-mono text-emerald-400 tracking-[0.15em] font-semibold">
+              <span className="text-[10px] uppercase font-mono text-white tracking-[0.15em] font-semibold">
                 {language === "hi" ? "भारतीय कानून सलाहकार" : "Indian Jurisprudence Advisor"}
               </span>
             </div>
@@ -289,31 +305,31 @@ Here are some core areas we can cover:
 
           {/* Active Optional Context State Indicators */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-mono font-medium px-2.5 py-1 rounded-full badge-emerald">
+            <span className="text-[10px] font-mono font-medium px-2.5 py-1 rounded-full badge-zinc">
               {language === "hi" ? "🇮🇳 संविधान सक्रिय" : "🇮🇳 Constitution & Statutes Active"}
             </span>
           </div>
         </div>
 
         {/* Optional Active Workspace Toggle Bar */}
-        <div className="px-6 py-2.5 border-b border-emerald-500/10 bg-emerald-500/[0.03] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shrink-0">
+        <div className="px-6 py-2.5 border-b border-zinc-300/10 bg-zinc-300/[0.03] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shrink-0">
           <div className="flex items-center gap-2">
             <input 
               type="checkbox" 
               id="toggle-context"
               checked={useContractContext}
               onChange={(e) => setUseContractContext(e.target.checked)}
-              className="rounded bg-slate-950 border-slate-700 text-emerald-500 focus:ring-0 cursor-pointer w-4 h-4"
+              className="rounded bg-slate-950 border-slate-700 text-zinc-300 focus:ring-0 cursor-pointer w-4 h-4"
             />
             <label htmlFor="toggle-context" className="text-xs text-slate-400 font-sans cursor-pointer select-none">
               {language === "hi" ? (
-                <>संदर्भ: <span className="text-emerald-400 italic">{contractTitle}</span></>
+                <>संदर्भ: <span className="text-white italic">{contractTitle}</span></>
               ) : (
-                <>Include active contract: <span className="text-emerald-400 italic">{contractTitle}</span></>
+                <>Include active contract: <span className="text-white italic">{contractTitle}</span></>
               )}
             </label>
           </div>
-          <span className="text-[9px] uppercase font-mono tracking-widest text-emerald-600 font-bold">
+          <span className="text-[9px] uppercase font-mono tracking-widest text-zinc-400 font-bold">
             {useContractContext 
               ? (language === "hi" ? "प्रासंगिक मोड" : "Contextual Mode")
               : (language === "hi" ? "स्वतंत्र मोड" : "Independent Mode")}
@@ -341,7 +357,7 @@ Here are some core areas we can cover:
                 <button
                   key={chip.key}
                   onClick={() => handleSendMessage(chip.prompt)}
-                  className="prompt-chip"
+                  className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2"
                 >
                   {language === "hi" ? chip.labelHi : chip.labelEn}
                 </button>
@@ -354,61 +370,62 @@ Here are some core areas we can cover:
             return (
               <div 
                 key={msg.id} 
-                className={`flex w-full gap-3.5 ${isAI ? "justify-start" : "justify-end"} animate-fade-in-up-snappy`}
+                className={`flex w-full gap-3.5 ${isAI ? "justify-start" : "justify-end"} animate-fade-in-up-snappy transition-all duration-300 ease-out`}
               >
                 {isAI && (
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center shrink-0 mt-1">
-                    <BrainCircuit className="w-4 h-4 text-emerald-400" />
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500/20 to-violet-500/20 border border-white/10 flex items-center justify-center shrink-0 mt-1 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                    <Sparkles className="w-4 h-4 text-zinc-100" />
                   </div>
                 )}
 
-                <div className="max-w-[85%] sm:max-w-[75%] space-y-1.5">
-                  <div className={`p-4 rounded-2xl text-xs leading-relaxed border ${
-                    isAI 
-                      ? "bg-slate-900/60 border-white/[0.06] text-slate-300 rounded-tl-sm shadow-md" 
-                      : "bg-emerald-500/8 text-slate-100 rounded-tr-sm border-emerald-500/20"
-                  }`}>
-                    
-                    {renderFormattedText(msg.content)}
+                <div className="max-w-[85%] sm:max-w-[75%] space-y-1.5 flex flex-col">
+                  {isAI ? (
+                    <div className="p-1 text-sm leading-relaxed text-zinc-100 font-sans tracking-wide">
+                      {renderFormattedText(msg.content)}
+                      
+                      {/* Copier Actions */}
+                      {msg.id !== "msg-welcome" && (
+                        <div className="mt-4 flex gap-2 pt-3">
+                          <button 
+                            onClick={() => {
+                              navigator.clipboard.writeText(msg.content);
+                              const copyStr = language === "hi" ? "कानूनी राय ड्राफ्ट सफलतापूर्वक क्लिपबोर्ड पर कॉपी हो गया है।" : "Opinion drafted successfully and copied to clipboard.";
+                              alert(copyStr);
+                            }}
+                            className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-[10px] text-zinc-400 hover:text-zinc-200 transition-all cursor-pointer flex items-center gap-1.5 border border-white/5"
+                          >
+                            <Copy className="w-3.5 h-3.5" />
+                            <span>{language === "hi" ? "समीक्षा कॉपी करें" : "Copy Legal Opinion"}</span>
+                          </button>
+                          <button 
+                            onClick={() => {
+                              const saveStr = language === "hi" ? "सलाह को संस्थागत पुरालेख तिजोरी में सुरक्षित किया गया है।" : "Opinion marked & saved to institutional archival vault.";
+                              alert(saveStr);
+                            }}
+                            className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-[10px] text-zinc-400 hover:text-zinc-200 transition-all cursor-pointer flex items-center gap-1.5 border border-white/5"
+                          >
+                            <Bookmark className="w-3.5 h-3.5" />
+                            <span>{language === "hi" ? "सुरक्षित सहेजें" : "Save Opinion"}</span>
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="bg-white/10 border border-white/15 text-white rounded-2xl px-5 py-3 text-sm leading-relaxed shadow-sm">
+                      {renderFormattedText(msg.content)}
+                    </div>
+                  )}
 
-                    {/* Copier Actions */}
-                    {isAI && msg.id !== "msg-welcome" && (
-                      <div className="mt-4 flex gap-2 border-t border-white/5 pt-3">
-                        <button 
-                          onClick={() => {
-                            navigator.clipboard.writeText(msg.content);
-                            const copyStr = language === "hi" ? "कानूनी राय ड्राफ्ट सफलतापूर्वक क्लिपबोर्ड पर कॉपी हो गया है।" : "Opinion drafted successfully and copied to clipboard.";
-                            alert(copyStr);
-                          }}
-                          className="px-2.5 py-1 rounded bg-slate-950/40 hover:bg-slate-950 text-[10px] text-slate-400 hover:text-indigo-400 transition-all cursor-pointer flex items-center gap-1.5 border border-white/10"
-                        >
-                          <Copy className="w-3.5 h-3.5" />
-                          <span>{language === "hi" ? "समीक्षा कॉपी करें" : "Copy Legal Opinion"}</span>
-                        </button>
-                        <button 
-                          onClick={() => {
-                            const saveStr = language === "hi" ? "सलाह को संस्थागत पुरालेख तिजोरी में सुरक्षित किया गया है।" : "Opinion marked & saved to institutional archival vault.";
-                            alert(saveStr);
-                          }}
-                          className="px-2.5 py-1 rounded bg-slate-950/40 hover:bg-slate-950 text-[10px] text-slate-400 hover:text-indigo-400 transition-all cursor-pointer flex items-center gap-1.5 border border-white/10"
-                        >
-                          <Bookmark className="w-3.5 h-3.5" />
-                          <span>{language === "hi" ? "सुरक्षित सहेजें" : "Save Opinion"}</span>
-                        </button>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className={`flex items-center gap-2 text-[9px] font-mono text-slate-500 ${isAI ? "justify-start" : "justify-end"}`}>
-                    <span className="uppercase font-semibold tracking-wider">
-                      {isAI ? (language === "hi" ? "संवैधानिक एआई" : "BHARAT LAW AI") : (language === "hi" ? "ग्राहक सहायता" : "CLIENT ASSIST")}
+                  <div className={`flex items-center gap-2 text-[10px] text-zinc-500 font-medium ${isAI ? "justify-start pl-2" : "justify-end pr-2"}`}>
+                    <span className="uppercase tracking-wider">
+                      {isAI ? (language === "hi" ? "जेमिनी एआई" : "Gemini AI") : (language === "hi" ? "आप" : "You")}
                     </span>
                     <span>•</span>
                     <span>{msg.timestamp}</span>
                     {isAI && msg.id !== "msg-welcome" && (
                       <div className="flex ml-1 gap-1.5">
-                        <button className="hover:text-indigo-400 transition-colors"><ThumbsUp className="w-3 h-3" /></button>
-                        <button className="hover:text-rose-400 transition-colors"><ThumbsDown className="w-3 h-3" /></button>
+                        <button className="hover:text-zinc-300 transition-colors"><ThumbsUp className="w-3.5 h-3.5" /></button>
+                        <button className="hover:text-zinc-300 transition-colors"><ThumbsDown className="w-3.5 h-3.5" /></button>
                       </div>
                     )}
                   </div>
@@ -419,14 +436,14 @@ Here are some core areas we can cover:
 
           {/* AI Advisor Typing simulator */}
           {typing && (
-            <div className="flex w-full gap-3.5 justify-start">
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center shrink-0">
-                <Loader2 className="w-4 h-4 animate-spin text-emerald-400" />
+            <div className="flex w-full gap-3.5 justify-start animate-fade-in-up-snappy">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500/20 to-violet-500/20 border border-white/10 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                <Sparkles className="w-4 h-4 text-zinc-100 animate-pulse" />
               </div>
-              <div className="bg-slate-900/40 border border-white/[0.06] p-4 rounded-xl text-xs text-slate-400 font-mono animate-pulse">
+              <div className="p-2 text-sm text-zinc-400 font-sans animate-pulse">
                 {language === "hi" 
-                  ? "संसदीय अधिनियमों और न्यायिक मिसालों के आधार पर राय तैयार की जा रही है..." 
-                  : "Formulating guidance based on Indian statutes and Supreme Court precedents..."}
+                  ? "विचार कर रहा है..." 
+                  : "Thinking..."}
               </div>
             </div>
           )}
@@ -434,28 +451,27 @@ Here are some core areas we can cover:
           <div ref={scrollRef} />
         </div>
 
-        {/* Input Interactive text area */}
-        <div className="p-4 bg-slate-950/40 border-t border-white/[0.06] shrink-0 z-10">
+        {/* Floating Prompt Input Box */}
+        <div className="p-6 shrink-0 z-10 bg-transparent flex flex-col items-center justify-end">
           
           {/* Active Optional Custom Attachment Banner */}
           {attachedCustomTitle && (
-            <div className="max-w-3xl mx-auto mb-2 text-xs flex justify-between items-center bg-emerald-500/[0.05] px-3 py-1.5 rounded-lg border border-emerald-500/15">
-              <span className="flex items-center gap-2 font-mono text-emerald-300">
-                <Paperclip className="w-3 h-3 text-emerald-400" />
-                <span>Context: <b>{attachedCustomTitle}</b></span>
+            <div className="max-w-3xl w-full mx-auto mb-3 text-xs flex justify-between items-center bg-zinc-800/80 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md shadow-lg">
+              <span className="flex items-center gap-2 text-zinc-300">
+                <Paperclip className="w-4 h-4 text-amber-400" />
+                <span>Context: <b className="font-medium text-white">{attachedCustomTitle}</b></span>
               </span>
               <button 
                 onClick={clearManualAttachment}
-                className="text-slate-500 hover:text-rose-400 text-[10px] font-mono font-bold uppercase cursor-pointer"
+                className="text-zinc-500 hover:text-rose-400 text-[10px] font-bold uppercase cursor-pointer transition-colors"
               >
                 {language === "hi" ? "हटाएं" : "Remove"}
               </button>
             </div>
           )}
 
-          <div className="relative group max-w-3xl mx-auto">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500/15 to-blue-500/10 rounded-2xl blur opacity-20 group-focus-within:opacity-60 transition duration-300"></div>
-            <div className="relative bg-slate-900/80 border border-white/8 rounded-2xl overflow-hidden focus-within:border-emerald-500/40 transition-all flex flex-col p-2.5">
+          <div className="relative group max-w-3xl w-full mx-auto">
+            <div className="relative bg-zinc-900/80 border border-white/15 rounded-3xl overflow-hidden focus-within:border-white/40 transition-all duration-300 flex flex-col p-2 backdrop-blur-xl shadow-2xl">
               <textarea
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
@@ -466,53 +482,44 @@ Here are some core areas we can cover:
                   }
                 }}
                 placeholder={language === "hi" 
-                  ? "संवैधानिक कानून, कंपनी अधिनियम अनुपालन, या अनुबंध नियमों के बारे में प्रश्न यहाँ पूछें..."
-                  : "Ask Indian constitutional law questions, contract terms under Sec 10, or corporate compliances..."}
-                rows={2}
-                className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-slate-200 text-xs p-2 shrink-0 resize-none font-sans custom-scrollbar"
+                  ? "यहाँ मैसेज टाइप करें..."
+                  : "Ask anything..."}
+                rows={1}
+                className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-zinc-100 text-sm px-4 py-3 shrink-0 resize-none font-sans custom-scrollbar min-h-[52px] max-h-[200px]"
+                style={{ height: inputMessage.split('\n').length > 1 ? 'auto' : '52px' }}
               />
-              <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
-                <div className="flex items-center gap-2 shrink-0">
-                  {/* Real, interactive optional file attachment trigger */}
-                  <label className="p-2 text-slate-400 hover:text-emerald-400 rounded-lg hover:bg-white/5 transition-all cursor-pointer flex items-center gap-1 spring-bounce" title="Attach customized legal files">
-                    <Paperclip className="w-4 h-4" />
+              <div className="flex items-center justify-between px-2 pb-1">
+                <div className="flex items-center gap-1 shrink-0">
+                  {/* Plus Attachment Button */}
+                  <label className="p-2.5 text-zinc-400 hover:text-white rounded-full hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center">
+                    <Plus className="w-5 h-5" />
                     <input 
                       type="file" 
                       accept=".txt,.doc,.docx,.pdf" 
                       onChange={handleCustomFileUpload} 
                       className="hidden" 
                     />
-                    <span className="hidden sm:inline text-[10px] uppercase font-mono tracking-wider text-slate-500 hover:text-emerald-400">
-                      {language === "hi" ? "केस दस्तावेज़ (वैकल्पिक)" : "File (Optional)"}
-                    </span>
                   </label>
 
-                  {/* Voice Input Placeholder */}
+                  {/* Voice Input */}
                   <button 
                     onClick={() => {
                       alert(language === "hi" ? "वॉयस डिक्टेशन मॉड्यूल जल्द आ रहा है।" : "Voice dictation module coming soon.");
                     }}
-                    className="p-2 text-slate-400 hover:text-emerald-400 rounded-lg hover:bg-white/5 transition-all cursor-pointer flex items-center gap-1 spring-bounce" title="Voice Input"
+                    className="p-2.5 text-zinc-400 hover:text-white rounded-full hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center" title="Voice Input"
                   >
-                    <Mic className="w-4 h-4" />
-                    <span className="hidden sm:inline text-[10px] uppercase font-mono tracking-wider text-slate-500 hover:text-emerald-400">
-                      {language === "hi" ? "आवाज़" : "Voice"}
-                    </span>
+                    <Mic className="w-5 h-5" />
                   </button>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <span className="hidden sm:inline-flex items-center gap-1 text-[9px] uppercase font-mono text-slate-500 tracking-wider">
-                    <Lock className="w-3 h-3 text-emerald-400" />
-                    {language === "hi" ? "विशेषाधिकार सुरक्षित ड्राफ्ट्स" : "Privileged Drafts"}
-                  </span>
-                  <LiquidButton 
+                <div className="flex items-center">
+                  <button 
                     onClick={() => handleSendMessage()}
-                    className="text-white w-8.5 h-8.5 shrink-0 cursor-pointer"
-                    size="icon"
+                    className={`p-2.5 rounded-full transition-all flex items-center justify-center ${inputMessage.trim() ? 'bg-white text-zinc-900 hover:bg-zinc-200 shadow-[0_0_15px_rgba(255,255,255,0.3)]' : 'bg-white/10 text-zinc-500'}`}
+                    disabled={!inputMessage.trim()}
                   >
-                    <Send className="w-4 h-4 font-bold text-white" />
-                  </LiquidButton>
+                    <Send className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -535,39 +542,35 @@ Here are some core areas we can cover:
           
           {/* Pre-designed shortcut queries */}
           <div className="space-y-3">
-            <h4 className="flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider font-bold text-slate-500">
-              <Bolt className="w-3.5 h-3.5 text-indigo-400" />
-              {language === "hi" ? "त्वरित एआई परामर्श" : "Pre-Designed Consultations"}
+            <h4 className="flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider font-bold text-zinc-500">
+              <Sparkles className="w-3.5 h-3.5 text-zinc-300" />
+              {language === "hi" ? "सुझाव" : "Suggestions"}
             </h4>
-            <div className="flex flex-col gap-2">
-              <LiquidButton 
+            <div className="flex flex-wrap gap-2">
+              <button 
                 onClick={() => handleQuickAction("nda")}
-                className="w-full text-left py-2 px-3 text-xs text-slate-300 font-medium hover:text-white border border-white/5 cursor-pointer"
-                size="sm"
+                className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2 cursor-pointer"
               >
                 {language === "hi" ? "एनडीए अनुबंध का प्रारूप बनाएं" : "Draft Indian Contract Act NDA"}
-              </LiquidButton>
-              <LiquidButton 
+              </button>
+              <button 
                 onClick={() => handleQuickAction("dpdp")}
-                className="w-full text-left py-2 px-3 text-xs text-slate-300 font-medium hover:text-white border border-white/5 cursor-pointer"
-                size="sm"
+                className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2 cursor-pointer"
               >
                 {language === "hi" ? "DPDP अधिनियम 2023 समझें" : "Explain DPDP Act 2023 Rules"}
-              </LiquidButton>
-              <LiquidButton 
+              </button>
+              <button 
                 onClick={() => handleQuickAction("article21")}
-                className="w-full text-left py-2 px-3 text-xs text-slate-300 font-medium hover:text-white border border-white/5 cursor-pointer"
-                size="sm"
+                className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2 cursor-pointer"
               >
                 {language === "hi" ? "अनुच्छेद 21 सुरक्षा समझें" : "Explain Article 21 Protections"}
-              </LiquidButton>
-              <LiquidButton 
+              </button>
+              <button 
                 onClick={() => handleQuickAction("ibcrera")}
-                className="w-full text-left py-2 px-3 text-[11px] text-slate-300 font-semibold hover:text-white border border-white/5 cursor-pointer"
-                size="sm"
+                className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2 cursor-pointer"
               >
                 <span>{language === "hi" ? "रेरा बनाम आईबीसी तुलना" : "Compare RERA v/s IBC Remedies"}</span>
-              </LiquidButton>
+              </button>
             </div>
           </div>
 

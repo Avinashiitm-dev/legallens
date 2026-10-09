@@ -281,8 +281,8 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
         </div>
 
         <div className="p-5 bg-slate-900/40 border border-white/5 rounded-2xl flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
-            <ShieldCheck className="w-5 h-5 text-emerald-400" />
+          <div className="w-10 h-10 rounded-xl bg-zinc-300/10 border border-zinc-300/20 flex items-center justify-center shrink-0">
+            <ShieldCheck className="w-5 h-5 text-white" />
           </div>
           <div>
             <h4 className="text-slate-500 font-mono text-[10px] uppercase tracking-wider">
@@ -365,7 +365,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
                       ? "bg-rose-500/10 text-rose-300 border-rose-500/20"
                       : item.badge.includes("Risk")
                         ? "bg-amber-500/10 text-amber-300 border-amber-500/20"
-                        : "bg-emerald-500/10 text-emerald-300 border-emerald-500/20"
+                        : "bg-zinc-300/10 text-zinc-200 border-zinc-300/20"
                   }`}>
                     {shownBadge}
                   </span>
@@ -394,7 +394,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
                 {/* Playbook Compliance Standard Suggested wording block */}
                 <div className="p-3 bg-slate-950/30 rounded-xl border border-white/5 space-y-2 text-xs mt-3 flex-1 flex flex-col justify-between">
                   <div>
-                    <span className="font-mono text-[9px] text-emerald-450 uppercase tracking-widest block font-bold text-emerald-400">
+                    <span className="font-mono text-[9px] text-emerald-450 uppercase tracking-widest block font-bold text-white">
                       {language === "hi" ? "मानक अनुपालन शब्द (Playbook Model)" : "Model Playbook Wording"}
                     </span>
                     <pre className="text-slate-350 text-[10px] leading-normal font-mono whitespace-pre-wrap select-all cursor-text py-1.5 scrollbar-none max-h-[80px] overflow-y-auto bg-slate-950/20 rounded mt-1">
@@ -409,8 +409,8 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
                     >
                       {isCopied ? (
                         <>
-                          <Check className="w-3 h-3 text-emerald-400 shrink-0" />
-                          <span className="text-emerald-400">{language === "hi" ? "कॉपी हो गया!" : "Copied!"}</span>
+                          <Check className="w-3 h-3 text-white shrink-0" />
+                          <span className="text-white">{language === "hi" ? "कॉपी हो गया!" : "Copied!"}</span>
                         </>
                       ) : (
                         <>
@@ -469,7 +469,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
           
           <div className="p-4 bg-slate-950/40 rounded-xl border border-white/5 space-y-1.5">
-            <div className="flex items-center gap-2 text-emerald-400">
+            <div className="flex items-center gap-2 text-white">
               <Check className="w-4 h-4 shrink-0" />
               <strong className="text-xs text-slate-200 font-bold font-sans">Bilateral Liabilities</strong>
             </div>
@@ -479,7 +479,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
           </div>
 
           <div className="p-4 bg-slate-950/40 rounded-xl border border-white/5 space-y-1.5">
-            <div className="flex items-center gap-2 text-emerald-400">
+            <div className="flex items-center gap-2 text-white">
               <Check className="w-4 h-4 shrink-0" />
               <strong className="text-xs text-slate-200 font-bold font-sans">Mandatory Net-45 Payouts</strong>
             </div>
@@ -489,7 +489,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
           </div>
 
           <div className="p-4 bg-slate-950/40 rounded-xl border border-white/5 space-y-1.5">
-            <div className="flex items-center gap-2 text-emerald-400">
+            <div className="flex items-center gap-2 text-white">
               <Check className="w-4 h-4 shrink-0" />
               <strong className="text-xs text-slate-200 font-bold font-sans">Perpetual Assignment Scope</strong>
             </div>
@@ -499,7 +499,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
           </div>
 
           <div className="p-4 bg-slate-950/40 rounded-xl border border-white/5 space-y-1.5">
-            <div className="flex items-center gap-2 text-emerald-400">
+            <div className="flex items-center gap-2 text-white">
               <Check className="w-4 h-4 shrink-0" />
               <strong className="text-xs text-slate-200 font-bold font-sans">Consent notices under DPDP</strong>
             </div>
@@ -509,7 +509,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
           </div>
 
           <div className="p-4 bg-slate-950/40 rounded-xl border border-white/5 space-y-1.5">
-            <div className="flex items-center gap-2 text-emerald-400">
+            <div className="flex items-center gap-2 text-white">
               <Check className="w-4 h-4 shrink-0" />
               <strong className="text-xs text-slate-200 font-bold font-sans">Supervisory seat designation</strong>
             </div>
@@ -518,8 +518,8 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
             </p>
           </div>
 
-          <div className="p-4 bg-slate-950/20 rounded-xl border border-emerald-500/10 flex flex-col justify-center gap-1.5 text-center">
-            <span className="text-[9px] uppercase tracking-wider font-mono text-emerald-400 font-bold">compliance checklist active</span>
+          <div className="p-4 bg-slate-950/20 rounded-xl border border-zinc-300/10 flex flex-col justify-center gap-1.5 text-center">
+            <span className="text-[9px] uppercase tracking-wider font-mono text-white font-bold">compliance checklist active</span>
             <span className="text-[8px] text-slate-500">{language === "hi" ? "सुरक्षित रूप से प्रमाणित" : "Digitally verified based on supreme statutory guidelines"}</span>
           </div>
 

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import DashboardView from "@/components/DashboardView";
@@ -12,6 +11,7 @@ import IndianLawView from "@/components/IndianLawView";
 import { Language, translations } from "@/lib/translations";
 import { trpc } from "@/providers/trpc";
 import { useAuth } from "@/hooks/useAuth";
+import { AmbientBackground } from "@/components/ui/AmbientBackground";
 
 import { 
   FileText, 
@@ -81,27 +81,7 @@ export default function Home() {
   const t = translations[language];
 
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth >= 1024;
-    }
-    return true;
-  });
-
-  // Automatically adjust sidebar on window resize events
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setIsSidebarOpen(false);
-      } else {
-        setIsSidebarOpen(true);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    // Run once on mount
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // Sidebar removed in favor of FloatingNav
 
   // Sync theme with root HTML and body element classes
   useEffect(() => {
@@ -298,8 +278,8 @@ export default function Home() {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: "#0B0F17" }}>
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center">
-            <div className="w-4 h-4 rounded-full border-2 border-emerald-500/30 border-t-emerald-400 animate-spin" />
+          <div className="w-10 h-10 rounded-2xl bg-zinc-300/10 border border-zinc-300/25 flex items-center justify-center">
+            <div className="w-4 h-4 rounded-full border-2 border-zinc-300/30 border-t-white animate-spin" />
           </div>
           <p className="text-xs text-slate-500 font-mono">Authenticating secure session…</p>
         </div>
@@ -309,46 +289,36 @@ export default function Home() {
   if (!user) return null; // redirect to /login handled by useAuth
 
   return (
-    <div className="min-h-screen text-slate-100 flex font-sans leading-normal relative select-none antialiased" style={{ background: "#0B0F17" }}>
-      {/* Brand ambient gradient overlay */}
-      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-emerald-950/8 via-transparent to-transparent pointer-events-none z-0" />
-
-      {/* Main Persistent Sidebar */}
-      <Sidebar 
-        currentView={currentView} 
-        language={language}
-        onViewChange={(view) => {
-          setCurrentView(view);
-          // Auto fill search bar empty states
-          setVaultSearch("");
-        }} 
-        onNewAnalysis={() => {
-          setContractText("");
-          setContractTitle("Pasted_Contract.txt");
-          setContractDocumentId(null);
-          setCurrentView("analyzer");
-          setVaultSearch("");
-        }}
-        onAskAI={() => {
-          setCurrentView("chat");
-          setVaultSearch("");
-        }}
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-      />
+    <div className="top-0 m-0 p-0 min-h-screen w-full text-slate-100 flex font-sans leading-normal relative select-none antialiased bg-[#0B0F17]">
+      {/* Dynamic Animated Sarvam AI / Gemini Mesh Glow Canvas */}
+      <AmbientBackground />
 
       {/* Frame Wrapper Layout */}
-      <div className={`flex-1 min-w-0 ${isSidebarOpen ? "lg:pl-64" : "pl-0"} flex flex-col h-screen relative z-10 overflow-hidden transition-all duration-300 ease-in-out`}>
+      <div className="flex-1 min-w-0 w-full flex flex-col h-screen relative z-10 overflow-hidden transition-all duration-300 ease-in-out">
         
         {/* Global Toolbar Header */}
         <Header 
           language={language}
           onSearch={handleGlobalSearch} 
-          onSelectView={setCurrentView} 
+          onSelectView={(view) => {
+            setCurrentView(view);
+            setVaultSearch("");
+          }} 
           isDarkMode={isDarkMode}
           onToggleTheme={() => setIsDarkMode(prev => !prev)}
           onToggleShortcuts={() => setIsShortcutsOpen(prev => !prev)}
-          onToggleSidebar={() => setIsSidebarOpen(prev => !prev)}
+          currentView={currentView}
+          onNewAnalysis={() => {
+            setContractText("");
+            setContractTitle("Pasted_Contract.txt");
+            setContractDocumentId(null);
+            setCurrentView("analyzer");
+            setVaultSearch("");
+          }}
+          onAskAI={() => {
+            setCurrentView("chat");
+            setVaultSearch("");
+          }}
         />
 
         {/* Dynamic content window scroll area */}
@@ -606,9 +576,9 @@ export default function Home() {
                     <h2 className="text-2xl font-bold tracking-tight text-white">{t.systemSettingsTitle}</h2>
                     <p className="text-slate-500 text-xs mt-1.5 font-mono">{t.systemSettingsSubtitle}</p>
                   </div>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-emerald-pulse" />
-                    <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider font-bold">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-300/10 border border-zinc-300/20">
+                    <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+                    <span className="text-[10px] font-mono text-white uppercase tracking-wider font-bold">
                       {language === "hi" ? "कॉन्फ़िगर करें" : "Configure"}
                     </span>
                   </div>
@@ -637,7 +607,7 @@ export default function Home() {
                             onClick={() => changeLanguage(lang)}
                             className={`px-4 py-2 text-xs font-semibold rounded-xl border transition-all cursor-pointer outline-none spring-bounce ${
                               language === lang
-                                ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/35"
+                                ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/35"
                                 : "bg-white/[0.03] text-slate-400 border-white/8 hover:border-white/20 hover:text-slate-200"
                             }`}
                           >
@@ -673,7 +643,7 @@ export default function Home() {
                       ].map((row) => (
                         <div key={row.key} className="p-3 rounded-xl bg-white/[0.03] border border-white/6 flex justify-between items-center">
                           <span className="text-[10px] text-slate-500 font-mono">{row.key}</span>
-                          <span className={`flex items-center gap-1.5 text-[10px] font-mono font-bold ${row.color === "emerald" ? "text-emerald-400" : "text-blue-400"}`}>
+                          <span className={`flex items-center gap-1.5 text-[10px] font-mono font-bold ${row.color === "emerald" ? "text-white" : "text-blue-400"}`}>
                             <ShieldCheck className="w-3 h-3" />
                             {row.status}
                           </span>
@@ -685,10 +655,10 @@ export default function Home() {
                   {/* Bank-Grade Security Banner */}
                   <div className="glass-card rounded-2xl p-6 lg:col-span-2 relative overflow-hidden">
                     {/* Emerald gradient right */}
-                    <div className="absolute right-0 top-0 bottom-0 w-64 bg-gradient-to-l from-emerald-500/[0.04] to-transparent pointer-events-none" />
+                    <div className="absolute right-0 top-0 bottom-0 w-64 bg-gradient-to-l from-zinc-300/[0.04] to-transparent pointer-events-none" />
                     <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                      <div className="w-14 h-14 shrink-0 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center animate-float">
-                        <Lock className="w-6 h-6 text-emerald-400" />
+                      <div className="w-14 h-14 shrink-0 rounded-2xl bg-zinc-300/10 border border-zinc-300/25 flex items-center justify-center animate-float">
+                        <Lock className="w-6 h-6 text-white" />
                       </div>
                       <div className="flex-1 text-center sm:text-left">
                         <h4 className="font-bold text-sm text-white mb-1">Bank-Grade Security Isolation</h4>
@@ -699,7 +669,7 @@ export default function Home() {
                         </p>
                         <div className="flex flex-wrap gap-2 mt-4">
                           {["AES-256 Encryption", "Zero Retention", "SOC 2 Compliant", "TLS 1.3"].map((badge) => (
-                            <span key={badge} className="px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-wider badge-emerald rounded-md">
+                            <span key={badge} className="px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-wider badge-zinc rounded-md">
                               ✓ {badge}
                             </span>
                           ))}

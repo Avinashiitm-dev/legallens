@@ -453,7 +453,7 @@ export default function AnalyzerView({
               return (
                 <span
                   key={idx}
-                  className="bg-emerald-500/20 text-emerald-300 font-semibold px-1 py-0.5 rounded border border-emerald-500/15 cursor-help"
+                  className="bg-zinc-300/20 text-zinc-200 font-semibold px-1 py-0.5 rounded border border-zinc-300/15 cursor-help"
                   title="Standardized or Protective improvements inserted"
                 >
                   {word}{" "}
@@ -1059,7 +1059,7 @@ export default function AnalyzerView({
           ? "bg-critical-bg text-critical-text-val font-medium border-b border-rose-400"
           : risk.severity === "Unfavorable"
             ? "bg-unfavorable-bg text-unfavorable-text-val font-medium border-b border-amber-400"
-            : "bg-protective-bg text-protective-text-val font-medium border-b border-emerald-400";
+            : "bg-protective-bg text-protective-text-val font-medium border-b border-white";
 
       // Re-escape regex specials
       const escapedQuote = quoteString.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -1106,7 +1106,7 @@ export default function AnalyzerView({
             className="text-white font-bold text-xs uppercase tracking-wider border border-white/10 cursor-pointer bg-slate-900/50 hover:bg-slate-800"
             size="sm"
           >
-            <Scale className="w-4 h-4 text-emerald-400" />
+            <Scale className="w-4 h-4 text-white" />
             <span>{t.riskHelpBtn}</span>
           </LiquidButton>
 
@@ -1135,8 +1135,8 @@ export default function AnalyzerView({
         />
         <div className="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform duration-200 border border-white/5">
           {extracting
-            ? <Loader2 className="w-6 h-6 text-emerald-400 animate-spin" />
-            : <CloudUpload className="w-6 h-6 text-emerald-400 animate-pulse" />}
+            ? <Loader2 className="w-6 h-6 text-white animate-spin" />
+            : <CloudUpload className="w-6 h-6 text-white animate-pulse" />}
         </div>
         <h3 className="font-semibold text-sm text-slate-200 tracking-tight">
           {extracting
@@ -1159,7 +1159,7 @@ export default function AnalyzerView({
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder={language === "hi" ? "या सीधे यहाँ अन्य अनुबंध की शर्तें या खंड पेस्ट करके विश्लेषण प्रारंभ करें..." : "Or paste custom agreement clause logs here directly..."}
-          className="w-full bg-slate-950/60 text-slate-300 placeholder-slate-600 font-sans text-xs p-3 rounded-lg border border-white/5 focus:border-emerald-500 focus:outline-none min-h-[70px] resize-y"
+          className="w-full bg-slate-950/60 text-slate-300 placeholder-slate-600 font-sans text-xs p-3 rounded-lg border border-white/5 focus:border-zinc-300 focus:outline-none min-h-[70px] resize-y"
         />
         <LiquidButton
           onClick={() => triggerAnalysis()}
@@ -1176,15 +1176,15 @@ export default function AnalyzerView({
       {analyzing && (
         <div className="p-5 sm:p-8 lg:p-12 text-center space-y-6 glass-panel rounded-2xl border-white/5 bg-slate-950/80 animate-breathe">
           <div className="flex flex-col items-center justify-center space-y-2">
-            <div className="p-3 bg-emerald-500/10 rounded-full border border-emerald-500/20 animate-pulse">
-              <Brain className="w-6 h-6 text-emerald-400" />
+            <div className="p-3 bg-zinc-300/10 rounded-full border border-zinc-300/20 animate-pulse">
+              <Brain className="w-6 h-6 text-white" />
             </div>
             <h3 className="font-semibold text-slate-100 text-base">Quantifying Legal Risks...</h3>
           </div>
 
           <div className="max-w-md mx-auto space-y-3">
             <div className="flex justify-between items-center text-xs font-mono">
-              <span className="text-emerald-400 font-medium transition-all duration-300">
+              <span className="text-white font-medium transition-all duration-300">
                 {scanStatus}
               </span>
               <span className="text-slate-200 font-semibold">{scanProgress}%</span>
@@ -1193,7 +1193,7 @@ export default function AnalyzerView({
             {/* Smooth Progress Track */}
             <div className="w-full bg-slate-900 border border-white/5 rounded-full h-3 overflow-hidden p-[2px]">
               <motion.div
-                className="bg-gradient-to-r from-emerald-500 to-emerald-400 h-full rounded-full"
+                className="bg-gradient-to-r from-zinc-300 to-white h-full rounded-full"
                 style={{ width: `${scanProgress}%` }}
                 initial={{ width: "0%" }}
                 animate={{ width: `${scanProgress}%` }}
@@ -1221,18 +1221,18 @@ export default function AnalyzerView({
 
           {/* Active Review Deck (Persistent Pinning Workspace) */}
           {pinnedRiskIds.length > 0 && (
-            <div className="bg-slate-900/50 border border-emerald-500/20 rounded-2xl p-5 shadow-xl space-y-4 animate-fade-in relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none" />
+            <div className="bg-slate-900/50 border border-zinc-300/20 rounded-2xl p-5 shadow-xl space-y-4 animate-fade-in relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-300/5 rounded-full blur-2xl pointer-events-none" />
 
               <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-white/5 pb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
-                    <Pin className="w-4 h-4 text-emerald-400 fill-emerald-400/30" />
+                  <div className="p-1.5 bg-zinc-300/10 rounded-lg border border-zinc-300/20">
+                    <Pin className="w-4 h-4 text-white fill-white/30" />
                   </div>
                   <div>
                     <h3 className="text-xs font-bold font-sans text-slate-100 flex items-center gap-2">
                       <span>{t.pinboardTitle}</span>
-                      <span className="text-[10px] font-medium font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                      <span className="text-[10px] font-medium font-mono px-2 py-0.5 rounded bg-zinc-300/10 text-zinc-200 border border-zinc-300/20">
                         {pinnedRiskIds.length} {language === "hi" ? "पिन किया हुआ" : "Pinned"}
                       </span>
                     </h3>
@@ -1272,9 +1272,9 @@ export default function AnalyzerView({
                         }
                       }}
                       className={`p-3.5 rounded-xl border relative transition-all duration-200 cursor-pointer text-left select-none group/pinned ${isSelected
-                        ? "border-emerald-500 bg-emerald-950/20 ring-2 ring-emerald-500/30 shadow-lg"
+                        ? "border-zinc-300 bg-emerald-950/20 ring-2 ring-zinc-300/30 shadow-lg"
                         : isReviewed
-                          ? "border-emerald-500/20 bg-emerald-950/10 opacity-70 hover:opacity-100"
+                          ? "border-zinc-300/20 bg-emerald-950/10 opacity-70 hover:opacity-100"
                           : isCritical
                             ? "bg-rose-950/5 border-rose-500/15 hover:border-rose-500/30"
                             : isUnfavorable
@@ -1284,22 +1284,22 @@ export default function AnalyzerView({
                     >
                       {/* Accent highlight strip */}
                       <div className={`absolute top-0 left-0 w-1 h-full rounded-l-xl ${isReviewed
-                        ? "bg-emerald-500"
+                        ? "bg-zinc-300"
                         : isCritical
                           ? "bg-rose-500"
                           : isUnfavorable
                             ? "bg-amber-500"
-                            : "bg-emerald-500"
+                            : "bg-zinc-300"
                         }`} />
 
                       <div className="flex justify-between items-center gap-2 mb-1.5 pl-1.5">
                         <span className={`text-[8px] font-mono uppercase px-1.5 py-0.5 rounded ${isReviewed
-                          ? "bg-emerald-500/10 text-emerald-400"
+                          ? "bg-zinc-300/10 text-white"
                           : isCritical
                             ? "bg-rose-500/10 text-rose-300"
                             : isUnfavorable
                               ? "bg-amber-500/10 text-amber-300"
-                              : "bg-emerald-500/10 text-emerald-400"
+                              : "bg-zinc-300/10 text-white"
                           }`}>
                           {isReviewed ? (language === "hi" ? "संशोधित" : "Cleared") : risk.severity}
                         </span>
@@ -1316,7 +1316,7 @@ export default function AnalyzerView({
                         </button>
                       </div>
 
-                      <h4 className="text-[11px] font-bold text-slate-200 line-clamp-1 pl-1.5 group-hover/pinned:text-emerald-400 transition-colors">
+                      <h4 className="text-[11px] font-bold text-slate-200 line-clamp-1 pl-1.5 group-hover/pinned:text-white transition-colors">
                         {risk.clauseName}
                       </h4>
                       <p className="text-[10px] text-slate-400 line-clamp-2 mt-1 leading-normal pl-1.5">
@@ -1337,7 +1337,7 @@ export default function AnalyzerView({
               {/* Agreement details header toolbar */}
               <div className="px-5 py-4 bg-slate-950/40 border-b border-white/5 flex justify-between items-center">
                 <div className="flex items-center gap-3">
-                  <FileText className="w-5 h-5 text-emerald-400" />
+                  <FileText className="w-5 h-5 text-white" />
                   <div>
                     <h3 className="text-xs font-bold text-slate-200">{inputTitle}</h3>
                     <p className="text-[10px] text-slate-500 mt-0.5">{inputText.split("\n\n").length} Sections • {report.risks.length} Clauses Assessed</p>
@@ -1385,13 +1385,13 @@ export default function AnalyzerView({
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-white/5 pb-4">
                         <div className="flex items-center gap-3">
-                          <div className="p-2 bg-emerald-500/10 rounded-xl border border-emerald-500/20 shadow-md shadow-emerald-500/5">
-                            <ArrowLeftRight className="w-5 h-5 text-emerald-400" />
+                          <div className="p-2 bg-zinc-300/10 rounded-xl border border-zinc-300/20 shadow-md shadow-zinc-300/5">
+                            <ArrowLeftRight className="w-5 h-5 text-white" />
                           </div>
                           <div>
                             <h4 className="text-sm font-bold text-slate-100 flex items-center gap-2">
                               <span>{t.compareTitle}</span>
-                              <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-slate-855 text-emerald-300 border border-emerald-500/15 font-semibold">
+                              <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-slate-855 text-zinc-200 border border-zinc-300/15 font-semibold">
                                 {activeRisk.section}
                               </span>
                             </h4>
@@ -1406,7 +1406,7 @@ export default function AnalyzerView({
                             ? "bg-rose-500/15 text-rose-300 border border-rose-500/20"
                             : isUnfavorable
                               ? "bg-amber-500/15 text-amber-300 border border-amber-500/20"
-                              : "bg-emerald-500/15 text-emerald-300 border border-emerald-500/20"
+                              : "bg-zinc-300/15 text-zinc-200 border border-zinc-300/20"
                             }`}>
                             Risk Impact: {isCritical ? (language === "hi" ? "गंभीर जोखिम" : "Critical Flag") : isUnfavorable ? (language === "hi" ? "प्रतिकूल जोखिम" : "Unfavorable Draft") : (language === "hi" ? "सुरक्षित प्रावधान" : "Protective Clause")}
                           </span>
@@ -1422,7 +1422,7 @@ export default function AnalyzerView({
                           <button
                             onClick={() => setSelectedStandardPreset("neutral")}
                             className={`px-3 py-1.5 rounded-lg text-xs font-semibold select-none cursor-pointer border transition-all ${selectedStandardPreset === "neutral"
-                              ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30 shadow-emerald-505/5 shadow-md"
+                              ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/30 shadow-emerald-505/5 shadow-md"
                               : "bg-slate-950/40 text-slate-400 border-transparent hover:text-slate-300"
                               }`}
                           >
@@ -1431,7 +1431,7 @@ export default function AnalyzerView({
                           <button
                             onClick={() => setSelectedStandardPreset("pro-client")}
                             className={`px-3 py-1.5 rounded-lg text-xs font-semibold select-none cursor-pointer border transition-all ${selectedStandardPreset === "pro-client"
-                              ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30 shadow-emerald-505/5 shadow-md"
+                              ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/30 shadow-emerald-505/5 shadow-md"
                               : "bg-slate-950/40 text-slate-400 border-transparent hover:text-slate-300"
                               }`}
                           >
@@ -1440,7 +1440,7 @@ export default function AnalyzerView({
                           <button
                             onClick={() => setSelectedStandardPreset("pro-provider")}
                             className={`px-3 py-1.5 rounded-lg text-xs font-semibold select-none cursor-pointer border transition-all ${selectedStandardPreset === "pro-provider"
-                              ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30 shadow-emerald-505/5 shadow-md"
+                              ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/30 shadow-emerald-505/5 shadow-md"
                               : "bg-slate-950/40 text-slate-400 border-transparent hover:text-slate-300"
                               }`}
                           >
@@ -1453,11 +1453,11 @@ export default function AnalyzerView({
                           <button
                             onClick={() => setShowDiffHighlight(!showDiffHighlight)}
                             className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${showDiffHighlight
-                              ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/20"
+                              ? "bg-zinc-300/10 text-zinc-200 border-zinc-300/20"
                               : "bg-slate-900 border-white/5 text-slate-400"
                               }`}
                           >
-                            <div className={`w-3 h-3 rounded-full transition-all ${showDiffHighlight ? "bg-emerald-400 scale-100 animate-pulse" : "bg-slate-600 scale-90"
+                            <div className={`w-3 h-3 rounded-full transition-all ${showDiffHighlight ? "bg-white scale-100 animate-pulse" : "bg-slate-600 scale-90"
                               }`} />
                             <span>{t.diffHighlightToggle}</span>
                           </button>
@@ -1480,7 +1480,7 @@ export default function AnalyzerView({
                               <span className="text-[10px] font-mono uppercase text-slate-400 tracking-wider">
                                 {t.originalTab}
                               </span>
-                              <span className={`text-[9px] px-1.5 py-0.2 rounded font-mono ${isCritical ? "bg-rose-500/25 text-rose-300" : isUnfavorable ? "bg-amber-500/25 text-amber-300" : "bg-emerald-500/25 text-emerald-300"
+                              <span className={`text-[9px] px-1.5 py-0.2 rounded font-mono ${isCritical ? "bg-rose-500/25 text-rose-300" : isUnfavorable ? "bg-amber-500/25 text-amber-300" : "bg-zinc-300/25 text-zinc-200"
                                 }`}>
                                 {activeRisk.severity}
                               </span>
@@ -1498,11 +1498,11 @@ export default function AnalyzerView({
                                 setCopiedDraftType("original");
                                 setTimeout(() => setCopiedDraftType(null), 2505);
                               }}
-                              className="flex items-center gap-1 text-[10px] text-emerald-400 hover:text-emerald-300 cursor-pointer outline-none transition-colors font-medium"
+                              className="flex items-center gap-1 text-[10px] text-white hover:text-zinc-200 cursor-pointer outline-none transition-colors font-medium"
                             >
                               {copiedDraftType === "original" ? (
                                 <>
-                                  <CheckCircle className="w-3 h-3 text-emerald-400" />
+                                  <CheckCircle className="w-3 h-3 text-white" />
                                   <span>{language === "hi" ? "कॉपी हुआ!" : "Copied!"}</span>
                                 </>
                               ) : (
@@ -1516,13 +1516,13 @@ export default function AnalyzerView({
                         </div>
 
                         {/* Right: Industry Standard Alternative with dynamic highlights */}
-                        <div className="p-4 rounded-xl border border-emerald-500/15 bg-emerald-950/5 flex flex-col justify-between space-y-3">
+                        <div className="p-4 rounded-xl border border-zinc-300/15 bg-emerald-950/5 flex flex-col justify-between space-y-3">
                           <div>
-                            <div className="flex items-center justify-between mb-3 border-b border-emerald-500/10 pb-1.5">
-                              <span className="text-[10px] font-mono uppercase text-emerald-400 tracking-wider font-semibold">
+                            <div className="flex items-center justify-between mb-3 border-b border-zinc-300/10 pb-1.5">
+                              <span className="text-[10px] font-mono uppercase text-white tracking-wider font-semibold">
                                 {t.standardTab}
                               </span>
-                              <span className="text-[9px] px-2 py-0.5 rounded font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/20">
+                              <span className="text-[9px] px-2 py-0.5 rounded font-mono bg-zinc-300/20 text-zinc-200 border border-zinc-300/20">
                                 {selectedStandardPreset === "neutral" ? (language === "hi" ? "संतुलित और सुरक्षित" : "Balanced Neutral") : selectedStandardPreset === "pro-client" ? (language === "hi" ? "ग्राहक समर्थक" : "Pro-Customer") : (language === "hi" ? "विशिष्ट प्रदाता समर्थक" : "Pro-Provider")}
                               </span>
                             </div>
@@ -1532,16 +1532,16 @@ export default function AnalyzerView({
                           </div>
 
                           <div className="pt-2 border-t border-emerald-900/35 flex justify-between items-center text-[10px]">
-                            <span className="text-emerald-600 text-[9px]">{language === "hi" ? "सुधार और सुरक्षित पाठ जोड़े गए" : "Protective additions highlighted"}</span>
+                            <span className="text-zinc-400 text-[9px]">{language === "hi" ? "सुधार और सुरक्षित पाठ जोड़े गए" : "Protective additions highlighted"}</span>
                             <div className="flex items-center gap-3">
                               <button
                                 onClick={() => {
                                   setCustomDraftText(standardPresetText);
                                 }}
-                                className="text-[10px] text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1.5 outline-none cursor-pointer border border-emerald-500/20 bg-emerald-500/10 hover:bg-emerald-500/15 px-2 py-0.5 rounded hover:scale-101 active:scale-99 transition-all"
+                                className="text-[10px] text-white hover:text-zinc-200 font-semibold flex items-center gap-1.5 outline-none cursor-pointer border border-zinc-300/20 bg-zinc-300/10 hover:bg-zinc-300/15 px-2 py-0.5 rounded hover:scale-101 active:scale-99 transition-all"
                                 title="Adopt this specific playbook preset in your drafting sandbox below"
                               >
-                                <Sparkles className="w-3 h-3 text-emerald-400" />
+                                <Sparkles className="w-3 h-3 text-white" />
                                 <span>{t.adoptWording}</span>
                               </button>
 
@@ -1551,11 +1551,11 @@ export default function AnalyzerView({
                                   setCopiedDraftType("standard");
                                   setTimeout(() => setCopiedDraftType(null), 2505);
                                 }}
-                                className="flex items-center gap-1 text-[10px] text-emerald-400 hover:text-emerald-300 cursor-pointer outline-none transition-colors font-medium"
+                                className="flex items-center gap-1 text-[10px] text-white hover:text-zinc-200 cursor-pointer outline-none transition-colors font-medium"
                               >
                                 {copiedDraftType === "standard" ? (
                                   <>
-                                    <CheckCircle className="w-3 h-3 text-emerald-400" />
+                                    <CheckCircle className="w-3 h-3 text-white" />
                                     <span>{language === "hi" ? "कॉपी हुआ!" : "Copied!"}</span>
                                   </>
                                 ) : (
@@ -1584,9 +1584,9 @@ export default function AnalyzerView({
                             </p>
                           </div>
                           <div className="flex items-start gap-2">
-                            <div className="w-2.5 h-2.5 rounded bg-emerald-500/20 border border-emerald-500/35 flex-shrink-0 mt-0.5" />
+                            <div className="w-2.5 h-2.5 rounded bg-zinc-300/20 border border-zinc-300/35 flex-shrink-0 mt-0.5" />
                             <p className="text-slate-400 leading-normal">
-                              <strong className="text-emerald-300 font-semibold">{language === "hi" ? "मानक सुधार (Improvements):" : "Protective Benchmark (Green):"}</strong>{" "}
+                              <strong className="text-zinc-200 font-semibold">{language === "hi" ? "मानक सुधार (Improvements):" : "Protective Benchmark (Green):"}</strong>{" "}
                               {language === "hi"
                                 ? "चयनित प्लेबुक प्रीसेट से प्राप्त संतुलित विधिक शब्द जो आपके दायित्वों को सुरक्षित और स्पष्ट करते हैं।"
                                 : "Balanced improvements introduced by the chosen playbook preset to clarify obligations and limit exposure under current statutory acts."}
@@ -1599,7 +1599,7 @@ export default function AnalyzerView({
                       <div className="p-3.5 rounded-xl border border-white/5 bg-slate-900/30 space-y-2.5">
                         <div className="flex justify-between items-center">
                           <span className="text-[10px] font-mono uppercase text-slate-400 tracking-wider flex items-center gap-1.5 font-semibold">
-                            <Edit3 className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+                            <Edit3 className="w-3.5 h-3.5 text-white animate-pulse" />
                             {language === "hi" ? "संशोधित खंड अनुकूलन वर्कस्पेस (Sandbox)" : "Interactive Drafting Sandbox (Blend & Verify)"}
                           </span>
                           <div className="flex gap-2">
@@ -1618,7 +1618,7 @@ export default function AnalyzerView({
                           onChange={(e) => setCustomDraftText(e.target.value)}
                           placeholder="Customize and merge terms here..."
                           rows={3}
-                          className="w-full bg-slate-950 border border-white/10 text-slate-100 placeholder-slate-600 font-mono text-[11px] leading-relaxed p-3 rounded-lg focus:border-emerald-505 focus:outline-none focus:ring-1 focus:ring-emerald-500/30"
+                          className="w-full bg-slate-950 border border-white/10 text-slate-100 placeholder-slate-600 font-mono text-[11px] leading-relaxed p-3 rounded-lg focus:border-emerald-505 focus:outline-none focus:ring-1 focus:ring-zinc-300/30"
                         />
 
                         <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-1">
@@ -1639,7 +1639,7 @@ export default function AnalyzerView({
                             >
                               {copiedDraftType === "custom" ? (
                                 <>
-                                  <CheckCircle className="w-3.5 h-3.5 text-emerald-400 animate-bounce" />
+                                  <CheckCircle className="w-3.5 h-3.5 text-white animate-bounce" />
                                   <span>{language === "hi" ? "कस्टम कॉपी हो गया!" : "Copied Custom!"}</span>
                                 </>
                               ) : (
@@ -1655,13 +1655,13 @@ export default function AnalyzerView({
                                 toggleReviewed(selectedRiskId);
                               }}
                               className={`font-semibold text-[10px] px-3.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer outline-none ${reviewedClauses[selectedRiskId]
-                                ? "text-emerald-400 bg-emerald-950/25 border border-emerald-500/30 font-bold"
+                                ? "text-white bg-emerald-950/25 border border-zinc-300/30 font-bold"
                                 : "text-slate-300 bg-slate-800 border border-white/10 hover:bg-slate-705"
                                 }`}
                             >
                               {reviewedClauses[selectedRiskId] ? (
                                 <>
-                                  <CheckSquare className="w-3.5 h-3.5 text-emerald-400 font-bold" />
+                                  <CheckSquare className="w-3.5 h-3.5 text-white font-bold" />
                                   <span>{language === "hi" ? "संशोधित और स्वीकृत" : "Done (Cleared)"}</span>
                                 </>
                               ) : (
@@ -1689,7 +1689,7 @@ export default function AnalyzerView({
               <div className="bg-slate-900/50 border border-white/5 rounded-2xl p-5 shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-bold text-sm text-slate-100 flex items-center gap-2">
-                    <Brain className="w-4 h-4 text-emerald-400" />
+                    <Brain className="w-4 h-4 text-white" />
                     AI Insights Summary
                   </h3>
                   <div className="flex gap-1.5 font-mono text-[9px]">
@@ -1705,7 +1705,7 @@ export default function AnalyzerView({
                 {/* Score bar */}
                 <div className="flex items-center gap-4 p-4 bg-slate-950/40 rounded-xl border border-white/5">
                   <div className={`w-12 h-12 rounded-full border-4 flex items-center justify-center font-bold text-sm font-mono ${report.overallScore > 75
-                    ? "border-emerald-500 text-emerald-300 bg-emerald-500/5"
+                    ? "border-zinc-300 text-zinc-200 bg-zinc-300/5"
                     : report.overallScore > 50
                       ? "border-amber-505 text-amber-300 bg-amber-500/5"
                       : "border-rose-550 text-rose-300 bg-rose-500/5"
@@ -1723,13 +1723,13 @@ export default function AnalyzerView({
                   <div className="mt-4 p-3.5 bg-slate-950/25 rounded-xl border border-white/5 text-xs text-slate-400">
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-medium text-[11px] text-slate-300">Reviewed Status Progress</span>
-                      <span className="font-mono text-[10px] text-emerald-400 font-semibold">
+                      <span className="font-mono text-[10px] text-white font-semibold">
                         {Object.keys(reviewedClauses).length} of {report.risks.length} Cleared
                       </span>
                     </div>
                     <div className="w-full bg-slate-950 border border-white/5 rounded-full h-2 overflow-hidden p-[1px]">
                       <motion.div
-                        className="bg-emerald-500 h-full rounded-full"
+                        className="bg-zinc-300 h-full rounded-full"
                         initial={{ width: 0 }}
                         animate={{ width: `${(Object.keys(reviewedClauses).length / report.risks.length) * 100}%` }}
                         transition={{ type: "tween", duration: 0.3 }}
@@ -1747,7 +1747,7 @@ export default function AnalyzerView({
                   value={riskSearchQuery}
                   onChange={(e) => setRiskSearchQuery(e.target.value)}
                   placeholder="Search issues or filter clauses by name..."
-                  className="w-full bg-slate-950/60 border border-white/10 text-slate-100 placeholder-slate-500 font-sans text-xs rounded-xl pl-10 pr-10 py-2.5 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                  className="w-full bg-slate-950/60 border border-white/10 text-slate-100 placeholder-slate-500 font-sans text-xs rounded-xl pl-10 pr-10 py-2.5 focus:border-zinc-300 focus:ring-1 focus:ring-zinc-300 outline-none transition-all"
                 />
                 {riskSearchQuery && (
                   <button
@@ -1769,7 +1769,7 @@ export default function AnalyzerView({
                     {riskSearchQuery && (
                       <button
                         onClick={() => setRiskSearchQuery("")}
-                        className="text-xs text-emerald-400 hover:text-emerald-300 underline mt-2 focus:outline-none"
+                        className="text-xs text-white hover:text-zinc-200 underline mt-2 focus:outline-none"
                       >
                         Clear search filter
                       </button>
@@ -1812,35 +1812,35 @@ export default function AnalyzerView({
                       }}
                       transition={{ type: "spring", stiffness: 450, damping: 26 }}
                       className={`p-5 rounded-xl border relative overflow-hidden transition-all duration-200 outline-none cursor-pointer ${isSelected
-                        ? "border-emerald-500 bg-slate-900/90 ring-2 ring-emerald-500/45 shadow-lg scale-[1.012]"
+                        ? "border-zinc-300 bg-slate-900/90 ring-2 ring-zinc-300/45 shadow-lg scale-[1.012]"
                         : isReviewed
-                          ? "border-emerald-500/35 bg-emerald-950/20 opacity-80 hover:opacity-100 placeholder-opacity-100"
+                          ? "border-zinc-300/35 bg-emerald-950/20 opacity-80 hover:opacity-100 placeholder-opacity-100"
                           : isCritical
                             ? "bg-slate-900/40 border-rose-500/15 hover:border-rose-500/30"
                             : isUnfavorable
                               ? "bg-slate-900/40 border-amber-500/15 hover:border-amber-500/30"
-                              : "bg-slate-900/40 border-emerald-500/10 hover:border-emerald-500/25"
+                              : "bg-slate-900/40 border-zinc-300/10 hover:border-zinc-300/25"
                         }`}
                     >
                       {/* Left vertical border flag of feedback */}
                       <div className={`absolute top-0 left-0 w-1 h-full ${isReviewed
-                        ? "bg-emerald-500"
+                        ? "bg-zinc-300"
                         : isCritical
                           ? "bg-rose-500"
                           : isUnfavorable
                             ? "bg-amber-500"
-                            : "bg-emerald-500"
+                            : "bg-zinc-300"
                         }`} />
 
                       <div className="flex justify-between items-center mb-3 pl-1">
                         <div className="flex items-center gap-2">
                           <span className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded ${isReviewed
-                            ? "bg-emerald-500/15 text-emerald-300"
+                            ? "bg-zinc-300/15 text-zinc-200"
                             : isCritical
                               ? "bg-rose-500/10 text-rose-300"
                               : isUnfavorable
                                 ? "bg-amber-500/10 text-amber-300"
-                                : "bg-emerald-500/10 text-emerald-400"
+                                : "bg-zinc-300/10 text-white"
                             }`}>
                             {isReviewed ? "Reviewed" : `${risk.severity} Provision`}
                           </span>
@@ -1853,14 +1853,14 @@ export default function AnalyzerView({
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={`flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded transition-all cursor-pointer outline-none ${isReviewed
-                              ? "bg-emerald-500/25 text-emerald-300 border border-emerald-500/35"
+                              ? "bg-zinc-300/25 text-zinc-200 border border-zinc-300/35"
                               : "bg-slate-950/40 text-slate-400 hover:text-slate-200 hover:bg-slate-900 border border-white/5"
                               }`}
                             title={isReviewed ? `Reviewed at ${reviewedClauses[index]}` : "Mark as reviewed"}
                           >
                             {isReviewed ? (
                               <>
-                                <CheckSquare className="w-3 h-3 text-emerald-400" />
+                                <CheckSquare className="w-3 h-3 text-white" />
                                 <span className="text-[9px]">Done ({reviewedClauses[index]})</span>
                               </>
                             ) : (
@@ -1879,12 +1879,12 @@ export default function AnalyzerView({
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={`flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded transition-all cursor-pointer outline-none ${pinnedRiskIds.includes(index)
-                              ? "bg-emerald-500/25 text-emerald-300 border border-emerald-500/35"
+                              ? "bg-zinc-300/25 text-zinc-200 border border-zinc-300/35"
                               : "bg-slate-950/40 text-slate-400 hover:text-slate-200 hover:bg-slate-900 border border-white/5"
                               }`}
                             title={pinnedRiskIds.includes(index) ? "Unpin clause" : "Pin to active review pinboard"}
                           >
-                            <Pin className={`w-3 h-3 ${pinnedRiskIds.includes(index) ? "fill-emerald-400/40 text-emerald-300" : ""}`} />
+                            <Pin className={`w-3 h-3 ${pinnedRiskIds.includes(index) ? "fill-white/40 text-zinc-200" : ""}`} />
                             <span className="text-[9px]">{pinnedRiskIds.includes(index) ? "Pinned" : "Pin"}</span>
                           </motion.button>
                         </div>
@@ -1892,7 +1892,7 @@ export default function AnalyzerView({
                       </div>
 
                       <div className="flex items-center gap-1.5 pl-1 mb-1 relative flex-wrap">
-                        <h4 className="text-xs font-bold text-slate-200 group-hover:text-emerald-300 transition-colors">
+                        <h4 className="text-xs font-bold text-slate-200 group-hover:text-zinc-200 transition-colors">
                           {risk.clauseName}
                         </h4>
                         <motion.button
@@ -1902,9 +1902,9 @@ export default function AnalyzerView({
                           }}
                           whileHover={{ scale: 1.15 }}
                           whileTap={{ scale: 0.85 }}
-                          className={`p-1 rounded-full outline-none focus:ring-1 focus:ring-emerald-400 transition-colors cursor-pointer ${explainLawIndex === index
-                            ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
-                            : "text-slate-400 hover:text-emerald-400 hover:bg-slate-800/60"
+                          className={`p-1 rounded-full outline-none focus:ring-1 focus:ring-white transition-colors cursor-pointer ${explainLawIndex === index
+                            ? "bg-zinc-300/20 text-zinc-200 border border-zinc-300/30"
+                            : "text-slate-400 hover:text-white hover:bg-slate-800/60"
                             }`}
                           title={language === "hi" ? "भारतीय कानून के तहत जोखिम विश्लेषण देखें" : "View risk category explanation under Indian Law"}
                         >
@@ -1920,15 +1920,15 @@ export default function AnalyzerView({
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.25, ease: "easeInOut" }}
-                            className="overflow-hidden mt-2 mx-1 rounded-lg border border-emerald-500/20 bg-emerald-950/20 shadow-inner"
+                            className="overflow-hidden mt-2 mx-1 rounded-lg border border-zinc-300/20 bg-emerald-950/20 shadow-inner"
                           >
                             <div className="p-3 text-[11px] space-y-2">
                               {/* Title & Badge */}
                               <div className="flex items-center justify-between gap-2 border-b border-white/5 pb-1.5">
-                                <span className="font-bold text-emerald-300 font-sans">
+                                <span className="font-bold text-zinc-200 font-sans">
                                   {getIndianLawContext(risk.clauseName).title}
                                 </span>
-                                <span className="px-1.5 py-0.5 rounded text-[8px] uppercase font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/20 font-semibold flex-shrink-0">
+                                <span className="px-1.5 py-0.5 rounded text-[8px] uppercase font-mono bg-zinc-300/20 text-zinc-200 border border-zinc-300/20 font-semibold flex-shrink-0">
                                   {getIndianLawContext(risk.clauseName).act}
                                 </span>
                               </div>
@@ -1941,8 +1941,8 @@ export default function AnalyzerView({
                               </p>
 
                               {/* Compliance tag */}
-                              <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-semibold font-mono bg-emerald-950/30 p-1.5 rounded border border-white/5">
-                                <Scale className="w-3.5 h-3.5 text-emerald-400" />
+                              <div className="flex items-center gap-1.5 text-[10px] text-white font-semibold font-mono bg-emerald-950/30 p-1.5 rounded border border-white/5">
+                                <Scale className="w-3.5 h-3.5 text-white" />
                                 <span>{getIndianLawContext(risk.clauseName).badge}</span>
                               </div>
                             </div>
@@ -1966,7 +1966,7 @@ export default function AnalyzerView({
                             title="Copy original clause text"
                           >
                             {copiedRiskIndex === index ? (
-                              <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+                              <CheckCircle className="w-3.5 h-3.5 text-white" />
                             ) : (
                               <Copy className="w-3.5 h-3.5" />
                             )}
@@ -2046,9 +2046,9 @@ export default function AnalyzerView({
               </div>
 
               {/* Premium Escalate Contract / Attorney Support Handoff card */}
-              <div className="bg-gradient-to-br from-emerald-950/45 to-slate-900/75 border border-emerald-500/15 rounded-2xl p-5 space-y-4 shadow-xl">
+              <div className="bg-gradient-to-br from-emerald-950/45 to-slate-900/75 border border-zinc-300/15 rounded-2xl p-5 space-y-4 shadow-xl">
                 <div className="flex items-center gap-2.5">
-                  <Scale className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <Scale className="w-5 h-5 text-white shrink-0" />
                   <h4 className="text-[10px] font-bold uppercase font-mono tracking-wider text-slate-200">
                     {language === "hi" ? "अधिवक्ता एस्केलेशन" : "Attorney Escalation"}
                   </h4>
@@ -2072,7 +2072,7 @@ export default function AnalyzerView({
                       alert("Head over to the 'Attorney Handoff' section to trigger a partner referral request.");
                     }
                   }}
-                  className="w-full bg-emerald-600 hover:bg-emerald-550 text-white font-bold py-2.5 px-4 rounded-xl text-[11px] flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer outline-none hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full bg-zinc-400 hover:bg-emerald-550 text-white font-bold py-2.5 px-4 rounded-xl text-[11px] flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer outline-none hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <span>{language === "hi" ? "वकील को हैंडऑफ करें" : "Handoff to Attorney"}</span>
                   <ArrowLeftRight className="w-3.5 h-3.5" />
@@ -2100,13 +2100,13 @@ export default function AnalyzerView({
             </motion.button>
 
             <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-emerald-400" />
+              <Sparkles className="w-4 h-4 text-white" />
               {modalTitle}
             </h3>
 
             {generatingCta ? (
               <div className="py-12 text-center space-y-3">
-                <Loader2 className="w-8 h-8 text-emerald-400 animate-spin mx-auto" />
+                <Loader2 className="w-8 h-8 text-white animate-spin mx-auto" />
                 <p className="text-xs text-slate-400">Consulting AI legal model parameters...</p>
               </div>
             ) : (
@@ -2159,7 +2159,7 @@ export default function AnalyzerView({
             </motion.button>
 
             <div className="flex items-center gap-2 border-b border-white/5 pb-3">
-              <Printer className="w-5 h-5 text-emerald-400" />
+              <Printer className="w-5 h-5 text-white" />
               <div>
                 <h3 className="text-sm font-bold text-white">Customize PDF Report</h3>
                 <p className="text-[10px] text-slate-500 font-mono">Configure sections and parameters for export</p>
@@ -2176,7 +2176,7 @@ export default function AnalyzerView({
                   onClick={() => setPrintSections(prev => ({ ...prev, includeHeader: !prev.includeHeader }))}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
+                    <span className="p-1.5 rounded-lg bg-zinc-300/10 text-white">
                       <FileText className="w-4 h-4" />
                     </span>
                     <div>
@@ -2186,7 +2186,7 @@ export default function AnalyzerView({
                   </div>
                   <button className="text-slate-400 hover:text-white transition-all">
                     {printSections.includeHeader ? (
-                      <CheckSquare className="w-5 h-5 text-emerald-400" />
+                      <CheckSquare className="w-5 h-5 text-white" />
                     ) : (
                       <Square className="w-5 h-5 text-slate-600" />
                     )}
@@ -2199,7 +2199,7 @@ export default function AnalyzerView({
                   onClick={() => setPrintSections(prev => ({ ...prev, includeScoreSummary: !prev.includeScoreSummary }))}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
+                    <span className="p-1.5 rounded-lg bg-zinc-300/10 text-white">
                       <Brain className="w-4 h-4" />
                     </span>
                     <div>
@@ -2209,7 +2209,7 @@ export default function AnalyzerView({
                   </div>
                   <button className="text-slate-400 hover:text-white transition-all">
                     {printSections.includeScoreSummary ? (
-                      <CheckSquare className="w-5 h-5 text-emerald-400" />
+                      <CheckSquare className="w-5 h-5 text-white" />
                     ) : (
                       <Square className="w-5 h-5 text-slate-600" />
                     )}
@@ -2232,7 +2232,7 @@ export default function AnalyzerView({
                   </div>
                   <button className="text-slate-400 hover:text-white transition-all">
                     {printSections.includeKeyEntities ? (
-                      <CheckSquare className="w-5 h-5 text-emerald-400" />
+                      <CheckSquare className="w-5 h-5 text-white" />
                     ) : (
                       <Square className="w-5 h-5 text-slate-600" />
                     )}
@@ -2260,7 +2260,7 @@ export default function AnalyzerView({
                     </div>
                     <button className="text-slate-400 hover:text-white transition-all">
                       {printSections.includeRisks ? (
-                        <CheckSquare className="w-5 h-5 text-emerald-400" />
+                        <CheckSquare className="w-5 h-5 text-white" />
                       ) : (
                         <Square className="w-5 h-5 text-slate-600" />
                       )}
@@ -2308,11 +2308,11 @@ export default function AnalyzerView({
                         }}
                       >
                         {printSections.severityProtective ? (
-                          <CheckSquare className="w-3.5 h-3.5 text-emerald-500" />
+                          <CheckSquare className="w-3.5 h-3.5 text-zinc-300" />
                         ) : (
                           <Square className="w-3.5 h-3.5 text-slate-600" />
                         )}
-                        <span className="text-emerald-400">Protective</span>
+                        <span className="text-white">Protective</span>
                       </button>
                     </div>
                   )}
@@ -2334,7 +2334,7 @@ export default function AnalyzerView({
                   </div>
                   <button className="text-slate-400 hover:text-white transition-all">
                     {printSections.includeOriginalContract ? (
-                      <CheckSquare className="w-5 h-5 text-emerald-400" />
+                      <CheckSquare className="w-5 h-5 text-white" />
                     ) : (
                       <Square className="w-5 h-5 text-slate-600" />
                     )}
@@ -2394,8 +2394,8 @@ export default function AnalyzerView({
               </motion.button>
 
               <div className="flex items-center gap-2.5 border-b border-white/5 pb-3">
-                <span className="p-2 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
-                  <Scale className="w-5 h-5 text-emerald-400" />
+                <span className="p-2 bg-zinc-300/10 rounded-xl border border-zinc-300/20">
+                  <Scale className="w-5 h-5 text-white" />
                 </span>
                 <div>
                   <h3 className="text-sm font-bold text-white">{t.riskHelpModalTitle}</h3>
@@ -2428,8 +2428,8 @@ export default function AnalyzerView({
                 </div>
 
                 {/* Protective Explanation */}
-                <div className="p-4 rounded-xl border border-emerald-500/15 bg-emerald-950/5 flex items-start gap-4">
-                  <div className="p-1 px-1.5 rounded bg-emerald-500/10 text-emerald-300 font-bold font-mono text-[10px] mt-0.5 border border-emerald-500/25 shrink-0">
+                <div className="p-4 rounded-xl border border-zinc-300/15 bg-emerald-950/5 flex items-start gap-4">
+                  <div className="p-1 px-1.5 rounded bg-zinc-300/10 text-zinc-200 font-bold font-mono text-[10px] mt-0.5 border border-zinc-300/25 shrink-0">
                     {language === "hi" ? "सुरक्षात्मक" : "Protective"}
                   </div>
                   <div className="flex-1 space-y-1 text-left">

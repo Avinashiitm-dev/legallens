@@ -303,19 +303,23 @@ export const legalRouter = createRouter({
           // Fallback to mock data when AI is not configured locally
           report = {
             overallScore: 65,
-            riskLevel: "Medium",
+            riskLevel: "Moderate Risk",
             summary: "This contract contains standard boilerplate clauses but lacks specific protections for late payments and data privacy.",
             risks: [
               {
-                id: "r1",
-                severity: "High",
-                category: "Liability",
-                title: "Uncapped Indemnification",
-                description: "The indemnification clause has no financial cap, exposing the company to unlimited liability.",
-                recommendation: "Introduce a cap on liability equal to the total contract value.",
-                quote: "Party A shall indemnify Party B against all claims, damages, and losses."
+                clauseName: "Uncapped Indemnification",
+                severity: "Critical",
+                section: "Liability",
+                summaryOfRisk: "The indemnification clause has no financial cap, exposing the company to unlimited liability.",
+                suggestedAlternative: "Introduce a cap on liability equal to the total contract value.",
+                exactQuote: "Party A shall indemnify Party B against all claims, damages, and losses."
               }
-            ]
+            ],
+            keyEntities: {
+              counterparty: "Unknown",
+              jurisdiction: "Unknown",
+              liabilityCap: "Not specified"
+            }
           };
         } else {
           const result = await generateObject({

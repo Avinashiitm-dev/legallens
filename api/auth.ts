@@ -1,8 +1,9 @@
 import admin from "firebase-admin";
+import type { DecodedIdToken } from "firebase-admin/auth";
 import { env } from "./lib/env";
 
 // Safely extract the admin module regardless of how Vite ESM resolution handles the CJS export
-const firebaseAdmin = (admin?.apps ? admin : (admin as any)?.default) || admin;
+const firebaseAdmin: any = ((admin as any)?.apps ? admin : (admin as any)?.default) || admin;
 
 /**
  * Initialise Firebase Admin SDK safely.
@@ -27,12 +28,12 @@ function initAdmin() {
 const firebaseApp = initAdmin();
 const firebaseAuth = firebaseApp?.auth ? firebaseApp.auth() : null;
 
-function decodeJwtUnsafe(token: string): admin.auth.DecodedIdToken | null {
+function decodeJwtUnsafe(token: string): DecodedIdToken | null {
   try {
     const payloadBase64 = token.split('.')[1];
     if (!payloadBase64) return null;
     const payloadStr = Buffer.from(payloadBase64, 'base64').toString('utf8');
-    return JSON.parse(payloadStr) as admin.auth.DecodedIdToken;
+    return JSON.parse(payloadStr) as DecodedIdToken;
   } catch {
     return null;
   }
@@ -44,7 +45,7 @@ function decodeJwtUnsafe(token: string): admin.auth.DecodedIdToken | null {
  */
 export async function verifyIdToken(
   headers: Headers,
-): Promise<admin.auth.DecodedIdToken | null> {
+): Promise<DecodedIdToken | null> {
   const authHeader = headers.get("authorization") || headers.get("Authorization");
   if (!authHeader?.toLowerCase().startsWith("bearer ")) {
     console.warn("[verifyIdToken] Missing or malformed Authorization header:", authHeader);
