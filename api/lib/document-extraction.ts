@@ -9,7 +9,7 @@
  * to the browser bundle.
  */
 
-import { createRequire } from "node:module";
+
 import { DocumentLimits } from "@contracts/constants";
 
 /**
@@ -18,7 +18,7 @@ import { DocumentLimits } from "@contracts/constants";
  * pulling in the optional `canvas` native dependency, which pdf.js only needs
  * for rendering — never for text extraction.
  */
-const nodeRequire = createRequire(import.meta.url);
+const nodeRequire = require;
 
 interface PdfTextItem {
   str: string;
@@ -82,8 +82,7 @@ export class UnsupportedFileTypeError extends Error {
 export class CorruptFileError extends Error {
   constructor(detail?: string) {
     super(
-      `The file could not be parsed — it may be corrupted or password-protected.${
-        detail ? ` (${detail})` : ""
+      `The file could not be parsed — it may be corrupted or password-protected.${detail ? ` (${detail})` : ""
       }`,
     );
     this.name = "CorruptFileError";
@@ -103,8 +102,7 @@ export class EmptyExtractionError extends Error {
 export class FileTooLargeError extends Error {
   constructor(bytes: number) {
     super(
-      `File is too large (${(bytes / (1024 * 1024)).toFixed(1)} MB). Maximum supported size is ${
-        DocumentLimits.maxFileBytes / (1024 * 1024)
+      `File is too large (${(bytes / (1024 * 1024)).toFixed(1)} MB). Maximum supported size is ${DocumentLimits.maxFileBytes / (1024 * 1024)
       } MB.`,
     );
     this.name = "FileTooLargeError";
