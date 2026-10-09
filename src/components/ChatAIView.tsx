@@ -236,13 +236,13 @@ Here are some core areas we can cover:
             return (
               <strong 
                 key={i} 
-                className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-400"
+                className="font-bold text-zinc-900"
               >
                 {part.slice(2, -2)}
               </strong>
             );
           }
-          return <span key={i} className="text-zinc-300">{part}</span>;
+          return <span key={i} className="text-zinc-800">{part}</span>;
         })}
       </div>
     );
@@ -274,31 +274,31 @@ Here are some core areas we can cover:
   };
 
   return (
-    <div className="flex flex-col xl:flex-row min-h-[620px] w-full border border-white/[0.06] rounded-2xl bg-zinc-950/40 backdrop-blur-2xl overflow-hidden shadow-2xl animate-fade-in-up-snappy relative z-0">
+    <div className="flex flex-col xl:flex-row min-h-[620px] w-full border border-white/[0.06] rounded-2xl bg-white/40 backdrop-blur-xl shadow-lg overflow-hidden shadow-2xl animate-fade-in-up-snappy relative z-0">
       
       {/* Ambient Sarvam AI Animated Background Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl z-0">
-        <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-orange-500/20 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '7s' }} />
-        <div className="absolute -top-[10%] -right-[10%] w-[500px] h-[500px] bg-violet-600/20 blur-[100px] rounded-full animate-pulse" style={{ animationDuration: '10s' }} />
-        <div className="absolute top-[20%] left-[30%] w-[400px] h-[400px] bg-amber-500/10 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-zinc-800 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '7s' }} />
+        <div className="absolute -top-[10%] -right-[10%] w-[500px] h-[500px] bg-zinc-800 blur-[100px] rounded-full animate-pulse" style={{ animationDuration: '10s' }} />
+        <div className="absolute top-[20%] left-[30%] w-[400px] h-[400px] bg-zinc-800 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '8s' }} />
       </div>
 
       {/* Left/Center Interactive Chat Canvas */}
-      <div className="flex-1 flex flex-col justify-between bg-zinc-950/20 relative min-w-0 z-10">
+      <div className="flex-1 flex flex-col justify-between bg-transparent relative min-w-0 z-10">
         
         {/* Dynamic Context Custom Header Bar */}
-        <div className="px-6 py-4 border-b border-white/[0.06] bg-slate-950/50 backdrop-blur-md shrink-0 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+        <div className="px-6 py-4 border-b border-white/[0.06] bg-white/50 backdrop-blur-md border-b border-white/60 shrink-0 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 mb-1">
               <span className="flex gap-1 items-center mr-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" style={{ animationDelay: '0.3s' }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-900 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-900 animate-pulse" style={{ animationDelay: '0.3s' }} />
               </span>
-              <span className="text-[10px] uppercase font-mono text-white tracking-[0.15em] font-semibold">
+              <span className="text-[10px] uppercase font-mono text-zinc-900 tracking-[0.15em] font-semibold">
                 {language === "hi" ? "भारतीय कानून सलाहकार" : "Indian Jurisprudence Advisor"}
               </span>
             </div>
-            <h2 className="text-sm font-bold tracking-tight text-white truncate max-w-sm sm:max-w-md">
+            <h2 className="text-sm font-bold tracking-tight text-zinc-900 truncate max-w-sm sm:max-w-md">
               {language === "hi" ? "संवैधानिक एवं नियामक कानून विशेषज्ञ" : "Supreme Court & Parliamentary Law Expert"}
             </h2>
           </div>
@@ -312,24 +312,24 @@ Here are some core areas we can cover:
         </div>
 
         {/* Optional Active Workspace Toggle Bar */}
-        <div className="px-6 py-2.5 border-b border-zinc-300/10 bg-zinc-300/[0.03] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shrink-0">
+        <div className="px-6 py-2.5 border-b border-white/60 bg-zinc-300/[0.03] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shrink-0">
           <div className="flex items-center gap-2">
             <input 
               type="checkbox" 
               id="toggle-context"
               checked={useContractContext}
               onChange={(e) => setUseContractContext(e.target.checked)}
-              className="rounded bg-slate-950 border-slate-700 text-zinc-300 focus:ring-0 cursor-pointer w-4 h-4"
+              className="rounded bg-slate-950 border-slate-700 text-zinc-800 focus:ring-0 cursor-pointer w-4 h-4"
             />
-            <label htmlFor="toggle-context" className="text-xs text-slate-400 font-sans cursor-pointer select-none">
+            <label htmlFor="toggle-context" className="text-xs text-slate-600 font-sans cursor-pointer select-none">
               {language === "hi" ? (
-                <>संदर्भ: <span className="text-white italic">{contractTitle}</span></>
+                <>संदर्भ: <span className="text-zinc-900 italic">{contractTitle}</span></>
               ) : (
-                <>Include active contract: <span className="text-white italic">{contractTitle}</span></>
+                <>Include active contract: <span className="text-zinc-900 italic">{contractTitle}</span></>
               )}
             </label>
           </div>
-          <span className="text-[9px] uppercase font-mono tracking-widest text-zinc-400 font-bold">
+          <span className="text-[9px] uppercase font-mono tracking-widest text-zinc-600 font-bold">
             {useContractContext 
               ? (language === "hi" ? "प्रासंगिक मोड" : "Contextual Mode")
               : (language === "hi" ? "स्वतंत्र मोड" : "Independent Mode")}
@@ -337,9 +337,9 @@ Here are some core areas we can cover:
         </div>
 
         {/* Chat Feed Scroll Area */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-5 custom-scrollbar bg-slate-950/5">
+        <div className="flex-1 overflow-y-auto p-5 space-y-5 custom-scrollbar bg-transparent">
           <div className="flex justify-center my-1">
-            <span className="text-[10px] uppercase font-mono tracking-widest text-slate-600 bg-slate-900/40 border border-white/[0.05] px-4 py-1.5 rounded-full text-center">
+            <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-900 font-bold bg-white/50 border border-white/[0.05] px-4 py-1.5 rounded-full text-center">
               🔒 {language === "hi" ? "विशेषाधिकार सुरक्षित — भारत गणराज्य" : "Attorney-Client Privileged — Republic of India"}
             </span>
           </div>
@@ -357,7 +357,7 @@ Here are some core areas we can cover:
                 <button
                   key={chip.key}
                   onClick={() => handleSendMessage(chip.prompt)}
-                  className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2"
+                  className="rounded-full bg-white/50 hover:bg-white/70 shadow-sm border border-white/60 text-xs text-zinc-800 transition-all px-4 py-2"
                 >
                   {language === "hi" ? chip.labelHi : chip.labelEn}
                 </button>
@@ -373,14 +373,14 @@ Here are some core areas we can cover:
                 className={`flex w-full gap-3.5 ${isAI ? "justify-start" : "justify-end"} animate-fade-in-up-snappy transition-all duration-300 ease-out`}
               >
                 {isAI && (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500/20 to-violet-500/20 border border-white/10 flex items-center justify-center shrink-0 mt-1 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                    <Sparkles className="w-4 h-4 text-zinc-100" />
+                  <div className="w-8 h-8 rounded-full bg-zinc-900/50 border border-white/60 flex items-center justify-center shrink-0 mt-1 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                    <Sparkles className="w-4 h-4 text-zinc-900" />
                   </div>
                 )}
 
                 <div className="max-w-[85%] sm:max-w-[75%] space-y-1.5 flex flex-col">
                   {isAI ? (
-                    <div className="p-1 text-sm leading-relaxed text-zinc-100 font-sans tracking-wide">
+                    <div className="p-1 text-sm leading-relaxed text-zinc-900 font-sans tracking-wide">
                       {renderFormattedText(msg.content)}
                       
                       {/* Copier Actions */}
@@ -392,7 +392,7 @@ Here are some core areas we can cover:
                               const copyStr = language === "hi" ? "कानूनी राय ड्राफ्ट सफलतापूर्वक क्लिपबोर्ड पर कॉपी हो गया है।" : "Opinion drafted successfully and copied to clipboard.";
                               alert(copyStr);
                             }}
-                            className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-[10px] text-zinc-400 hover:text-zinc-200 transition-all cursor-pointer flex items-center gap-1.5 border border-white/5"
+                            className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-[10px] text-zinc-600 hover:text-zinc-900 transition-all cursor-pointer flex items-center gap-1.5 border border-white/60"
                           >
                             <Copy className="w-3.5 h-3.5" />
                             <span>{language === "hi" ? "समीक्षा कॉपी करें" : "Copy Legal Opinion"}</span>
@@ -402,7 +402,7 @@ Here are some core areas we can cover:
                               const saveStr = language === "hi" ? "सलाह को संस्थागत पुरालेख तिजोरी में सुरक्षित किया गया है।" : "Opinion marked & saved to institutional archival vault.";
                               alert(saveStr);
                             }}
-                            className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-[10px] text-zinc-400 hover:text-zinc-200 transition-all cursor-pointer flex items-center gap-1.5 border border-white/5"
+                            className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-[10px] text-zinc-600 hover:text-zinc-900 transition-all cursor-pointer flex items-center gap-1.5 border border-white/60"
                           >
                             <Bookmark className="w-3.5 h-3.5" />
                             <span>{language === "hi" ? "सुरक्षित सहेजें" : "Save Opinion"}</span>
@@ -411,12 +411,12 @@ Here are some core areas we can cover:
                       )}
                     </div>
                   ) : (
-                    <div className="bg-white/10 border border-white/15 text-white rounded-2xl px-5 py-3 text-sm leading-relaxed shadow-sm">
+                    <div className="bg-white/60 border border-white/80 shadow-sm text-zinc-900 rounded-2xl px-5 py-3 text-sm leading-relaxed shadow-sm">
                       {renderFormattedText(msg.content)}
                     </div>
                   )}
 
-                  <div className={`flex items-center gap-2 text-[10px] text-zinc-500 font-medium ${isAI ? "justify-start pl-2" : "justify-end pr-2"}`}>
+                  <div className={`flex items-center gap-2 text-[10px] text-zinc-700 font-medium ${isAI ? "justify-start pl-2" : "justify-end pr-2"}`}>
                     <span className="uppercase tracking-wider">
                       {isAI ? (language === "hi" ? "जेमिनी एआई" : "Gemini AI") : (language === "hi" ? "आप" : "You")}
                     </span>
@@ -424,8 +424,8 @@ Here are some core areas we can cover:
                     <span>{msg.timestamp}</span>
                     {isAI && msg.id !== "msg-welcome" && (
                       <div className="flex ml-1 gap-1.5">
-                        <button className="hover:text-zinc-300 transition-colors"><ThumbsUp className="w-3.5 h-3.5" /></button>
-                        <button className="hover:text-zinc-300 transition-colors"><ThumbsDown className="w-3.5 h-3.5" /></button>
+                        <button className="hover:text-zinc-800 transition-colors"><ThumbsUp className="w-3.5 h-3.5" /></button>
+                        <button className="hover:text-zinc-800 transition-colors"><ThumbsDown className="w-3.5 h-3.5" /></button>
                       </div>
                     )}
                   </div>
@@ -437,10 +437,10 @@ Here are some core areas we can cover:
           {/* AI Advisor Typing simulator */}
           {typing && (
             <div className="flex w-full gap-3.5 justify-start animate-fade-in-up-snappy">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500/20 to-violet-500/20 border border-white/10 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                <Sparkles className="w-4 h-4 text-zinc-100 animate-pulse" />
+              <div className="w-8 h-8 rounded-full bg-zinc-900/50 border border-white/60 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                <Sparkles className="w-4 h-4 text-zinc-900 animate-pulse" />
               </div>
-              <div className="p-2 text-sm text-zinc-400 font-sans animate-pulse">
+              <div className="p-2 text-sm text-zinc-600 font-sans animate-pulse">
                 {language === "hi" 
                   ? "विचार कर रहा है..." 
                   : "Thinking..."}
@@ -456,22 +456,28 @@ Here are some core areas we can cover:
           
           {/* Active Optional Custom Attachment Banner */}
           {attachedCustomTitle && (
-            <div className="max-w-3xl w-full mx-auto mb-3 text-xs flex justify-between items-center bg-zinc-800/80 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md shadow-lg">
-              <span className="flex items-center gap-2 text-zinc-300">
-                <Paperclip className="w-4 h-4 text-amber-400" />
-                <span>Context: <b className="font-medium text-white">{attachedCustomTitle}</b></span>
+            <div className="max-w-3xl w-full mx-auto mb-3 text-xs flex justify-between items-center bg-white/60 px-4 py-2 rounded-full border border-white/60 backdrop-blur-md shadow-lg">
+              <span className="flex items-center gap-2 text-zinc-800">
+                <Paperclip className="w-4 h-4 text-zinc-800" />
+                <span>Context: <b className="font-medium text-zinc-900">{attachedCustomTitle}</b></span>
               </span>
               <button 
                 onClick={clearManualAttachment}
-                className="text-zinc-500 hover:text-rose-400 text-[10px] font-bold uppercase cursor-pointer transition-colors"
+                className="text-zinc-700 hover:text-zinc-800 text-[10px] font-bold uppercase cursor-pointer transition-colors"
               >
                 {language === "hi" ? "हटाएं" : "Remove"}
               </button>
             </div>
           )}
 
-          <div className="relative group max-w-3xl w-full mx-auto">
-            <div className="relative bg-zinc-900/80 border border-white/15 rounded-3xl overflow-hidden focus-within:border-white/40 transition-all duration-300 flex flex-col p-2 backdrop-blur-xl shadow-2xl">
+          <div className="relative group max-w-3xl w-full mx-auto chat-input-wrapper">
+            <style dangerouslySetInnerHTML={{__html: `
+              .chat-input-wrapper *:focus, .chat-input-wrapper *:focus-visible, .chat-input-wrapper *:focus-within {
+                outline: none !important;
+                box-shadow: none !important;
+              }
+            `}} />
+            <div className="relative bg-white/60 backdrop-blur-md border border-white/80 shadow-sm rounded-3xl overflow-hidden focus-within:border-white outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 transition-all duration-300 flex flex-col p-2 backdrop-blur-xl shadow-2xl">
               <textarea
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
@@ -485,13 +491,13 @@ Here are some core areas we can cover:
                   ? "यहाँ मैसेज टाइप करें..."
                   : "Ask anything..."}
                 rows={1}
-                className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-zinc-100 text-sm px-4 py-3 shrink-0 resize-none font-sans custom-scrollbar min-h-[52px] max-h-[200px]"
-                style={{ height: inputMessage.split('\n').length > 1 ? 'auto' : '52px' }}
+                className="w-full bg-transparent border-none outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 focus:border-white text-zinc-900 placeholder:text-zinc-500 text-sm px-4 py-3 shrink-0 resize-none font-sans custom-scrollbar min-h-[52px] max-h-[200px]"
+                style={{ height: inputMessage.split('\n').length > 1 ? 'auto' : '52px', outline: 'none', boxShadow: 'none' }}
               />
               <div className="flex items-center justify-between px-2 pb-1">
                 <div className="flex items-center gap-1 shrink-0">
                   {/* Plus Attachment Button */}
-                  <label className="p-2.5 text-zinc-400 hover:text-white rounded-full hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center">
+                  <label className="p-2.5 text-zinc-600 hover:text-zinc-900 rounded-full hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center">
                     <Plus className="w-5 h-5" />
                     <input 
                       type="file" 
@@ -506,7 +512,7 @@ Here are some core areas we can cover:
                     onClick={() => {
                       alert(language === "hi" ? "वॉयस डिक्टेशन मॉड्यूल जल्द आ रहा है।" : "Voice dictation module coming soon.");
                     }}
-                    className="p-2.5 text-zinc-400 hover:text-white rounded-full hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center" title="Voice Input"
+                    className="p-2.5 text-zinc-600 hover:text-zinc-900 rounded-full hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center" title="Voice Input"
                   >
                     <Mic className="w-5 h-5" />
                   </button>
@@ -515,7 +521,7 @@ Here are some core areas we can cover:
                 <div className="flex items-center">
                   <button 
                     onClick={() => handleSendMessage()}
-                    className={`p-2.5 rounded-full transition-all flex items-center justify-center ${inputMessage.trim() ? 'bg-white text-zinc-900 hover:bg-zinc-200 shadow-[0_0_15px_rgba(255,255,255,0.3)]' : 'bg-white/10 text-zinc-500'}`}
+                    className={`p-2.5 rounded-full transition-all flex items-center justify-center ${inputMessage.trim() ? 'bg-white text-zinc-900 hover:bg-zinc-200 shadow-[0_0_15px_rgba(255,255,255,0.3)]' : 'bg-white/10 text-zinc-700'}`}
                     disabled={!inputMessage.trim()}
                   >
                     <Send className="w-5 h-5" />
@@ -529,45 +535,45 @@ Here are some core areas we can cover:
       </div>
 
       {/* Right Sidebar: Shortcuts, Code & Precedents context */}
-      <aside className="w-full xl:w-80 flex flex-col bg-slate-950/45 border-l border-white/5 z-10 shrink-0">
-        <div className="p-4 border-b border-white/5 flex items-center justify-between bg-slate-950/20">
-          <h3 className="font-sans font-bold text-xs text-white uppercase tracking-wider flex items-center gap-2">
-            <BookOpen className="w-4 h-4 text-indigo-400" />
+      <aside className="w-full xl:w-80 flex flex-col bg-white/30 backdrop-blur-md border-l border-white/60 z-10 shrink-0">
+        <div className="p-4 border-b border-white/60 flex items-center justify-between bg-white/40">
+          <h3 className="font-sans font-bold text-xs text-zinc-900 uppercase tracking-wider flex items-center gap-2">
+            <BookOpen className="w-4 h-4 text-zinc-800" />
             {language === "hi" ? "कानूनी संसाधन" : "Indian Law Resources"}
           </h3>
-          <span className="px-2 py-0.5 text-[8px] font-mono leading-none bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 rounded">AI CODE</span>
+          <span className="px-2 py-0.5 text-[8px] font-mono leading-none bg-zinc-800 border border-white/70 text-zinc-800 rounded">AI CODE</span>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 space-y-6 custom-scrollbar">
           
           {/* Pre-designed shortcut queries */}
           <div className="space-y-3">
-            <h4 className="flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider font-bold text-zinc-500">
-              <Sparkles className="w-3.5 h-3.5 text-zinc-300" />
+            <h4 className="flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider font-bold text-zinc-700">
+              <Sparkles className="w-3.5 h-3.5 text-zinc-800" />
               {language === "hi" ? "सुझाव" : "Suggestions"}
             </h4>
             <div className="flex flex-wrap gap-2">
               <button 
                 onClick={() => handleQuickAction("nda")}
-                className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2 cursor-pointer"
+                className="rounded-full bg-white/50 hover:bg-white/70 shadow-sm border border-white/60 text-xs text-zinc-900 font-medium transition-all px-4 py-2 cursor-pointer"
               >
                 {language === "hi" ? "एनडीए अनुबंध का प्रारूप बनाएं" : "Draft Indian Contract Act NDA"}
               </button>
               <button 
                 onClick={() => handleQuickAction("dpdp")}
-                className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2 cursor-pointer"
+                className="rounded-full bg-white/50 hover:bg-white/70 shadow-sm border border-white/60 text-xs text-zinc-900 font-medium transition-all px-4 py-2 cursor-pointer"
               >
                 {language === "hi" ? "DPDP अधिनियम 2023 समझें" : "Explain DPDP Act 2023 Rules"}
               </button>
               <button 
                 onClick={() => handleQuickAction("article21")}
-                className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2 cursor-pointer"
+                className="rounded-full bg-white/50 hover:bg-white/70 shadow-sm border border-white/60 text-xs text-zinc-900 font-medium transition-all px-4 py-2 cursor-pointer"
               >
                 {language === "hi" ? "अनुच्छेद 21 सुरक्षा समझें" : "Explain Article 21 Protections"}
               </button>
               <button 
                 onClick={() => handleQuickAction("ibcrera")}
-                className="rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-zinc-300 transition-all px-4 py-2 cursor-pointer"
+                className="rounded-full bg-white/50 hover:bg-white/70 shadow-sm border border-white/60 text-xs text-zinc-900 font-medium transition-all px-4 py-2 cursor-pointer"
               >
                 <span>{language === "hi" ? "रेरा बनाम आईबीसी तुलना" : "Compare RERA v/s IBC Remedies"}</span>
               </button>
@@ -576,13 +582,13 @@ Here are some core areas we can cover:
 
           {/* Quick paste text container block */}
           <div className="space-y-3">
-            <h4 className="flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider font-bold text-slate-500">
-              <FileCode className="w-3.5 h-3.5 text-indigo-400" />
+            <h4 className="flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider font-bold text-slate-700">
+              <FileCode className="w-3.5 h-3.5 text-zinc-800" />
               {language === "hi" ? "केस संदर्भ कार्यक्षेत्र" : "Interactive Case Workspace"}
             </h4>
             
-            <div className="p-4 bg-slate-900/60 border border-white/5 rounded-xl space-y-3">
-              <p className="text-[10px] text-slate-400 leading-relaxed font-sans">
+            <div className="p-4 bg-white/50 border-white/70 border border-white/60 rounded-xl space-y-3">
+              <p className="text-[10px] text-slate-600 leading-relaxed font-sans">
                 {language === "hi" 
                   ? "गहन विश्लेषण और कानूनी राय के लिए रिट याचिका, नोटिस या अनुबंध का विवरण यहाँ पेस्ट करें।"
                   : "Paste complex petition details, statutory clauses, or notice files here to merge them as prompt inputs."}
@@ -597,14 +603,14 @@ Here are some core areas we can cover:
                 }}
                 rows={3}
                 placeholder={language === "hi" ? "कस्टमाइज़्ड अनुबंध की शर्तें या वकालतनामा यहाँ पेस्ट करें..." : "Paste customized contract clauses or legal notice briefs to analyze optional contexts..."}
-                className="w-full bg-slate-950/80 border border-white/10 rounded-lg text-xs focus:ring-1 focus:ring-indigo-500 p-2 text-slate-300 font-mono custom-scrollbar"
+                className="w-full bg-white/50 border border-white/70 rounded-lg text-xs focus:outline-none focus:border-white focus:ring-1 focus:ring-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-700 p-2 text-zinc-900 placeholder:text-zinc-500 font-mono custom-scrollbar"
               />
               {customFileText && (
-                <div className="flex justify-between items-center bg-indigo-500/10 p-2 rounded border border-indigo-500/20">
-                  <span className="text-[9px] font-mono text-indigo-300 uppercase">{language === "hi" ? "परामर्श सक्रिय" : "Input Context Active"}</span>
+                <div className="flex justify-between items-center bg-white/60 p-2 rounded border border-white/70">
+                  <span className="text-[9px] font-mono text-zinc-800 uppercase">{language === "hi" ? "परामर्श सक्रिय" : "Input Context Active"}</span>
                   <button 
                     onClick={clearManualAttachment}
-                    className="text-rose-450 text-[9px] uppercase tracking-wider font-extrabold hover:text-rose-400 text-rose-400 cursor-pointer"
+                    className="text-zinc-800 text-[9px] uppercase tracking-wider font-extrabold hover:text-zinc-800 text-zinc-800 cursor-pointer"
                   >
                     {language === "hi" ? "साफ़ करें" : "Clear Text"}
                   </button>
@@ -615,17 +621,17 @@ Here are some core areas we can cover:
 
           {/* Key landmarks statutory citations for reference */}
           <div className="space-y-3">
-            <h4 className="flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider font-bold text-slate-500">
-              <FolderOpen className="w-3.5 h-3.5 text-indigo-400" />
+            <h4 className="flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-wider font-bold text-slate-700">
+              <FolderOpen className="w-3.5 h-3.5 text-zinc-800" />
               {language === "hi" ? "संवैधानिक और कानूनी कोडेक्स" : "Indian Law Codex"}
             </h4>
             
-            <div className="p-4 bg-gradient-to-br from-indigo-950/30 to-slate-900/60 border border-indigo-500/10 rounded-xl space-y-3 text-[11px] text-slate-350">
-              <div className="flex items-center gap-1.5 text-indigo-400 font-semibold text-xs">
-                <Scale className="w-4 h-4 text-indigo-400" style={{ transform: 'none' }} />
+            <div className="p-4 bg-white/50 border border-white/70 rounded-xl space-y-3 text-[11px] text-slate-800">
+              <div className="flex items-center gap-1.5 text-zinc-800 font-semibold text-xs">
+                <Scale className="w-4 h-4 text-zinc-800" style={{ transform: 'none' }} />
                 <span>{language === "hi" ? "समर्पित वैधानिक कोडेक्स" : "Dedicated Statutory Codex"}</span>
               </div>
-              <p className="text-[10.5px] text-slate-400 leading-relaxed">
+              <p className="text-[10.5px] text-slate-600 leading-relaxed">
                 {language === "hi" 
                   ? "हमने भारतीय संविदा अधिनियम, कॉपीराइट विनियमों, एमएसएमई भुगतानों और 2023 के DPDP व्यक्तिगत डेटा नियमों को एक स्वतंत्र, समृद्ध संदर्भ मार्गदर्शिका (Page) में स्थान दिया है।"
                   : "We have compiled the full collection of Contract Act codes, MSME payout guidelines, Copyright rules, and DPDP personal data protections into a dedicated reference page."}
@@ -633,7 +639,7 @@ Here are some core areas we can cover:
               <button
                 type="button"
                 onClick={() => onNavigate("indianlaw")}
-                className="w-full bg-slate-950/80 hover:bg-indigo-600 hover:text-white text-indigo-300 font-bold border border-white/5 py-2 px-3 rounded-lg text-[10px] uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer outline-none hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full bg-white/60 hover:bg-white/80 hover:text-zinc-900 text-zinc-800 font-bold border border-white/60 py-2 px-3 rounded-lg text-[10px] uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer outline-none hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>{language === "hi" ? "पूर्ण कोडेक्स गाइड देखें" : "Explore Full Codex"}</span>
                 <ArrowUpRight className="w-3 h-3" />

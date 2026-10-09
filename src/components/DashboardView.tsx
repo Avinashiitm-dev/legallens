@@ -21,10 +21,10 @@ import { trpc } from "@/providers/trpc";
 function getFileIconConfig(title: string) {
   const ext = title.split(".").pop()?.toLowerCase() || "";
   if (ext === "pdf")
-    return { Icon: File, colorClass: "bg-rose-500/10 text-rose-400 border-rose-500/20", badgeText: "PDF" };
+    return { Icon: File, colorClass: "bg-zinc-800 text-zinc-300 border-zinc-700", badgeText: "PDF" };
   if (ext === "docx" || ext === "doc")
-    return { Icon: FileText, colorClass: "bg-blue-500/10 text-blue-400 border-blue-500/20", badgeText: "DOCX" };
-  return { Icon: FileCode, colorClass: "bg-amber-500/10 text-amber-400 border-amber-500/20", badgeText: "TXT" };
+    return { Icon: FileText, colorClass: "bg-zinc-800 text-zinc-300 border-zinc-700", badgeText: "DOCX" };
+  return { Icon: FileCode, colorClass: "bg-zinc-800 text-zinc-300 border-zinc-700", badgeText: "TXT" };
 }
 
 interface DashboardViewProps {
@@ -151,7 +151,7 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
                 <span className="text-[9px] text-slate-400 font-mono">E2E Encrypted</span>
               </div>
               <div className="flex-1 rounded-lg border border-white/5 bg-slate-900/40 p-2.5 flex items-center gap-2">
-                <Globe className="w-3 h-3 text-blue-400" />
+                <Globe className="w-3 h-3 text-zinc-300" />
                 <span className="text-[9px] text-slate-400 font-mono">4 Languages</span>
               </div>
             </div>
@@ -170,10 +170,10 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
             <div key={stat.label} className="glass-card rounded-xl p-4 flex flex-col gap-3">
               <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                 isEmerald ? "bg-zinc-300/10 border border-zinc-300/20" :
-                isBlue    ? "bg-blue-500/10 border border-blue-500/20" :
-                            "bg-amber-500/10 border border-amber-500/20"
+                isBlue    ? "bg-zinc-800 border border-zinc-700" :
+                            "bg-zinc-800 border border-zinc-700"
               }`}>
-                <Icon className={`w-4 h-4 ${isEmerald ? "text-white" : isBlue ? "text-blue-400" : "text-amber-400"}`} />
+                <Icon className={`w-4 h-4 ${isEmerald ? "text-white" : isBlue ? "text-zinc-300" : "text-zinc-300"}`} />
               </div>
               <div>
                 <p className={`text-xl font-bold font-mono tracking-tight ${
@@ -252,7 +252,7 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
                   <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono border shrink-0 ${
                     file.status === "clean" ? "badge-zinc" : "badge-amber"
                   }`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${file.status === "clean" ? "bg-white" : "bg-amber-400"}`} />
+                    <span className={`w-1.5 h-1.5 rounded-full ${file.status === "clean" ? "bg-white" : "bg-zinc-700"}`} />
                     {file.risksText}
                   </div>
                 </div>
@@ -291,7 +291,7 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
             ].map((row) => (
               <div key={row.label} className="flex justify-between items-center px-3 py-2 rounded-lg bg-slate-950/40 border border-white/5">
                 <span className="text-[10px] text-slate-500 font-mono">{row.label}</span>
-                <span className={`text-[10px] font-mono font-bold ${row.color === "emerald" ? "text-white" : "text-blue-400"}`}>{row.value}</span>
+                <span className={`text-[10px] font-mono font-bold ${row.color === "emerald" ? "text-white" : "text-zinc-300"}`}>{row.value}</span>
               </div>
             ))}
           </div>
@@ -314,11 +314,11 @@ export default function DashboardView({ language, onNavigate, onSelectContract }
             >
               <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
                 item.color === "emerald" ? "bg-zinc-300/10 border border-zinc-300/20" :
-                item.color === "blue" ? "bg-blue-500/10 border border-blue-500/20" :
-                "bg-amber-500/10 border border-amber-500/20"
+                item.color === "blue" ? "bg-zinc-800 border border-zinc-700" :
+                "bg-zinc-800 border border-zinc-700"
               }`}>
                 <Icon className={`w-4.5 h-4.5 ${
-                  item.color === "emerald" ? "text-white" : item.color === "blue" ? "text-blue-400" : "text-amber-400"
+                  item.color === "emerald" ? "text-white" : item.color === "blue" ? "text-zinc-300" : "text-zinc-300"
                 }`} />
               </div>
               <div className="min-w-0">

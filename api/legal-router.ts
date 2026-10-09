@@ -676,13 +676,20 @@ Make the email elegant, friendly, constructive, with a subject line and signatur
 
   /** Chat history for the signed-in user. */
   chatHistory: authedQuery.query(async ({ ctx }) => {
-    const rows = await getDb()
-      .select()
-      .from(chatMessages)
-      .where(eq(chatMessages.userId, ctx.user.id))
-      .orderBy(desc(chatMessages.createdAt))
-      .limit(100);
-    return rows.reverse().map((r) => ({ id: r.id, role: r.role, content: r.content, createdAt: r.createdAt }));
+    try {
+      if (!ctx.user?.id) return [];
+      const rows = await getDb()
+        .select()
+        .from(chatMessages)
+        .where(eq(chatMessages.userId, ctx.user.id))
+        .orderBy(desc(chatMessages.createdAt))
+        .limit(100);
+      if (!rows) return [];
+      return rows.reverse().map((r) => ({ id: r.id, role: r.role, content: r.content, createdAt: r.createdAt }));
+    } catch (err) {
+      console.error("Failed to fetch chat history:", err);
+      return [];
+    }
   }),
 
   /** Clear the user's chat history. */

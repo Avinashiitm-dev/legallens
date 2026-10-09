@@ -223,7 +223,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
       {/* Header Profile Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5 pb-6">
         <div>
-          <span className="text-[10px] uppercase font-mono tracking-[0.2em] text-indigo-400 font-bold bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full">
+          <span className="text-[10px] uppercase font-mono tracking-[0.2em] text-zinc-300 font-bold bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-full">
             {language === "hi" ? "संवैधानिक और वैधानिक निर्देशिका" : "Constitutional & Statutory Directory"}
           </span>
           <h2 className="text-3xl font-serif italic text-white tracking-wide mt-3">
@@ -240,7 +240,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
           {/* Action button to switch interpretation language */}
           <button
             onClick={() => setUseHindiExplanation(!useHindiExplanation)}
-            className="px-4 py-2 bg-slate-900 hover:bg-slate-850 hover:border-indigo-500/30 text-xs font-semibold text-indigo-300 border border-white/5 rounded-xl transition-all cursor-pointer flex items-center gap-2"
+            className="px-4 py-2 bg-slate-900 hover:bg-slate-850 hover:border-zinc-700 text-xs font-semibold text-zinc-300 border border-white/5 rounded-xl transition-all cursor-pointer flex items-center gap-2"
           >
             <Compass className="w-3.5 h-3.5" />
             <span>{useHindiExplanation ? "English Version" : "हिंदी व्याख्या देखें"}</span>
@@ -251,8 +251,8 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
       {/* Overview Analytics Dashboard Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-5 bg-slate-900/40 border border-white/5 rounded-2xl flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center shrink-0">
-            <Scale className="w-5 h-5 text-indigo-400" />
+          <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0">
+            <Scale className="w-5 h-5 text-zinc-300" />
           </div>
           <div>
             <h4 className="text-slate-500 font-mono text-[10px] uppercase tracking-wider">
@@ -266,8 +266,8 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
         </div>
 
         <div className="p-5 bg-slate-900/40 border border-white/5 rounded-2xl flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
-            <AlertTriangle className="w-5 h-5 text-amber-400" />
+          <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0">
+            <AlertTriangle className="w-5 h-5 text-zinc-300" />
           </div>
           <div>
             <h4 className="text-slate-500 font-mono text-[10px] uppercase tracking-wider">
@@ -307,7 +307,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder={language === "hi" ? "अधिनियम धारा, नियम या व्याख्या खोजें..." : "Filter sections, statutory acts, or legal citations..."}
-            className="w-full bg-slate-950/70 border border-white/5 rounded-xl py-2 pl-9 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 font-sans"
+            className="w-full bg-slate-950/70 border border-white/5 rounded-xl py-2 pl-9 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-zinc-600 font-sans"
           />
         </div>
 
@@ -319,7 +319,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
               onClick={() => setSelectedCategory(cat.id as any)}
               className={`px-3 py-1.5 rounded-xl text-[10px] font-mono uppercase tracking-wider transition-all cursor-pointer border ${
                 selectedCategory === cat.id 
-                  ? "bg-indigo-600 text-white border-indigo-500/30 font-bold" 
+                  ? "bg-zinc-700 text-white border-zinc-700 font-bold" 
                   : "bg-slate-900 text-slate-400 border-white/5 hover:text-white"
               }`}
             >
@@ -345,15 +345,15 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25, delay: index * 0.05 }}
-                className="bg-slate-900/30 hover:bg-slate-900/50 border border-white/5 hover:border-indigo-500/15 rounded-2xl p-6 flex flex-col relative overflow-hidden group transition-all duration-300 shadow-sm hover:shadow-indigo-950/5 hover:scale-[1.01]"
+                className="bg-slate-900/30 hover:bg-slate-900/50 border border-white/5 hover:border-zinc-700 rounded-2xl p-6 flex flex-col relative overflow-hidden group transition-all duration-300 shadow-sm hover:shadow-zinc-900/10 hover:scale-[1.01]"
               >
                 {/* Visual subtle card pattern anchor */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-600/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                <div className="absolute top-0 right-0 w-24 h-24 bg-zinc-800 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
                 {/* Section Identifier & Act header details */}
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <div className="space-y-1">
-                    <span className="font-mono text-[10px] font-bold text-indigo-400 tracking-wider bg-indigo-500/5 border border-indigo-500/10 px-2 py-0.5 rounded uppercase">
+                    <span className="font-mono text-[10px] font-bold text-zinc-300 tracking-wider bg-zinc-800 border border-zinc-700 px-2 py-0.5 rounded uppercase">
                       {item.section}
                     </span>
                     <h3 className="font-sans text-xs text-slate-500 font-bold uppercase tracking-wider mt-1.5 inline-block">
@@ -362,9 +362,9 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
                   </div>
                   <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-mono border ${
                     item.badge.includes("Critical") || item.badge.includes("Void")
-                      ? "bg-rose-500/10 text-rose-300 border-rose-500/20"
+                      ? "bg-zinc-800 text-zinc-300 border-zinc-700"
                       : item.badge.includes("Risk")
-                        ? "bg-amber-500/10 text-amber-300 border-amber-500/20"
+                        ? "bg-zinc-800 text-zinc-300 border-zinc-700"
                         : "bg-zinc-300/10 text-zinc-200 border-zinc-300/20"
                   }`}>
                     {shownBadge}
@@ -372,12 +372,12 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
                 </div>
 
                 {/* Main Legal Title */}
-                <h4 className="font-serif italic text-lg text-slate-100 group-hover:text-indigo-300 transition-colors duration-250 mb-3.5">
+                <h4 className="font-serif italic text-lg text-slate-100 group-hover:text-zinc-300 transition-colors duration-250 mb-3.5">
                   {shownTitle}
                 </h4>
 
                 {/* Statutory Explanation */}
-                <p className="text-xs text-slate-300 leading-relaxed font-sans mb-4 border-l border-indigo-500/20 pl-3">
+                <p className="text-xs text-slate-300 leading-relaxed font-sans mb-4 border-l border-zinc-700 pl-3">
                   {shownExplanation}
                 </p>
 
@@ -394,7 +394,7 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
                 {/* Playbook Compliance Standard Suggested wording block */}
                 <div className="p-3 bg-slate-950/30 rounded-xl border border-white/5 space-y-2 text-xs mt-3 flex-1 flex flex-col justify-between">
                   <div>
-                    <span className="font-mono text-[9px] text-emerald-450 uppercase tracking-widest block font-bold text-white">
+                    <span className="font-mono text-[9px] text-zinc-300 uppercase tracking-widest block font-bold text-white">
                       {language === "hi" ? "मानक अनुपालन शब्द (Playbook Model)" : "Model Playbook Wording"}
                     </span>
                     <pre className="text-slate-350 text-[10px] leading-normal font-mono whitespace-pre-wrap select-all cursor-text py-1.5 scrollbar-none max-h-[80px] overflow-y-auto bg-slate-950/20 rounded mt-1">
@@ -429,10 +429,10 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
                   </span>
                   <button
                     onClick={() => handleAskAIClick(item.promptExample)}
-                    className="shrink-0 text-[10px] px-3 py-1.5 bg-indigo-600/10 hover:bg-indigo-600 border border-indigo-500/15 hover:border-indigo-500 text-indigo-300 hover:text-white rounded-xl transition-all cursor-pointer flex items-center gap-1.5 font-sans font-bold"
+                    className="shrink-0 text-[10px] px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-zinc-600 text-zinc-300 hover:text-white rounded-xl transition-all cursor-pointer flex items-center gap-1.5 font-sans font-bold"
                   >
                     <span>{language === "hi" ? "पूछें AI से" : "Consult AI"}</span>
-                    <Sparkles className="w-3 h-3 text-amber-300 animate-pulse" />
+                    <Sparkles className="w-3 h-3 text-zinc-300 animate-pulse" />
                   </button>
                 </div>
 
@@ -455,9 +455,9 @@ export default function IndianLawView({ language, onNavigate, onSelectPrompt }: 
       )}
 
       {/* Playbook Compliance Checklist / Regulatory Sandbox */}
-      <div className="bg-gradient-to-br from-indigo-950/20 to-slate-900/60 border border-indigo-500/10 rounded-2xl p-6 space-y-4">
+      <div className="bg-zinc-900/50 border border-zinc-700 rounded-2xl p-6 space-y-4">
         <h3 className="font-serif italic text-lg text-white flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-indigo-400" />
+          <BookOpen className="w-5 h-5 text-zinc-300" />
           <span>{language === "hi" ? "भारतीय नियामक अनुपालन चेकलिस्ट" : "Indian Regulatory Compliance Checklist"}</span>
         </h3>
         <p className="text-xs text-slate-400 leading-normal max-w-3xl">

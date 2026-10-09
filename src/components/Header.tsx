@@ -120,8 +120,7 @@ export default function Header({
       ref={headerRef}
       onMouseEnter={() => setIsNavHovered(true)}
       onMouseLeave={() => setIsNavHovered(false)}
-      className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-zinc-200/80 bg-white/80 px-6 backdrop-blur-2xl transition-colors dark:border-white/10 dark:bg-zinc-950/80 shrink-0"
-      style={{ boxShadow: 'inset 0 -1px 0 0 rgba(255, 255, 255, 0.05)' }}
+      className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-slate-800/50 bg-[#0B0F17] px-6 transition-colors shrink-0"
     >
       {/* Left — search */}
       <div className="flex items-center gap-4 flex-1 max-w-xl pl-2">
@@ -133,12 +132,11 @@ export default function Header({
             value={searchVal}
             onChange={handleInputChange}
             placeholder={language === "hi" ? "अनुबंध खोजें..." : "Search workspace..."}
-            className="w-full bg-zinc-900/60 border border-white/10 text-zinc-200 placeholder-zinc-500 text-sm rounded-full pl-10 pr-16 py-2 transition-all font-sans focus:bg-zinc-800/80 focus:border-white/20 outline-none"
-            style={{ boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)' }}
+            className="w-full bg-slate-900/60 border border-slate-800/60 text-zinc-200 placeholder-zinc-500 text-sm rounded-full pl-10 pr-16 py-2 transition-all font-sans focus:bg-slate-800/80 focus:border-slate-700/80 outline-none"
           />
           <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none">
-            <span className="flex items-center justify-center h-5 px-1.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-zinc-400">⌘</span>
-            <span className="flex items-center justify-center h-5 px-1.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-zinc-400">K</span>
+            <span className="flex items-center justify-center h-5 px-1.5 rounded bg-slate-800/40 border border-slate-700/50 text-[9px] font-mono text-zinc-400">⌘</span>
+            <span className="flex items-center justify-center h-5 px-1.5 rounded bg-slate-800/40 border border-slate-700/50 text-[9px] font-mono text-zinc-400">K</span>
           </div>
         </div>
       </div>
@@ -152,17 +150,17 @@ export default function Header({
           pointerEvents: isNavHovered ? "auto" : "none"
         }}
       >
-        <div className="flex items-center gap-1.5 p-2 rounded-3xl bg-zinc-950/80 backdrop-blur-2xl border border-white/10 shadow-2xl">
+        <div className="flex items-center gap-1.5 p-2 rounded-3xl bg-[#0B0F17] border border-slate-800/50 shadow-2xl">
           {navItems.map(item => (
             <button
               key={item.id}
               onClick={item.action}
               className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-semibold transition-all duration-300 outline-none ${
                 currentView === item.id 
-                  ? "bg-white/10 text-white border border-white/15" 
+                  ? "bg-slate-800/60 text-white border border-slate-700/50" 
                   : item.highlight
-                    ? "bg-white/5 text-zinc-200 border border-white/10 hover:bg-white/10"
-                    : "text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent"
+                    ? "bg-slate-900 text-zinc-200 border border-slate-800/50 hover:bg-slate-800"
+                    : "text-zinc-400 hover:text-white hover:bg-slate-800/40 border border-transparent"
               }`}
             >
               <item.icon className="w-3.5 h-3.5" />
@@ -296,7 +294,7 @@ export default function Header({
                 </button>
                 <button
                   onClick={() => logout()}
-                  className="w-full text-left px-3 py-2 text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-500/8 rounded-xl transition-all flex items-center gap-2"
+                  className="w-full text-left px-3 py-2 text-xs text-zinc-300 hover:text-zinc-300 hover:bg-zinc-800 rounded-xl transition-all flex items-center gap-2"
                 >
                   <LogOut className="w-3 h-3" />
                   {language === "hi" ? "साइन आउट" : "Sign out"}

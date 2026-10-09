@@ -118,9 +118,9 @@ export default function TemplateLibraryView({
           }}
           whileHover={{ scale: 1.03, translateY: -2 }}
           whileTap={{ scale: 0.97 }}
-          className="shrink-0 inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-slate-700 hover:text-indigo-400 text-white py-3 px-6 rounded-lg transition-all duration-200 font-semibold text-xs shadow-lg shadow-indigo-600/30 hover:shadow-indigo-500/30 spring-bounce outline-none"
+          className="shrink-0 inline-flex items-center justify-center gap-2 bg-zinc-700 hover:bg-slate-700 hover:text-zinc-300 text-white py-3 px-6 rounded-lg transition-all duration-200 font-semibold text-xs shadow-lg shadow-zinc-900/10 hover:shadow-zinc-900/10 spring-bounce outline-none"
         >
-          <Sparkles className="w-4 h-4 text-indigo-200 animate-pulse" />
+          <Sparkles className="w-4 h-4 text-zinc-300 animate-pulse" />
           {language === "hi" ? "एआई से निर्माण करें" : "Generate with AI"}
         </motion.button>
       </div>
@@ -138,7 +138,7 @@ export default function TemplateLibraryView({
               whileTap={{ scale: 0.95 }}
               className={`shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold spring-bounce outline-none cursor-pointer ${
                 activeFilter === filter 
-                  ? "bg-indigo-600 text-white" 
+                  ? "bg-zinc-700 text-white" 
                   : "border border-white/10 text-slate-400 hover:text-white hover:bg-white/5"
               }`}
             >
@@ -155,7 +155,7 @@ export default function TemplateLibraryView({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={language === "hi" ? "खोजें टेम्पलेट्स..." : "Query templates..."}
-            className="w-full bg-slate-900/60 border border-white/10 text-slate-200 placeholder-slate-600 font-sans text-xs rounded-lg pl-9 pr-4 py-2 focus:border-indigo-550 outline-none focus:ring-1 focus:ring-white"
+            className="w-full bg-slate-900/60 border border-white/10 text-slate-200 placeholder-slate-600 font-sans text-xs rounded-lg pl-9 pr-4 py-2 focus:border-zinc-600 outline-none focus:ring-1 focus:ring-white"
           />
         </div>
 
@@ -169,15 +169,15 @@ export default function TemplateLibraryView({
             return (
               <div
                 key={tmpl.id}
-                className="glass-panel rounded-2xl p-6 flex flex-col hover:border-indigo-500/30 hover:shadow-xl hover:shadow-indigo-505/5 hover:-translate-y-1 transition-all duration-200 group spring-bounce"
+                className="glass-panel rounded-2xl p-6 flex flex-col hover:border-zinc-700 hover:shadow-xl hover:shadow-zinc-900/10 hover:-translate-y-1 transition-all duration-200 group spring-bounce"
               >
                 <div className="flex justify-between items-start mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center border border-white/5 group-hover:bg-indigo-500/10 group-hover:scale-105 transition-all">
-                    <Library className="w-4.5 h-4.5 text-indigo-400" />
+                  <div className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center border border-white/5 group-hover:bg-zinc-800 group-hover:scale-105 transition-all">
+                    <Library className="w-4.5 h-4.5 text-zinc-300" />
                   </div>
                   {tmpl.isProtective ? (
-                    <span className="bg-indigo-505/10 text-indigo-300 border border-indigo-500/20 px-2.5 py-1 rounded-full text-[10px] font-mono flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+                    <span className="bg-zinc-800 text-zinc-300 border border-zinc-700 px-2.5 py-1 rounded-full text-[10px] font-mono flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-700 animate-pulse" />
                       {language === "hi" ? "अत्यधिक सुरक्षित" : "Protective"}
                     </span>
                   ) : (
@@ -187,7 +187,7 @@ export default function TemplateLibraryView({
                   )}
                 </div>
 
-                <h3 className="font-bold text-sm text-slate-100 mb-2 truncate group-hover:text-indigo-300 transition-colors">
+                <h3 className="font-bold text-sm text-slate-100 mb-2 truncate group-hover:text-zinc-300 transition-colors">
                   {localized.name}
                 </h3>
                 <p className="text-slate-400 text-xs mb-6 flex-1 leading-relaxed">
@@ -207,7 +207,7 @@ export default function TemplateLibraryView({
                     onClick={() => handleUseTemplate(tmpl)}
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
-                    className="flex-1 py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-indigo-600 hover:text-white border border-white/5 text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 spring-bounce outline-none cursor-pointer"
+                    className="flex-1 py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-zinc-700 hover:text-white border border-white/5 text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 spring-bounce outline-none cursor-pointer"
                   >
                     {language === "hi" ? "चुने" : "Use Template"}
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -269,7 +269,7 @@ export default function TemplateLibraryView({
                 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg spring-bounce outline-none cursor-pointer"
+                className="px-4 py-2 bg-zinc-700 hover:bg-zinc-700 text-white text-xs font-bold rounded-lg spring-bounce outline-none cursor-pointer"
               >
                 {language === "hi" ? "विश्लेषक में लोड करें" : "Load to Analyzer"}
               </motion.button>

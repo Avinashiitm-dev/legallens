@@ -38,24 +38,24 @@ export function getFileIconConfig(title: string) {
   if (ext === 'pdf') {
     return {
       Icon: File,
-      colorClass: "bg-rose-500/10 text-rose-400 border-rose-500/20 hover:bg-rose-500/20",
+      colorClass: "bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-zinc-800",
       badgeText: "PDF",
-      badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/20"
+      badgeClass: "bg-zinc-800 text-zinc-300 border-zinc-700"
     };
   } else if (ext === 'docx' || ext === 'doc') {
     return {
       Icon: FileText,
-      colorClass: "bg-blue-500/10 text-blue-400 border-blue-500/20 hover:bg-blue-500/20",
+      colorClass: "bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-zinc-800",
       badgeText: "DOCX",
-      badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/20"
+      badgeClass: "bg-zinc-800 text-zinc-300 border-zinc-700"
     };
   } else {
     // Default to TXT / Generic configuration
     return {
       Icon: FileCode,
-      colorClass: "bg-amber-500/10 text-amber-400 border-amber-500/20 hover:bg-amber-500/20",
+      colorClass: "bg-zinc-800 text-zinc-300 border-zinc-700 hover:bg-zinc-800",
       badgeText: "TXT",
-      badgeClass: "bg-amber-500/10 text-amber-300 border-amber-500/20"
+      badgeClass: "bg-zinc-800 text-zinc-300 border-zinc-700"
     };
   }
 }
@@ -80,7 +80,7 @@ export default function Home() {
 
   const t = translations[language];
 
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   // Sidebar removed in favor of FloatingNav
 
   // Sync theme with root HTML and body element classes
@@ -111,6 +111,18 @@ export default function Home() {
     if (s.documentId) setContractDocumentId(s.documentId);
     if (s.activeView) setCurrentView(s.activeView);
   }, [sessionQuery.isFetched, sessionQuery.data]);
+
+  // Container ref for relative mouse tracking (glow effect)
+  const workspaceRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!workspaceRef.current) return;
+    const rect = workspaceRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    workspaceRef.current.style.setProperty('--mouse-x', `${x}px`);
+    workspaceRef.current.style.setProperty('--mouse-y', `${y}px`);
+  };
 
   // Persist the workspace pointer (debounced) so sessions survive restarts
   const saveSessionMutation = trpc.legal.saveSession.useMutation();
@@ -289,13 +301,17 @@ export default function Home() {
   if (!user) return null; // redirect to /login handled by useAuth
 
   return (
-    <div className="top-0 m-0 p-0 min-h-screen w-full text-slate-100 flex font-sans leading-normal relative select-none antialiased bg-[#0B0F17]">
-      {/* Dynamic Animated Sarvam AI / Gemini Mesh Glow Canvas */}
-      <AmbientBackground />
+    <div className={`top-0 m-0 p-0 min-h-screen w-full flex font-sans leading-normal relative select-none antialiased transition-colors duration-500 ${isDarkMode ? "bg-[#0B0F17] text-slate-100" : "bg-gradient-to-br from-[#E2E8F0] via-[#C5C7CB] to-[#B0B3B8] text-zinc-900"}`}>
 
       {/* Frame Wrapper Layout */}
-      <div className="flex-1 min-w-0 w-full flex flex-col h-screen relative z-10 overflow-hidden transition-all duration-300 ease-in-out">
+      <div 
+        ref={workspaceRef}
+        onMouseMove={handleMouseMove}
+        className="flex-1 min-w-0 w-full flex flex-col h-screen relative z-10 overflow-hidden transition-all duration-300 ease-in-out"
+      >
         
+        {/* Dynamic Animated Sarvam AI / Gemini Mesh Glow Canvas */}
+        <AmbientBackground />
         {/* Global Toolbar Header */}
         <Header 
           language={language}
@@ -553,7 +569,7 @@ export default function Home() {
                           </LiquidButton>
                           <LiquidButton 
                             onClick={() => handleDeleteVaultContract(file.id)}
-                            className="text-slate-500 hover:text-rose-400 border border-white/5 cursor-pointer"
+                            className="text-slate-500 hover:text-zinc-300 border border-white/5 cursor-pointer"
                             size="icon"
                             title={language === "hi" ? "दस्तावेज़ मिटाएं" : "Purge document"}
                           >
@@ -589,8 +605,8 @@ export default function Home() {
                   {/* Language Selection */}
                   <div className="glass-card rounded-2xl p-6 space-y-5">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                        <Globe className="w-4 h-4 text-blue-400" />
+                      <div className="w-8 h-8 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center">
+                        <Globe className="w-4 h-4 text-zinc-300" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-sm text-white">{t.languageLabel}</h3>
@@ -627,8 +643,8 @@ export default function Home() {
                   {/* API Clearance */}
                   <div className="glass-card rounded-2xl p-6 space-y-5">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
-                        <Key className="w-4 h-4 text-amber-400" />
+                      <div className="w-8 h-8 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center">
+                        <Key className="w-4 h-4 text-zinc-300" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-sm text-white">{t.apiClearanceTitle}</h3>
@@ -643,7 +659,7 @@ export default function Home() {
                       ].map((row) => (
                         <div key={row.key} className="p-3 rounded-xl bg-white/[0.03] border border-white/6 flex justify-between items-center">
                           <span className="text-[10px] text-slate-500 font-mono">{row.key}</span>
-                          <span className={`flex items-center gap-1.5 text-[10px] font-mono font-bold ${row.color === "emerald" ? "text-white" : "text-blue-400"}`}>
+                          <span className={`flex items-center gap-1.5 text-[10px] font-mono font-bold ${row.color === "emerald" ? "text-white" : "text-zinc-300"}`}>
                             <ShieldCheck className="w-3 h-3" />
                             {row.status}
                           </span>
@@ -706,7 +722,7 @@ export default function Home() {
                 {/* Header Banner */}
                 <div className="px-6 py-5 bg-slate-950/50 border-b border-white/5 flex justify-between items-center">
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-indigo-500/10 rounded-lg border border-indigo-500/20 text-indigo-400">
+                    <div className="p-1.5 bg-zinc-800 rounded-lg border border-zinc-700 text-zinc-300">
                       <Keyboard className="w-5 h-5" />
                     </div>
                     <div>
@@ -733,7 +749,7 @@ export default function Home() {
                   
                   {/* Category - Navigation */}
                   <div className="space-y-3">
-                    <h4 className="text-[10px] font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+                    <h4 className="text-[10px] font-mono uppercase tracking-wider text-zinc-300 font-semibold">
                       Navigation views (Press key to Go)
                     </h4>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-2.5">
@@ -757,7 +773,7 @@ export default function Home() {
                           <span className="text-[11px] text-slate-300 group-hover:text-white font-medium transition-all">
                             {item.label}
                           </span>
-                          <span className="font-mono text-[10px] font-bold text-indigo-400 bg-slate-950 px-2 py-0.5 rounded border border-white/10 shadow-sm uppercase">
+                          <span className="font-mono text-[10px] font-bold text-zinc-300 bg-slate-950 px-2 py-0.5 rounded border border-white/10 shadow-sm uppercase">
                             {item.key}
                           </span>
                         </button>
@@ -767,7 +783,7 @@ export default function Home() {
 
                   {/* Category - Tools & Context Actions */}
                   <div className="space-y-3 pt-3 border-t border-white/5">
-                    <h4 className="text-[10px] font-mono uppercase tracking-wider text-indigo-400 font-semibold">
+                    <h4 className="text-[10px] font-mono uppercase tracking-wider text-zinc-300 font-semibold">
                       Context Actions & Display
                     </h4>
                     <div className="grid grid-cols-2 gap-3">
@@ -822,7 +838,7 @@ export default function Home() {
                           <span className="text-[11px] text-slate-300 group-hover:text-white font-medium transition-all">
                             {item.label}
                           </span>
-                          <span className="font-mono text-[10px] font-bold text-amber-400 bg-slate-950 px-2 py-0.5 rounded border border-white/10 shadow-sm">
+                          <span className="font-mono text-[10px] font-bold text-zinc-300 bg-slate-950 px-2 py-0.5 rounded border border-white/10 shadow-sm">
                             {item.key}
                           </span>
                         </button>

@@ -431,7 +431,7 @@ export default function AnalyzerView({
               return (
                 <span
                   key={idx}
-                  className="bg-rose-500/15 text-rose-300 font-medium px-1 py-0.5 rounded border border-rose-500/10 cursor-help"
+                  className="bg-zinc-800 text-zinc-300 font-medium px-1 py-0.5 rounded border border-zinc-700 cursor-help"
                   title="This phrasing is absent in standard or contains elevated compliance risks"
                 >
                   {word}{" "}
@@ -1056,9 +1056,9 @@ export default function AnalyzerView({
       // Find quote and wrap with highlighting (using our theme-aware CSS custom colors)
       const sevColor =
         risk.severity === "Critical"
-          ? "bg-critical-bg text-critical-text-val font-medium border-b border-rose-400"
+          ? "bg-critical-bg text-critical-text-val font-medium border-b border-zinc-600"
           : risk.severity === "Unfavorable"
-            ? "bg-unfavorable-bg text-unfavorable-text-val font-medium border-b border-amber-400"
+            ? "bg-unfavorable-bg text-unfavorable-text-val font-medium border-b border-zinc-600"
             : "bg-protective-bg text-protective-text-val font-medium border-b border-white";
 
       // Re-escape regex specials
@@ -1125,7 +1125,7 @@ export default function AnalyzerView({
       </div>
 
       {/* Drag & Paste Upload Zone block */}
-      <div className="w-full border border-dashed border-white/10 rounded-2xl bg-slate-900/20 hover:bg-slate-900/40 hover:border-emerald-505/50 transition-all duration-200 flex flex-col items-center justify-center py-10 px-6 group cursor-pointer relative overflow-hidden">
+      <div className="w-full border border-dashed border-white/10 rounded-2xl bg-slate-900/20 hover:bg-slate-900/40 hover:border-zinc-700 transition-all duration-200 flex flex-col items-center justify-center py-10 px-6 group cursor-pointer relative overflow-hidden">
         <input
           type="file"
           onChange={handleFileUpload}
@@ -1210,7 +1210,7 @@ export default function AnalyzerView({
 
       {/* Error feedback */}
       {error && (
-        <div className="p-4 border border-rose-500/20 bg-rose-500/5 text-rose-300 rounded-xl text-xs font-mono">
+        <div className="p-4 border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-xl text-xs font-mono">
           [CRITICAL_FAIL] {error}
         </div>
       )}
@@ -1243,7 +1243,7 @@ export default function AnalyzerView({
                 </div>
                 <button
                   onClick={() => setPinnedRiskIds([])}
-                  className="text-[10px] font-mono text-slate-400 hover:text-rose-400 hover:underline transition-colors cursor-pointer outline-none self-start sm:self-auto"
+                  className="text-[10px] font-mono text-slate-400 hover:text-zinc-300 hover:underline transition-colors cursor-pointer outline-none self-start sm:self-auto"
                 >
                   {t.unpinAll}
                 </button>
@@ -1272,13 +1272,13 @@ export default function AnalyzerView({
                         }
                       }}
                       className={`p-3.5 rounded-xl border relative transition-all duration-200 cursor-pointer text-left select-none group/pinned ${isSelected
-                        ? "border-zinc-300 bg-emerald-950/20 ring-2 ring-zinc-300/30 shadow-lg"
+                        ? "border-zinc-300 bg-zinc-800 ring-2 ring-zinc-300/30 shadow-lg"
                         : isReviewed
-                          ? "border-zinc-300/20 bg-emerald-950/10 opacity-70 hover:opacity-100"
+                          ? "border-zinc-300/20 bg-zinc-800 opacity-70 hover:opacity-100"
                           : isCritical
-                            ? "bg-rose-950/5 border-rose-500/15 hover:border-rose-500/30"
+                            ? "bg-zinc-800 border-zinc-700 hover:border-zinc-700"
                             : isUnfavorable
-                              ? "bg-amber-950/5 border-amber-500/15 hover:border-amber-500/30"
+                              ? "bg-zinc-800 border-zinc-700 hover:border-zinc-700"
                               : "bg-slate-900/30 border-white/5 hover:border-white/10"
                         }`}
                     >
@@ -1286,9 +1286,9 @@ export default function AnalyzerView({
                       <div className={`absolute top-0 left-0 w-1 h-full rounded-l-xl ${isReviewed
                         ? "bg-zinc-300"
                         : isCritical
-                          ? "bg-rose-500"
+                          ? "bg-zinc-700"
                           : isUnfavorable
-                            ? "bg-amber-500"
+                            ? "bg-zinc-700"
                             : "bg-zinc-300"
                         }`} />
 
@@ -1296,9 +1296,9 @@ export default function AnalyzerView({
                         <span className={`text-[8px] font-mono uppercase px-1.5 py-0.5 rounded ${isReviewed
                           ? "bg-zinc-300/10 text-white"
                           : isCritical
-                            ? "bg-rose-500/10 text-rose-300"
+                            ? "bg-zinc-800 text-zinc-300"
                             : isUnfavorable
-                              ? "bg-amber-500/10 text-amber-300"
+                              ? "bg-zinc-800 text-zinc-300"
                               : "bg-zinc-300/10 text-white"
                           }`}>
                           {isReviewed ? (language === "hi" ? "संशोधित" : "Cleared") : risk.severity}
@@ -1309,7 +1309,7 @@ export default function AnalyzerView({
                             e.stopPropagation();
                             togglePinRisk(pinnedId);
                           }}
-                          className="text-slate-500 hover:text-rose-400 p-0.5 rounded transition-colors outline-none cursor-pointer"
+                          className="text-slate-500 hover:text-zinc-300 p-0.5 rounded transition-colors outline-none cursor-pointer"
                           title="Unpin"
                         >
                           <X className="w-3.5 h-3.5" />
@@ -1403,9 +1403,9 @@ export default function AnalyzerView({
 
                         <div className="flex flex-wrap items-center gap-3 font-mono text-[10px]">
                           <span className={`px-2 py-1 rounded-md text-xs font-semibold ${isCritical
-                            ? "bg-rose-500/15 text-rose-300 border border-rose-500/20"
+                            ? "bg-zinc-800 text-zinc-300 border border-zinc-700"
                             : isUnfavorable
-                              ? "bg-amber-500/15 text-amber-300 border border-amber-500/20"
+                              ? "bg-zinc-800 text-zinc-300 border border-zinc-700"
                               : "bg-zinc-300/15 text-zinc-200 border border-zinc-300/20"
                             }`}>
                             Risk Impact: {isCritical ? (language === "hi" ? "गंभीर जोखिम" : "Critical Flag") : isUnfavorable ? (language === "hi" ? "प्रतिकूल जोखिम" : "Unfavorable Draft") : (language === "hi" ? "सुरक्षित प्रावधान" : "Protective Clause")}
@@ -1422,7 +1422,7 @@ export default function AnalyzerView({
                           <button
                             onClick={() => setSelectedStandardPreset("neutral")}
                             className={`px-3 py-1.5 rounded-lg text-xs font-semibold select-none cursor-pointer border transition-all ${selectedStandardPreset === "neutral"
-                              ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/30 shadow-emerald-505/5 shadow-md"
+                              ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/30 shadow-zinc-900/10 shadow-md"
                               : "bg-slate-950/40 text-slate-400 border-transparent hover:text-slate-300"
                               }`}
                           >
@@ -1431,7 +1431,7 @@ export default function AnalyzerView({
                           <button
                             onClick={() => setSelectedStandardPreset("pro-client")}
                             className={`px-3 py-1.5 rounded-lg text-xs font-semibold select-none cursor-pointer border transition-all ${selectedStandardPreset === "pro-client"
-                              ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/30 shadow-emerald-505/5 shadow-md"
+                              ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/30 shadow-zinc-900/10 shadow-md"
                               : "bg-slate-950/40 text-slate-400 border-transparent hover:text-slate-300"
                               }`}
                           >
@@ -1440,7 +1440,7 @@ export default function AnalyzerView({
                           <button
                             onClick={() => setSelectedStandardPreset("pro-provider")}
                             className={`px-3 py-1.5 rounded-lg text-xs font-semibold select-none cursor-pointer border transition-all ${selectedStandardPreset === "pro-provider"
-                              ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/30 shadow-emerald-505/5 shadow-md"
+                              ? "bg-zinc-300/15 text-zinc-200 border-zinc-300/30 shadow-zinc-900/10 shadow-md"
                               : "bg-slate-950/40 text-slate-400 border-transparent hover:text-slate-300"
                               }`}
                           >
@@ -1470,9 +1470,9 @@ export default function AnalyzerView({
 
                         {/* Left: Original Draft Clause with highlights */}
                         <div className={`p-4 rounded-xl border flex flex-col justify-between space-y-3 transition-colors ${isCritical
-                          ? "bg-rose-950/5 border-rose-500/10"
+                          ? "bg-zinc-800 border-zinc-700"
                           : isUnfavorable
-                            ? "bg-amber-950/5 border-amber-500/10"
+                            ? "bg-zinc-800 border-zinc-700"
                             : "bg-slate-900/40 border-white/5"
                           }`}>
                           <div>
@@ -1480,7 +1480,7 @@ export default function AnalyzerView({
                               <span className="text-[10px] font-mono uppercase text-slate-400 tracking-wider">
                                 {t.originalTab}
                               </span>
-                              <span className={`text-[9px] px-1.5 py-0.2 rounded font-mono ${isCritical ? "bg-rose-500/25 text-rose-300" : isUnfavorable ? "bg-amber-500/25 text-amber-300" : "bg-zinc-300/25 text-zinc-200"
+                              <span className={`text-[9px] px-1.5 py-0.2 rounded font-mono ${isCritical ? "bg-zinc-800 text-zinc-300" : isUnfavorable ? "bg-zinc-800 text-zinc-300" : "bg-zinc-300/25 text-zinc-200"
                                 }`}>
                                 {activeRisk.severity}
                               </span>
@@ -1516,7 +1516,7 @@ export default function AnalyzerView({
                         </div>
 
                         {/* Right: Industry Standard Alternative with dynamic highlights */}
-                        <div className="p-4 rounded-xl border border-zinc-300/15 bg-emerald-950/5 flex flex-col justify-between space-y-3">
+                        <div className="p-4 rounded-xl border border-zinc-300/15 bg-zinc-800 flex flex-col justify-between space-y-3">
                           <div>
                             <div className="flex items-center justify-between mb-3 border-b border-zinc-300/10 pb-1.5">
                               <span className="text-[10px] font-mono uppercase text-white tracking-wider font-semibold">
@@ -1526,12 +1526,12 @@ export default function AnalyzerView({
                                 {selectedStandardPreset === "neutral" ? (language === "hi" ? "संतुलित और सुरक्षित" : "Balanced Neutral") : selectedStandardPreset === "pro-client" ? (language === "hi" ? "ग्राहक समर्थक" : "Pro-Customer") : (language === "hi" ? "विशिष्ट प्रदाता समर्थक" : "Pro-Provider")}
                               </span>
                             </div>
-                            <p className="text-[11px] font-mono leading-relaxed text-emerald-200 whitespace-pre-wrap rounded bg-slate-1000/40 p-2.5">
+                            <p className="text-[11px] font-mono leading-relaxed text-zinc-300 whitespace-pre-wrap rounded bg-slate-1000/40 p-2.5">
                               {getDiffHighlightedText(activeRisk.exactQuote || "", standardPresetText, false)}
                             </p>
                           </div>
 
-                          <div className="pt-2 border-t border-emerald-900/35 flex justify-between items-center text-[10px]">
+                          <div className="pt-2 border-t border-zinc-700 flex justify-between items-center text-[10px]">
                             <span className="text-zinc-400 text-[9px]">{language === "hi" ? "सुधार और सुरक्षित पाठ जोड़े गए" : "Protective additions highlighted"}</span>
                             <div className="flex items-center gap-3">
                               <button
@@ -1575,9 +1575,9 @@ export default function AnalyzerView({
                       {showDiffHighlight && (
                         <div className="p-3 bg-slate-900/40 rounded-lg border border-white/5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-[10.5px]">
                           <div className="flex items-start gap-2">
-                            <div className="w-2.5 h-2.5 rounded bg-rose-500/20 border border-rose-500/35 flex-shrink-0 mt-0.5" />
+                            <div className="w-2.5 h-2.5 rounded bg-zinc-800 border border-zinc-700 flex-shrink-0 mt-0.5" />
                             <p className="text-slate-400 leading-normal">
-                              <strong className="text-rose-300 font-semibold">{language === "hi" ? "जोखिम अंतर (Risks Missing/Changed):" : "Risky Divergence (Pink):"}</strong>{" "}
+                              <strong className="text-zinc-300 font-semibold">{language === "hi" ? "जोखिम अंतर (Risks Missing/Changed):" : "Risky Divergence (Pink):"}</strong>{" "}
                               {language === "hi"
                                 ? "मूल शर्त के वे विशिष्ट खंड या शब्द जो असंगत शर्तों या उच्च उत्तरदायित्व को दर्शाते हैं।"
                                 : "Wording from the original contract containing elevated liability terms or conflicting statutory latencies that are omitted in the standardized alternative."}
@@ -1618,7 +1618,7 @@ export default function AnalyzerView({
                           onChange={(e) => setCustomDraftText(e.target.value)}
                           placeholder="Customize and merge terms here..."
                           rows={3}
-                          className="w-full bg-slate-950 border border-white/10 text-slate-100 placeholder-slate-600 font-mono text-[11px] leading-relaxed p-3 rounded-lg focus:border-emerald-505 focus:outline-none focus:ring-1 focus:ring-zinc-300/30"
+                          className="w-full bg-slate-950 border border-white/10 text-slate-100 placeholder-slate-600 font-mono text-[11px] leading-relaxed p-3 rounded-lg focus:border-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-300/30"
                         />
 
                         <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-1">
@@ -1655,7 +1655,7 @@ export default function AnalyzerView({
                                 toggleReviewed(selectedRiskId);
                               }}
                               className={`font-semibold text-[10px] px-3.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer outline-none ${reviewedClauses[selectedRiskId]
-                                ? "text-white bg-emerald-950/25 border border-zinc-300/30 font-bold"
+                                ? "text-white bg-zinc-800 border border-zinc-300/30 font-bold"
                                 : "text-slate-300 bg-slate-800 border border-white/10 hover:bg-slate-705"
                                 }`}
                             >
@@ -1693,10 +1693,10 @@ export default function AnalyzerView({
                     AI Insights Summary
                   </h3>
                   <div className="flex gap-1.5 font-mono text-[9px]">
-                    <span className="bg-rose-500/10 text-rose-300 px-2 py-0.5 rounded border border-rose-500/15">
+                    <span className="bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded border border-zinc-700">
                       {report.risks.filter(r => r.severity === "Critical").length} Critical
                     </span>
-                    <span className="bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded border border-amber-500/15">
+                    <span className="bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded border border-zinc-700">
                       {report.risks.filter(r => r.severity === "Unfavorable").length} Unfavorable
                     </span>
                   </div>
@@ -1707,8 +1707,8 @@ export default function AnalyzerView({
                   <div className={`w-12 h-12 rounded-full border-4 flex items-center justify-center font-bold text-sm font-mono ${report.overallScore > 75
                     ? "border-zinc-300 text-zinc-200 bg-zinc-300/5"
                     : report.overallScore > 50
-                      ? "border-amber-505 text-amber-300 bg-amber-500/5"
-                      : "border-rose-550 text-rose-300 bg-rose-500/5"
+                      ? "border-zinc-600 text-zinc-300 bg-zinc-800"
+                      : "border-zinc-600 text-zinc-300 bg-zinc-800"
                     }`}>
                     {report.overallScore}
                   </div>
@@ -1814,11 +1814,11 @@ export default function AnalyzerView({
                       className={`p-5 rounded-xl border relative overflow-hidden transition-all duration-200 outline-none cursor-pointer ${isSelected
                         ? "border-zinc-300 bg-slate-900/90 ring-2 ring-zinc-300/45 shadow-lg scale-[1.012]"
                         : isReviewed
-                          ? "border-zinc-300/35 bg-emerald-950/20 opacity-80 hover:opacity-100 placeholder-opacity-100"
+                          ? "border-zinc-300/35 bg-zinc-800 opacity-80 hover:opacity-100 placeholder-opacity-100"
                           : isCritical
-                            ? "bg-slate-900/40 border-rose-500/15 hover:border-rose-500/30"
+                            ? "bg-slate-900/40 border-zinc-700 hover:border-zinc-700"
                             : isUnfavorable
-                              ? "bg-slate-900/40 border-amber-500/15 hover:border-amber-500/30"
+                              ? "bg-slate-900/40 border-zinc-700 hover:border-zinc-700"
                               : "bg-slate-900/40 border-zinc-300/10 hover:border-zinc-300/25"
                         }`}
                     >
@@ -1826,9 +1826,9 @@ export default function AnalyzerView({
                       <div className={`absolute top-0 left-0 w-1 h-full ${isReviewed
                         ? "bg-zinc-300"
                         : isCritical
-                          ? "bg-rose-500"
+                          ? "bg-zinc-700"
                           : isUnfavorable
-                            ? "bg-amber-500"
+                            ? "bg-zinc-700"
                             : "bg-zinc-300"
                         }`} />
 
@@ -1837,9 +1837,9 @@ export default function AnalyzerView({
                           <span className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded ${isReviewed
                             ? "bg-zinc-300/15 text-zinc-200"
                             : isCritical
-                              ? "bg-rose-500/10 text-rose-300"
+                              ? "bg-zinc-800 text-zinc-300"
                               : isUnfavorable
-                                ? "bg-amber-500/10 text-amber-300"
+                                ? "bg-zinc-800 text-zinc-300"
                                 : "bg-zinc-300/10 text-white"
                             }`}>
                             {isReviewed ? "Reviewed" : `${risk.severity} Provision`}
@@ -1920,7 +1920,7 @@ export default function AnalyzerView({
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.25, ease: "easeInOut" }}
-                            className="overflow-hidden mt-2 mx-1 rounded-lg border border-zinc-300/20 bg-emerald-950/20 shadow-inner"
+                            className="overflow-hidden mt-2 mx-1 rounded-lg border border-zinc-300/20 bg-zinc-800 shadow-inner"
                           >
                             <div className="p-3 text-[11px] space-y-2">
                               {/* Title & Badge */}
@@ -1941,7 +1941,7 @@ export default function AnalyzerView({
                               </p>
 
                               {/* Compliance tag */}
-                              <div className="flex items-center gap-1.5 text-[10px] text-white font-semibold font-mono bg-emerald-950/30 p-1.5 rounded border border-white/5">
+                              <div className="flex items-center gap-1.5 text-[10px] text-white font-semibold font-mono bg-zinc-800 p-1.5 rounded border border-white/5">
                                 <Scale className="w-3.5 h-3.5 text-white" />
                                 <span>{getIndianLawContext(risk.clauseName).badge}</span>
                               </div>
@@ -2040,13 +2040,13 @@ export default function AnalyzerView({
                   </div>
                   <div className="flex justify-between items-center py-1">
                     <span className="text-slate-500">Liability Cap</span>
-                    <span className="text-rose-400 font-medium">{report.keyEntities.liabilityCap || "Not resolved"}</span>
+                    <span className="text-zinc-300 font-medium">{report.keyEntities.liabilityCap || "Not resolved"}</span>
                   </div>
                 </div>
               </div>
 
               {/* Premium Escalate Contract / Attorney Support Handoff card */}
-              <div className="bg-gradient-to-br from-emerald-950/45 to-slate-900/75 border border-zinc-300/15 rounded-2xl p-5 space-y-4 shadow-xl">
+              <div className="bg-zinc-900/50 border border-zinc-300/15 rounded-2xl p-5 space-y-4 shadow-xl">
                 <div className="flex items-center gap-2.5">
                   <Scale className="w-5 h-5 text-white shrink-0" />
                   <h4 className="text-[10px] font-bold uppercase font-mono tracking-wider text-slate-200">
@@ -2072,7 +2072,7 @@ export default function AnalyzerView({
                       alert("Head over to the 'Attorney Handoff' section to trigger a partner referral request.");
                     }
                   }}
-                  className="w-full bg-zinc-400 hover:bg-emerald-550 text-white font-bold py-2.5 px-4 rounded-xl text-[11px] flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer outline-none hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full bg-zinc-400 hover:bg-zinc-700 text-white font-bold py-2.5 px-4 rounded-xl text-[11px] flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer outline-none hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <span>{language === "hi" ? "वकील को हैंडऑफ करें" : "Handoff to Attorney"}</span>
                   <ArrowLeftRight className="w-3.5 h-3.5" />
@@ -2222,7 +2222,7 @@ export default function AnalyzerView({
                   onClick={() => setPrintSections(prev => ({ ...prev, includeKeyEntities: !prev.includeKeyEntities }))}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="p-1.5 rounded-lg bg-purple-500/10 text-purple-400">
+                    <span className="p-1.5 rounded-lg bg-zinc-800 text-zinc-300">
                       <FileCode className="w-4 h-4" />
                     </span>
                     <div>
@@ -2250,7 +2250,7 @@ export default function AnalyzerView({
                 >
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-3">
-                      <span className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400">
+                      <span className="p-1.5 rounded-lg bg-zinc-800 text-zinc-300">
                         <AlertOctagon className="w-4 h-4" />
                       </span>
                       <div>
@@ -2278,11 +2278,11 @@ export default function AnalyzerView({
                         }}
                       >
                         {printSections.severityCritical ? (
-                          <CheckSquare className="w-3.5 h-3.5 text-rose-500" />
+                          <CheckSquare className="w-3.5 h-3.5 text-zinc-300" />
                         ) : (
                           <Square className="w-3.5 h-3.5 text-slate-600" />
                         )}
-                        <span className="text-rose-400">Critical</span>
+                        <span className="text-zinc-300">Critical</span>
                       </button>
 
                       <button
@@ -2293,11 +2293,11 @@ export default function AnalyzerView({
                         }}
                       >
                         {printSections.severityUnfavorable ? (
-                          <CheckSquare className="w-3.5 h-3.5 text-amber-500" />
+                          <CheckSquare className="w-3.5 h-3.5 text-zinc-300" />
                         ) : (
                           <Square className="w-3.5 h-3.5 text-slate-600" />
                         )}
-                        <span className="text-amber-400">Unfavorable</span>
+                        <span className="text-zinc-300">Unfavorable</span>
                       </button>
 
                       <button
@@ -2406,8 +2406,8 @@ export default function AnalyzerView({
               <div className="space-y-4">
 
                 {/* Critical Explanation */}
-                <div className="p-4 rounded-xl border border-rose-500/15 bg-rose-950/5 flex items-start gap-4">
-                  <div className="p-1 px-2.5 rounded bg-rose-500/10 text-rose-300 font-bold font-mono text-[10px] mt-0.5 border border-rose-500/25 shrink-0">
+                <div className="p-4 rounded-xl border border-zinc-700 bg-zinc-800 flex items-start gap-4">
+                  <div className="p-1 px-2.5 rounded bg-zinc-800 text-zinc-300 font-bold font-mono text-[10px] mt-0.5 border border-zinc-700 shrink-0">
                     {t.severityCritical}
                   </div>
                   <div className="flex-1 space-y-1 text-left">
@@ -2417,8 +2417,8 @@ export default function AnalyzerView({
                 </div>
 
                 {/* Unfavorable Explanation */}
-                <div className="p-4 rounded-xl border border-amber-500/15 bg-amber-950/5 flex items-start gap-4">
-                  <div className="p-1 px-1.5 rounded bg-amber-500/10 text-amber-300 font-bold font-mono text-[10px] mt-0.5 border border-amber-500/25 shrink-0">
+                <div className="p-4 rounded-xl border border-zinc-700 bg-zinc-800 flex items-start gap-4">
+                  <div className="p-1 px-1.5 rounded bg-zinc-800 text-zinc-300 font-bold font-mono text-[10px] mt-0.5 border border-zinc-700 shrink-0">
                     {t.severityUnfavorable}
                   </div>
                   <div className="flex-1 space-y-1 text-left">
@@ -2428,7 +2428,7 @@ export default function AnalyzerView({
                 </div>
 
                 {/* Protective Explanation */}
-                <div className="p-4 rounded-xl border border-zinc-300/15 bg-emerald-950/5 flex items-start gap-4">
+                <div className="p-4 rounded-xl border border-zinc-300/15 bg-zinc-800 flex items-start gap-4">
                   <div className="p-1 px-1.5 rounded bg-zinc-300/10 text-zinc-200 font-bold font-mono text-[10px] mt-0.5 border border-zinc-300/25 shrink-0">
                     {language === "hi" ? "सुरक्षात्मक" : "Protective"}
                   </div>

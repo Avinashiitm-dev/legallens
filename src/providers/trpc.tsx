@@ -8,7 +8,20 @@ import { getIdToken } from "@/lib/auth-client";
 
 export const trpc = createTRPCReact<AppRouter>();
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: (failureCount, err: any) => {
+        const code = err?.data?.code;
+        const httpStatus = err?.shape?.data?.httpStatus;
+        if (code === "UNAUTHORIZED" || code === "FORBIDDEN" || httpStatus === 401) {
+          return false;
+        }
+        return failureCount < 2;
+      },
+    },
+  },
+});
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({

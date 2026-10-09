@@ -26,11 +26,11 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center justify-center p-4">
-          <h1 className="text-2xl font-bold text-red-500 mb-4">
+          <h1 className="text-2xl font-bold text-zinc-300 mb-4">
             Something went wrong
           </h1>
           <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl text-sm overflow-auto max-w-2xl w-full">
-            <p className="font-mono text-red-400 mb-4">
+            <p className="font-mono text-zinc-300 mb-4">
               {this.state.error?.toString()}
             </p>
             <pre className="text-slate-400 whitespace-pre-wrap">

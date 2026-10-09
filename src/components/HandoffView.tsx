@@ -412,20 +412,20 @@ export default function HandoffView({
                           <span>{attorneyObj.name}</span>
                           <span className="w-1.5 h-1.5 rounded-full bg-zinc-300 animate-pulse shrink-0" />
                         </h4>
-                        <p className="text-[10px] text-indigo-300 truncate font-medium">{attorneyObj.firm}</p>
+                        <p className="text-[10px] text-zinc-300 truncate font-medium">{attorneyObj.firm}</p>
                       </div>
                     </div>
                     
                     <div className="flex flex-col items-end flex-shrink-0 font-mono text-[9px] text-slate-400">
-                      <span className="text-amber-400 font-bold">★ {attorneyObj.rating.toFixed(2)}</span>
+                      <span className="text-zinc-300 font-bold">★ {attorneyObj.rating.toFixed(2)}</span>
                       <span className="text-[8px] bg-slate-800 text-slate-200 px-1 rounded mt-0.5">${attorneyObj.rate}/hr</span>
                     </div>
                   </div>
 
                   {/* Connected Case Sub-Header */}
-                  <div className="px-3 py-1.5 bg-indigo-500/5 border-b border-indigo-500/10 flex items-center justify-between gap-2 text-[9px]">
+                  <div className="px-3 py-1.5 bg-zinc-800 border-b border-zinc-700 flex items-center justify-between gap-2 text-[9px]">
                     <span className="text-slate-400 font-mono flex items-center gap-1 shrink-0">
-                      <span className="text-indigo-400 font-bold uppercase">Case:</span>
+                      <span className="text-zinc-300 font-bold uppercase">Case:</span>
                       <strong className="text-slate-200 truncate max-w-[125px] inline" title={activeChatCase.contractName}>
                         {activeChatCase.contractName}
                       </strong>
@@ -435,8 +435,8 @@ export default function HandoffView({
                     </span>
                     <span className={`px-1.5 py-0.2 rounded font-mono text-[8px] ${
                       activeChatCase.priority === "High" 
-                        ? "bg-rose-550/15 text-rose-300 whitespace-nowrap" 
-                        : "bg-amber-500/15 text-amber-300 whitespace-nowrap"
+                        ? "bg-zinc-800 text-zinc-300 whitespace-nowrap" 
+                        : "bg-zinc-800 text-zinc-300 whitespace-nowrap"
                     }`}>
                       {activeChatCase.priority}
                     </span>
@@ -450,7 +450,7 @@ export default function HandoffView({
                         <div key={msg.id} className={`flex ${isUser ? "justify-end" : "justify-start"} animate-fade-in`}>
                           <div className={`p-2.5 rounded-xl max-w-[85%] text-[11px] leading-relaxed relative ${
                             isUser 
-                              ? "bg-indigo-600/15 border border-indigo-500/15 text-slate-100 rounded-tr-none" 
+                              ? "bg-zinc-800 border border-zinc-700 text-slate-100 rounded-tr-none" 
                               : "bg-slate-950/80 border border-white/5 text-slate-300 rounded-tl-none"
                           }`}>
                             <p className="whitespace-pre-wrap">{msg.text}</p>
@@ -478,7 +478,7 @@ export default function HandoffView({
                           : "Can you help draft a protective mutual compromise clause for this specific risk?"
                       )}
                       disabled={isAttorneyTyping}
-                      className="text-[9px] px-2 py-1 bg-slate-900 border border-white/10 hover:border-indigo-500/25 hover:bg-slate-850 text-slate-300 rounded-lg whitespace-nowrap cursor-pointer hover:text-indigo-300 disabled:opacity-50 shrink-0"
+                      className="text-[9px] px-2 py-1 bg-slate-900 border border-white/10 hover:border-zinc-700 hover:bg-slate-850 text-slate-300 rounded-lg whitespace-nowrap cursor-pointer hover:text-zinc-300 disabled:opacity-50 shrink-0"
                     >
                       💡 {language === "hi" ? "वैकल्पिक मसौदा" : "Propose Draft Alternative"}
                     </button>
@@ -489,7 +489,7 @@ export default function HandoffView({
                           : "What is your estimated timeline & invoice structure for formalizing this review?"
                       )}
                       disabled={isAttorneyTyping}
-                      className="text-[9px] px-2 py-1 bg-slate-900 border border-white/10 hover:border-indigo-500/25 hover:bg-slate-850 text-slate-300 rounded-lg whitespace-nowrap cursor-pointer hover:text-indigo-300 disabled:opacity-50 shrink-0"
+                      className="text-[9px] px-2 py-1 bg-slate-900 border border-white/10 hover:border-zinc-700 hover:bg-slate-850 text-slate-300 rounded-lg whitespace-nowrap cursor-pointer hover:text-zinc-300 disabled:opacity-50 shrink-0"
                     >
                       ⌛ {language === "hi" ? "समय सीमा व खर्च" : "Timeline & Costs"}
                     </button>
@@ -500,7 +500,7 @@ export default function HandoffView({
                           : "Is this provision robust under relevant Supreme Court statutory precedents?"
                       )}
                       disabled={isAttorneyTyping}
-                      className="text-[9px] px-2 py-1 bg-slate-900 border border-white/10 hover:border-indigo-500/25 hover:bg-slate-850 text-slate-300 rounded-lg whitespace-nowrap cursor-pointer hover:text-indigo-300 disabled:opacity-50 shrink-0"
+                      className="text-[9px] px-2 py-1 bg-slate-900 border border-white/10 hover:border-zinc-700 hover:bg-slate-850 text-slate-300 rounded-lg whitespace-nowrap cursor-pointer hover:text-zinc-300 disabled:opacity-50 shrink-0"
                     >
                       ⚖️ {language === "hi" ? "संबंधित मिसालें" : "Relevant Precedents"}
                     </button>
@@ -519,12 +519,12 @@ export default function HandoffView({
                       }}
                       disabled={isAttorneyTyping}
                       placeholder={language === "hi" ? "वकील से सीधे सलाह लें..." : "Type message directly to attorney..."}
-                      className="bg-slate-950 border border-white/5 rounded-xl px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 flex-1 focus:outline-none focus:border-indigo-500 disabled:opacity-50"
+                      className="bg-slate-950 border border-white/5 rounded-xl px-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 flex-1 focus:outline-none focus:border-zinc-600 disabled:opacity-50"
                     />
                     <button 
                       onClick={() => handleSendAttorneyChatMessage()}
                       disabled={isAttorneyTyping || !chatInputText.trim()}
-                      className="p-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer disabled:opacity-50 disabled:bg-slate-800 transition-colors shrink-0"
+                      className="p-2 rounded-xl bg-zinc-700 hover:bg-zinc-700 text-white cursor-pointer disabled:opacity-50 disabled:bg-slate-800 transition-colors shrink-0"
                     >
                       <Send className="w-3.5 h-3.5 text-white font-bold" />
                     </button>
@@ -535,7 +535,7 @@ export default function HandoffView({
           ) : (
             <div className="bg-slate-900/30 border border-white/5 rounded-2xl p-8 py-14 text-center space-y-4 font-sans">
               <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mx-auto text-slate-400">
-                <MessageSquare className="w-6 h-6 text-indigo-400" />
+                <MessageSquare className="w-6 h-6 text-zinc-300" />
               </div>
               <div className="space-y-1">
                 <p className="text-sm font-semibold text-slate-200">No Case Selected</p>
@@ -553,14 +553,14 @@ export default function HandoffView({
       <section className="space-y-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <h3 className="font-bold text-lg text-slate-100 flex items-center gap-2">
-            <Award className="w-5 h-5 text-indigo-400" />
+            <Award className="w-5 h-5 text-zinc-300" />
             {language === "hi" ? "सत्यापित अधिवक्ता निर्देशिका" : "Vetted Network Directory"}
           </h3>
           
           <select 
             value={activeSpecialization}
             onChange={(e) => setActiveSpecialization(e.target.value)}
-            className="bg-slate-900 border border-white/10 hover:border-white/20 rounded-xl px-4 py-2 text-xs font-semibold text-slate-200 focus:border-indigo-500 focus:outline-none transition-all cursor-pointer shadow-sm"
+            className="bg-slate-900 border border-white/10 hover:border-white/20 rounded-xl px-4 py-2 text-xs font-semibold text-slate-200 focus:border-zinc-600 focus:outline-none transition-all cursor-pointer shadow-sm"
           >
             {specializations.map(spec => (
               <option key={spec} value={spec}>{getSpecializationLabel(spec)}</option>
@@ -573,9 +573,9 @@ export default function HandoffView({
           {filteredAttorneys.map((att) => (
             <div
               key={att.id}
-              className="bg-slate-900/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden flex flex-col group hover:shadow-2xl hover:border-indigo-500/20 hover:scale-[1.02] transition-all duration-200"
+              className="bg-slate-900/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden flex flex-col group hover:shadow-2xl hover:border-zinc-700 hover:scale-[1.02] transition-all duration-200"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/5 rounded-full blur-3xl -mr-10 -mt-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-800 rounded-full blur-3xl -mr-10 -mt-10 opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="flex items-start gap-4 mb-5 relative z-10">
                 <div className="w-16 h-16 rounded-xl overflow-hidden border border-white/5 bg-slate-800 shrink-0">
@@ -591,7 +591,7 @@ export default function HandoffView({
                   <p className="text-slate-500 text-xs mt-0.5">{att.firm}</p>
                   
                   {/* Dynamic Rating feedback */}
-                  <div className="flex items-center gap-1.5 mt-2.5 text-amber-400 font-mono text-xs">
+                  <div className="flex items-center gap-1.5 mt-2.5 text-zinc-300 font-mono text-xs">
                     <Star className="w-3.5 h-3.5 fill-current" />
                     <span className="font-bold">{att.rating.toFixed(1)}</span>
                   </div>
@@ -622,7 +622,7 @@ export default function HandoffView({
                 )}
                 <div className="flex justify-between items-center pt-1.5">
                   <span className="text-slate-500 font-mono text-[10px] uppercase tracking-wider">{language === "hi" ? "प्रति घंटा दर" : "Hourly Tariff"}</span>
-                  <span className="text-indigo-300 font-bold font-mono text-sm">${att.rate}/hr</span>
+                  <span className="text-zinc-300 font-bold font-mono text-sm">${att.rate}/hr</span>
                 </div>
               </div>
 
@@ -631,7 +631,7 @@ export default function HandoffView({
                 onClick={() => setSelectedAttorney(att)}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="w-full bg-slate-800 hover:bg-indigo-600 hover:text-white text-slate-300 font-semibold py-2.5 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2 relative z-10 spring-bounce cursor-pointer outline-none"
+                className="w-full bg-slate-800 hover:bg-zinc-700 hover:text-white text-slate-300 font-semibold py-2.5 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2 relative z-10 spring-bounce cursor-pointer outline-none"
               >
                 {language === "hi" ? "अधिवक्ता से परामर्श करें" : "Escalate Case"}
                 <ArrowRight className="w-4 h-4" />
@@ -688,7 +688,7 @@ export default function HandoffView({
                   value={escalationReason}
                   onChange={(e) => setEscalationReason(e.target.value)}
                   placeholder={language === "hi" ? "उन विशिष्ट खंडों का वर्णन करें जिन पर अधिवक्ता की विस्तृत टिप्पणी चाहिए..." : "Specify what parameters, liability caps, or IP exemptions require review..."}
-                  className="w-full bg-slate-950 border border-white/5 text-slate-200 text-xs p-3 rounded-xl focus:outline-none focus:border-indigo-500 focus:ring-1"
+                  className="w-full bg-slate-950 border border-white/5 text-slate-200 text-xs p-3 rounded-xl focus:outline-none focus:border-zinc-600 focus:ring-1"
                 />
               </div>
 
@@ -710,7 +710,7 @@ export default function HandoffView({
 
                 <div className="p-3 bg-slate-950 rounded-xl border border-white/5 flex flex-col justify-center text-center">
                   <span className="text-[10px] text-slate-500 font-mono uppercase tracking-wider">{language === "hi" ? "घंटे की दर" : "Hourly tariff"}</span>
-                  <span className="text-indigo-300 font-bold font-mono py-0.5">${selectedAttorney.rate}/hr</span>
+                  <span className="text-zinc-300 font-bold font-mono py-0.5">${selectedAttorney.rate}/hr</span>
                 </div>
               </div>
 
@@ -729,7 +729,7 @@ export default function HandoffView({
                   disabled={createEscalationMutation.isPending}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-550 text-white text-xs font-bold rounded-lg spring-bounce outline-none cursor-pointer disabled:opacity-50"
+                  className="px-4 py-2 bg-zinc-700 hover:bg-zinc-700 text-white text-xs font-bold rounded-lg spring-bounce outline-none cursor-pointer disabled:opacity-50"
                 >
                   {createEscalationMutation.isPending
                     ? (language === "hi" ? "दर्ज हो रहा है…" : "Filing…")

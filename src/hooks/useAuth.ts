@@ -53,11 +53,7 @@ export function useAuth(options?: UseAuthOptions) {
     refetch,
   } = trpc.auth.me.useQuery(undefined, {
     staleTime: 1000 * 60 * 5,
-    retry: (failureCount, err) => {
-      const code = (err as { data?: { code?: string } })?.data?.code;
-      if (code === "UNAUTHORIZED" || code === "FORBIDDEN") return false;
-      return failureCount < 2;
-    },
+    retry: false,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
