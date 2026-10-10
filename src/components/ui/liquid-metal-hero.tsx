@@ -1,6 +1,6 @@
 "use client";
 
-import { LiquidMetal, liquidMetalPresets } from '@paper-design/shaders-react';
+import MorphingBackground from './MorphingBackground';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
@@ -56,10 +56,7 @@ export default function LiquidMetalHero({
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <LiquidMetal
-        {...liquidMetalPresets[2]}
-        style={{ position: "fixed", inset: 0, zIndex: -10 }}
-      />
+      <MorphingBackground />
       
       <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
         <motion.div 
