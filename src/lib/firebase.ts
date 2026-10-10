@@ -10,5 +10,6 @@ export const firebaseConfig = {
   appId: '1:411149472334:web:23c59cf38e054b75e7291f'
 };
 
+console.log("Initializing Firebase with API Key:", firebaseConfig.apiKey);
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
