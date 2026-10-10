@@ -11,7 +11,11 @@ import { secureHeaders } from "hono/secure-headers";
 
 const app = new Hono<{ Bindings: HttpBindings }>();
 
-app.use('*', secureHeaders());
+app.use('*', secureHeaders({
+  crossOriginOpenerPolicy: "same-origin-allow-popups",
+  crossOriginResourcePolicy: "cross-origin",
+  contentSecurityPolicy: false,
+}));
 app.use('*', cors({
   origin: ['https://legallens-y57n.onrender.com', 'http://localhost:5173', 'http://localhost:3000'],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
