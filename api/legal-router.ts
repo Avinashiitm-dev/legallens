@@ -159,7 +159,9 @@ Return a structured JSON output reflecting:
 5. Key Entities extracted:
    - counterparty: Name of the other contracting party if found
    - jurisdiction: Governing law if defined (default to India if none found)
-   - liabilityCap: Liability limits if defined (or "Not specified")`;
+   - liabilityCap: Liability limits if defined (or "Not specified")
+
+Enforce strict grounding: You MUST cite exact page/paragraph references from uploaded documents. If there is no clear evidence in the text, explicitly state "Insufficient operational evidence provided" instead of guessing.`;
 
 const CHAT_SYSTEM_PROMPT = `You are 'LegalLens AI', an elite Indian Legal Counsel, Corporate Arbitrator, and Constitutional Expert.
 Your expertise spans the complete legal and constitutional framework of India.
@@ -191,6 +193,18 @@ function formatSize(bytes: number): string {
   return kb >= 1024 ? `${(kb / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(kb))} KB`;
 }
 
+async function withRetry<T>(fn: () => Promise<T>, retries = 3, delayMs = 1000): Promise<T> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await fn();
+    } catch (error) {
+      if (i === retries - 1) throw error;
+      await new Promise((r) => setTimeout(r, delayMs * Math.pow(2, i)));
+    }
+  }
+  throw new Error("Unreachable");
+}
+
 // ---------- Router ----------
 
 export const legalRouter = createRouter({
@@ -211,10 +225,11 @@ export const legalRouter = createRouter({
     )
     .mutation(async ({ ctx, input }) => {
       const bytes = Uint8Array.from(Buffer.from(input.contentBase64, "base64"));
+      const sanitizedName = input.fileName.replace(/[^a-zA-Z0-9.\-_]/g, "_");
 
       let extracted;
       try {
-        extracted = await extractContractText(input.fileName, bytes);
+        extracted = await extractContractText(sanitizedName, bytes);
       } catch (err) {
         throw extractionError(err);
       }
@@ -322,11 +337,11 @@ export const legalRouter = createRouter({
             }
           };
         } else {
-          const result = await generateObject({
+          const result = await withRetry(() => generateObject({
             model: aiGw(model),
             schema: reportSchema,
             prompt: `${ANALYZE_SYSTEM_PROMPT}\n\nContract Title: ${input.title}\n\nContract Text:\n${input.contractText}`,
-          });
+          }));
           report = result.object;
         }
       } catch (err) {
@@ -420,11 +435,11 @@ export const legalRouter = createRouter({
         if (model === "mock-model") {
           content = "This is a mock response because the AI API key is not configured locally. To use the real AI, please configure the `.env` with a valid AI gateway key.";
         } else {
-          const result = await generateText({
+          const result = await withRetry(() => generateText({
             model: aiGw(model),
             system,
             messages: input.messages,
-          });
+          }));
           content = result.text;
         }
       } catch (err) {
@@ -461,7 +476,7 @@ export const legalRouter = createRouter({
         if (model === "mock-model") {
           return { alternative: "```\nMock Replacement Clause:\nThe liability of either party under this agreement shall be capped at 100% of the total fees paid.\n```\n\n*This is a mock fallback response.*" };
         }
-        const result = await generateText({
+        const result = await withRetry(() => generateText({
           model: aiGw(model),
           prompt: `You are an elite contract negotiation expert. Suggest a perfectly balanced, standard commercial alternative replacement for the following problematic clause. Make it professional, realistic, protection-oriented, and ready to paste directly into a contract draft.
 
@@ -470,7 +485,7 @@ Triggering Quote: "${input.exactQuote}"
 Issue Summary: ${input.summaryOfRisk}
 
 Provide ONLY the text of the replacement clause inside a code block so it stands out, then briefly describe the negotiation leverage (1-2 sentences).`,
-        });
+        }));
         return { alternative: result.text };
       } catch (err) {
         throw toTrpcError(err);

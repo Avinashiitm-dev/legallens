@@ -6,7 +6,16 @@ import { appRouter } from "./router";
 import { createContext } from "./context";
 import { env } from "./lib/env";
 
+import { cors } from "hono/cors";
+import { secureHeaders } from "hono/secure-headers";
+
 const app = new Hono<{ Bindings: HttpBindings }>();
+
+app.use('*', secureHeaders());
+app.use('*', cors({
+  origin: ['https://legallens-y57n.onrender.com', 'http://localhost:5173', 'http://localhost:3000'],
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}));
 
 app.use(bodyLimit({ maxSize: 50 * 1024 * 1024 }));
 

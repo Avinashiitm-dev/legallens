@@ -7,8 +7,21 @@ const t = initTRPC.context<TrpcContext>().create({
   transformer: superjson,
 });
 
+const loggerMiddleware = t.middleware(async ({ path, type, next }) => {
+  const start = Date.now();
+  const result = await next();
+  const duration = Date.now() - start;
+  const timestamp = new Date().toISOString();
+  if (result.ok) {
+    console.log(`[INFO] [${timestamp}] tRPC ${type} '${path}' OK in ${duration}ms`);
+  } else {
+    console.error(`[ERROR] [${timestamp}] tRPC ${type} '${path}' FAILED in ${duration}ms`, result.error);
+  }
+  return result;
+});
+
 export const createRouter = t.router;
-export const publicQuery = t.procedure;
+export const publicQuery = t.procedure.use(loggerMiddleware);
 
 const requireAuth = t.middleware(async (opts) => {
   const { ctx, next } = opts;
@@ -38,5 +51,5 @@ function requireRole(role: string) {
   });
 }
 
-export const authedQuery = t.procedure.use(requireAuth);
+export const authedQuery = publicQuery.use(requireAuth);
 export const adminQuery = authedQuery.use(requireRole("admin"));

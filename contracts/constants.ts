@@ -11,7 +11,7 @@ export const ErrorMessages = {
 /** Limits shared by the upload UI and the server-side extraction engine. */
 export const DocumentLimits = {
   /** Max original binary size accepted by the upload endpoint (bytes). */
-  maxFileBytes: 15 * 1024 * 1024,
+  maxFileBytes: 25 * 1024 * 1024,
   /** Max extracted characters sent to the analyzer / stored per document. */
   maxExtractChars: 120_000,
   /** Max pages processed for a single PDF. */
