@@ -19,6 +19,19 @@ interface HeaderProps {
   onAskAI: () => void;
 }
 
+const IconBtn = ({ onClick, title, children }: { onClick: () => void; title: string; children: React.ReactNode }) => (
+  <motion.button
+    onClick={onClick}
+    title={title}
+    whileHover={{ scale: 1.06 }}
+    whileTap={{ scale: 0.94 }}
+    transition={{ type: "spring", stiffness: 450, damping: 18 }}
+    className="p-2 text-slate-500 hover:text-slate-200 rounded-xl hover:bg-white/5 transition-colors outline-none will-change-transform"
+  >
+    {children}
+  </motion.button>
+);
+
 export default function Header({
   language,
   onSearch,
@@ -101,19 +114,6 @@ export default function Header({
   ];
 
   const unreadCount = notifications.filter(n => n.unread).length;
-
-  const IconBtn = ({ onClick, title, children }: { onClick: () => void; title: string; children: React.ReactNode }) => (
-    <motion.button
-      onClick={onClick}
-      title={title}
-      whileHover={{ scale: 1.06 }}
-      whileTap={{ scale: 0.94 }}
-      transition={{ type: "spring", stiffness: 450, damping: 18 }}
-      className="p-2 text-slate-500 hover:text-slate-200 rounded-xl hover:bg-white/5 transition-colors outline-none will-change-transform"
-    >
-      {children}
-    </motion.button>
-  );
 
   return (
     <header
@@ -274,27 +274,27 @@ export default function Header({
           </motion.button>
 
           {userMenuOpen && (
-            <div className="absolute right-0 top-full mt-2 w-52 rounded-2xl border border-slate-800/80 bg-slate-900 shadow-2xl shadow-black/50 overflow-hidden z-[9999]">
+            <div className="absolute right-0 top-full mt-2 w-52 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-2xl shadow-black/50 overflow-hidden z-[9999]">
               {/* User info header */}
-              <div className="px-4 py-3 border-b border-white/[0.06]">
-                <p className="text-xs font-semibold text-slate-200 truncate">{user?.name || "Account"}</p>
+              <div className="px-4 py-3 border-b border-slate-200 dark:border-white/[0.06]">
+                <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate">{user?.name || "Account"}</p>
                 <p className="text-[10px] text-slate-500 truncate mt-0.5">{user?.email}</p>
                 <div className="flex items-center gap-1.5 mt-2">
-                  <ShieldCheck className="w-3 h-3 text-white" />
-                  <span className="text-[9px] text-zinc-300 font-mono">{language === "hi" ? "सत्यापित खाता" : "Verified Account"}</span>
+                  <ShieldCheck className="w-3 h-3 text-slate-800 dark:text-white" />
+                  <span className="text-[9px] text-slate-600 dark:text-zinc-300 font-mono">{language === "hi" ? "सत्यापित खाता" : "Verified Account"}</span>
                 </div>
               </div>
               {/* Menu items */}
               <div className="p-2 space-y-0.5">
                 <button
                   onClick={() => { setUserMenuOpen(false); onSelectView("settings"); }}
-                  className="w-full text-left px-3 py-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                  className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
                 >
                   {language === "hi" ? "⚙️ सेटिंग्स" : "⚙️ Settings"}
                 </button>
                 <button
                   onClick={() => logout()}
-                  className="w-full text-left px-3 py-2 text-xs text-zinc-300 hover:text-zinc-300 hover:bg-zinc-800 rounded-xl transition-all flex items-center gap-2"
+                  className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 hover:text-red-700 dark:hover:text-red-300 transition-colors cursor-pointer"
                 >
                   <LogOut className="w-3 h-3" />
                   {language === "hi" ? "साइन आउट" : "Sign out"}

@@ -26,6 +26,12 @@ interface SidebarProps {
   onClose?: () => void;
 }
 
+const SectionLabel = ({ children }: { children: React.ReactNode }) => (
+  <p className="px-3 text-[9px] uppercase tracking-[0.2em] text-slate-600 font-mono font-bold mb-2">
+    {children}
+  </p>
+);
+
 export default function Sidebar({
   currentView,
   language,
@@ -100,12 +106,6 @@ export default function Sidebar({
       </motion.button>
     );
   };
-
-  const SectionLabel = ({ children }: { children: React.ReactNode }) => (
-    <p className="px-3 text-[9px] uppercase tracking-[0.2em] text-slate-600 font-mono font-bold mb-2">
-      {children}
-    </p>
-  );
 
   return (
     <>

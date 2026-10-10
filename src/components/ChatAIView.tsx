@@ -34,6 +34,7 @@ interface ChatAIViewProps {
   onNavigate: (view: string) => void;
   initialPrompt?: string;
   onClearInitialPrompt?: () => void;
+  isAuthenticated?: boolean;
 }
 
 export default function ChatAIView({ 
@@ -42,7 +43,8 @@ export default function ChatAIView({
   contractTitle, 
   onNavigate,
   initialPrompt,
-  onClearInitialPrompt
+  onClearInitialPrompt,
+  isAuthenticated
 }: ChatAIViewProps) {
   const t = translations[language];
 
@@ -90,7 +92,10 @@ Here are some core areas we can cover:
 
   // Backend: persistent chat mutation + stored history
   const chatMutation = trpc.legal.chat.useMutation();
-  const historyQuery = trpc.legal.chatHistory.useQuery();
+  const historyQuery = trpc.legal.chatHistory.useQuery(undefined, {
+    enabled: !!isAuthenticated,
+    retry: false
+  });
   const historyLoadedRef = useRef(false);
 
   // Restore persisted conversation history (once per mount)
@@ -144,7 +149,7 @@ Here are some core areas we can cover:
     }
   }, [initialPrompt]);
 
-  const handleSendMessage = async (customPrompt?: string) => {
+  async function handleSendMessage(customPrompt?: string) {
     const textToSend = customPrompt || inputMessage;
     if (!textToSend.trim()) return;
 

@@ -435,12 +435,13 @@ export const legalRouter = createRouter({
         if (model === "mock-model") {
           content = "This is a mock response because the AI API key is not configured locally. To use the real AI, please configure the `.env` with a valid AI gateway key.";
         } else {
-          const result = await withRetry(() => generateText({
+          const result = await withRetry(() => generateObject({
             model: aiGw(model),
             system,
             messages: input.messages,
+            schema: z.object({ response: z.string() }),
           }));
-          content = result.text;
+          content = result.object.response;
         }
       } catch (err) {
         throw toTrpcError(err);
@@ -476,7 +477,7 @@ export const legalRouter = createRouter({
         if (model === "mock-model") {
           return { alternative: "```\nMock Replacement Clause:\nThe liability of either party under this agreement shall be capped at 100% of the total fees paid.\n```\n\n*This is a mock fallback response.*" };
         }
-        const result = await withRetry(() => generateText({
+        const result = await withRetry(() => generateObject({
           model: aiGw(model),
           prompt: `You are an elite contract negotiation expert. Suggest a perfectly balanced, standard commercial alternative replacement for the following problematic clause. Make it professional, realistic, protection-oriented, and ready to paste directly into a contract draft.
 
@@ -485,8 +486,9 @@ Triggering Quote: "${input.exactQuote}"
 Issue Summary: ${input.summaryOfRisk}
 
 Provide ONLY the text of the replacement clause inside a code block so it stands out, then briefly describe the negotiation leverage (1-2 sentences).`,
+          schema: z.object({ alternative: z.string() }),
         }));
-        return { alternative: result.text };
+        return { alternative: result.object.alternative };
       } catch (err) {
         throw toTrpcError(err);
       }
@@ -507,7 +509,7 @@ Provide ONLY the text of the replacement clause inside a code block so it stands
         if (model === "mock-model") {
           return { email: "Subject: Request to Adjust Agreement Terms\n\nHi Team,\n\nWe would like to replace the current clause with the following to align with standard commercial practices:\n\n" + input.suggestedAlternative + "\n\nThanks!" };
         }
-        const result = await generateText({
+        const result = await generateObject({
           model: aiGw(model),
           prompt: `Draft a highly professional, polite, and persuasive request email directed to a client's general counsel or procurement specialist.
 The email should explain that during our legal risk scanning we flagged a provision (${input.clauseName}) and we request to replace it with a fair alternative.
@@ -517,8 +519,9 @@ Problematic Clause Quote: "${input.exactQuote}"
 Suggested Balanced Alternative: "${input.suggestedAlternative}"
 
 Make the email elegant, friendly, constructive, with a subject line and signature placeholders. Use clear layout spacing.`,
+          schema: z.object({ email: z.string() }),
         });
-        return { email: result.text };
+        return { email: result.object.email };
       } catch (err) {
         throw toTrpcError(err);
       }

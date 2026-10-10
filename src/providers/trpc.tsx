@@ -11,9 +11,9 @@ export const trpc = createTRPCReact<AppRouter>();
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: (failureCount, err: any) => {
-        const code = err?.data?.code;
-        const httpStatus = err?.shape?.data?.httpStatus;
+      retry: (failureCount, err: unknown) => {
+        const code = (err as any)?.data?.code;
+        const httpStatus = (err as any)?.shape?.data?.httpStatus;
         if (code === "UNAUTHORIZED" || code === "FORBIDDEN" || httpStatus === 401) {
           return false;
         }

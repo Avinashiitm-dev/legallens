@@ -7,7 +7,7 @@ import * as relations from "@db/relations";
 const fullSchema = { ...schema, ...relations };
 
 let instance: ReturnType<typeof drizzle<typeof fullSchema>>;
-let queryClient: postgres.Sql<{}>;
+let queryClient: postgres.Sql<Record<string, unknown>>;
 
 export function getDb() {
   if (!instance) {

@@ -90,6 +90,7 @@ const highlightLegalTerms = (htmlText: string) => {
     const allMatches: { term: string; pattern: RegExp; title: string; meaning: string }[] = [];
     termsDictionary.forEach(entry => {
       entry.terms.forEach(term => {
+        // eslint-disable-next-line no-useless-escape
         const escapedTerm = term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
         const regex = new RegExp(`\\b${escapedTerm}\\b`, "gi");
         allMatches.push({
@@ -410,6 +411,7 @@ export default function AnalyzerView({
       return isOriginal ? originalText : standardText;
     }
 
+    // eslint-disable-next-line no-useless-escape
     const clean = (w: string) => w.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()"'’“]/g, "");
 
     const originalWords = originalText.split(/\s+/);
@@ -575,7 +577,7 @@ export default function AnalyzerView({
     triggerAnalysis();
   }, [contractText]);
 
-  const triggerAnalysis = async (customTextToSubmit?: string, customTitleToSubmit?: string, docId?: number | null) => {
+  async function triggerAnalysis(customTextToSubmit?: string, customTitleToSubmit?: string, docId?: number | null) {
     setAnalyzing(true);
     setError(null);
     const text = customTextToSubmit || inputText;
@@ -1061,7 +1063,7 @@ export default function AnalyzerView({
             ? "bg-unfavorable-bg text-unfavorable-text-val font-medium border-b border-zinc-600"
             : "bg-protective-bg text-protective-text-val font-medium border-b border-white";
 
-      // Re-escape regex specials
+      // eslint-disable-next-line no-useless-escape
       const escapedQuote = quoteString.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
       const regex = new RegExp(`(${escapedQuote})`, "g");
 

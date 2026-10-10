@@ -17,11 +17,9 @@ import {
   FileText, 
   Search, 
   Trash2, 
-  ExternalLink, 
-  Clock, 
+  ExternalLink,
   Lock, 
-  ShieldCheck, 
-  HardDriveDownload,
+  ShieldCheck,
   Key,
   Database,
   Globe,
@@ -62,7 +60,7 @@ export function getFileIconConfig(title: string) {
 
 export default function Home() {
   // Auth gate — require a signed-in user for the whole workspace
-  const { user, isLoading: authLoading } = useAuth({ redirectOnUnauthenticated: true });
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth({ redirectOnUnauthenticated: true });
 
   const [currentView, setCurrentView] = useState<string>("chat");
   const [language, setLanguage] = useState<Language>(() => {
@@ -100,16 +98,21 @@ export default function Home() {
   const [contractDocumentId, setContractDocumentId] = useState<number | null>(null);
 
   // Restore the persisted workspace session once (server-side, per-user)
-  const sessionQuery = trpc.legal.getSession.useQuery(undefined, { enabled: !!user });
+  const sessionQuery = trpc.legal.getSession.useQuery(undefined, { 
+    enabled: !!isAuthenticated,
+    retry: false
+  });
   const sessionRestoredRef = useRef(false);
   useEffect(() => {
     if (sessionRestoredRef.current || !sessionQuery.isFetched) return;
     sessionRestoredRef.current = true;
     const s = sessionQuery.data;
     if (!s) return; // no previous session — fresh workspace
-    setContractTitle(s.title);
-    if (s.documentId) setContractDocumentId(s.documentId);
-    if (s.activeView) setCurrentView(s.activeView);
+    queueMicrotask(() => {
+      setContractTitle(s.title);
+      if (s.documentId) setContractDocumentId(s.documentId);
+      if (s.activeView) setCurrentView(s.activeView);
+    });
   }, [sessionQuery.isFetched, sessionQuery.data]);
 
   // Container ref for relative mouse tracking (glow effect)
@@ -144,7 +147,8 @@ export default function Home() {
   // Secure Vault — backed by the platform database (per-user, persistent across devices)
   const utils = trpc.useUtils();
   const documentsQuery = trpc.legal.listDocuments.useQuery(undefined, {
-    enabled: !!user,
+    enabled: !!isAuthenticated,
+    retry: false
   });
   const deleteDocumentMutation = trpc.legal.deleteDocument.useMutation({
     onSuccess: () => utils.legal.listDocuments.invalidate(),
@@ -180,7 +184,11 @@ export default function Home() {
     if (!sessionRestoredRef.current || !contractDocumentId || !documentsQuery.data) return;
     sessionDocHydratedRef.current = true;
     const doc = documentsQuery.data.find((d) => d.id === contractDocumentId);
-    if (doc) setContractText(doc.content);
+    if (doc) {
+      queueMicrotask(() => {
+        setContractText(doc.content);
+      });
+    }
   }, [documentsQuery.data, contractDocumentId]);
 
   // Debounced workspace-session persistence
@@ -394,6 +402,7 @@ export default function Home() {
                 onNavigate={setCurrentView}
                 initialPrompt={initialLawPrompt}
                 onClearInitialPrompt={() => setInitialLawPrompt("")}
+                isAuthenticated={isAuthenticated}
               />
             )}
 

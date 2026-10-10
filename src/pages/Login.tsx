@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import {
   Scale,
   ShieldCheck,
+  Lock,
+  ArrowRight,
   FileSearch,
   Landmark,
   MessageSquare,
@@ -29,9 +31,8 @@ import {
 } from "@/lib/auth-client";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import LiquidMetalHero from "@/components/ui/liquid-metal-hero";
+import GlassHeadlineHero from "@/components/ui/glass-headline-hero";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 
 // ─── Auth flow stages ───────────────────────────────────────────
@@ -289,7 +290,7 @@ export default function Login() {
 
   // ─── Shared input classes ─────────────────────────────────
   const inputClass =
-    "w-full bg-transparent px-4 py-3 text-sm text-white placeholder:text-zinc-400 outline-none focus:outline-none focus:ring-0 focus:border-white/30 border-white/10 [outline:none] [box-shadow:none]";
+    "w-full pl-10 pr-4 h-11 rounded-xl bg-white/5 border border-white/10 focus:border-white/40 focus:ring-1 focus:ring-white/40 focus:outline-none text-sm placeholder:text-white/40 text-white transition-all";
 
   // ═════════════════════════════════════════════════════════════
   // RENDER
@@ -300,18 +301,13 @@ export default function Login() {
       <div id="recaptcha-container" ref={recaptchaRef} className="hidden" />
 
       {/* Hero Section */}
-      <LiquidMetalHero
-        badge="✨ Next Generation Legal AI"
+      <GlassHeadlineHero
         title="LegalLens"
-        subtitle="AI Contract Intelligence & Legal Analysis. Built for modern law firms that demand both precision and performance."
-        primaryCtaLabel="Sign In"
-        secondaryCtaLabel="Learn More"
-        onPrimaryCtaClick={() => setShowAuth(true)}
-        features={[
-          "AI contract risk audits",
-          "Private secure vault",
-          "Indian Law Codex"
-        ]}
+        description="AI Contract Intelligence & Legal Analysis. Built for modern law firms that demand both precision and performance."
+        primaryAction={{ label: "Sign In", onClick: () => setShowAuth(true) }}
+        secondaryAction={{ label: "Learn More" }}
+        colors={["#0D0A14", "#FF5A1F", "#FF9EC1", "#2F4CFF", "#FFE6B8"]}
+        height="100vh"
       />
 
       {/* Auth Modal */}
@@ -325,11 +321,11 @@ export default function Login() {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="w-full relative z-10"
           >
-        <div className="bg-black/40 backdrop-blur-2xl border border-white/15 rounded-3xl p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] space-y-6">
+        <div className="w-full max-w-sm p-8 rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] text-white">
           {/* Brand Icon */}
-          <div className="flex justify-center mb-2">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-white/20 to-white/5 border border-white/30 flex items-center justify-center shadow-lg shadow-white/10">
-              <Scale className="w-7 h-7 text-white" />
+          <div className="flex justify-center mb-6">
+            <div className="p-3 rounded-2xl bg-white/10 border border-white/20 shadow-inner">
+              <ShieldCheck className="w-6 h-6 text-white"/>
             </div>
           </div>
 
@@ -345,7 +341,8 @@ export default function Login() {
             <>
               <form onSubmit={handleEmailSubmit} className="space-y-4">
                 {isRegistering && (
-                  <div className="relative flex items-center rounded-xl bg-white/5 border border-white/10 focus-within:border-white/30 transition-all backdrop-blur-md">
+                  <div className="relative">
+                    <FileSearch className="absolute left-3.5 top-3.5 h-4 w-4 text-white/50"/>
                     <input
                       type="text"
                       placeholder="Full name"
@@ -356,7 +353,8 @@ export default function Login() {
                     />
                   </div>
                 )}
-                <div className="relative flex items-center rounded-xl bg-white/5 border border-white/10 focus-within:border-white/30 transition-all backdrop-blur-md">
+                <div className="relative">
+                  <Mail className="absolute left-3.5 top-3.5 h-4 w-4 text-white/50"/>
                   <input
                     type="email"
                     placeholder="Email address"
@@ -367,7 +365,8 @@ export default function Login() {
                     autoComplete="off"
                   />
                 </div>
-                <div className="relative flex items-center rounded-xl bg-white/5 border border-white/10 focus-within:border-white/30 transition-all backdrop-blur-md">
+                <div className="relative">
+                  <Lock className="absolute left-3.5 top-3.5 h-4 w-4 text-white/50"/>
                   <input
                     type="password"
                     placeholder="Password"
@@ -380,10 +379,10 @@ export default function Login() {
                   />
                 </div>
 
-                <LiquidButton
+                <button
                   type="submit"
                   disabled={loading}
-                  className="w-full font-bold text-sm tracking-wide text-white"
+                  className="w-full h-11 rounded-xl bg-white text-black font-semibold hover:bg-neutral-200 transition-all text-sm flex items-center justify-center gap-2 shadow-lg mt-2 disabled:opacity-50"
                 >
                   {loading ? (
                     <>
@@ -391,63 +390,56 @@ export default function Login() {
                       Please wait…
                     </>
                   ) : isRegistering ? (
-                    "Create Account"
+                    <>Create Account <ArrowRight className="w-4 h-4"/></>
                   ) : (
-                    "Sign In"
+                    <>Sign In <ArrowRight className="w-4 h-4"/></>
                   )}
-                </LiquidButton>
+                </button>
               </form>
 
               {/* Divider */}
-              <div className="flex items-center gap-3">
-                <div className="flex-1 h-px bg-white/10" />
-                <span className="text-[10px] text-slate-500 uppercase tracking-wider font-mono">
-                  or continue with
+              <div className="relative my-6 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/10" /></div>
+                <span className="relative px-3 bg-[#0D0A14]/80 text-[10px] tracking-widest text-white/40 uppercase font-mono">
+                  Or continue with
                 </span>
-                <div className="flex-1 h-px bg-white/10" />
               </div>
 
               {/* Social / alternate sign-in buttons */}
-              <div className="flex gap-3">
-                <LiquidButton
+              <div className="grid grid-cols-2 gap-3">
+                <button
                   type="button"
-                  variant="outline"
                   onClick={handleGoogleSignIn}
                   disabled={loading}
-                  className="group flex-1"
+                  className="h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 text-xs font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  <GoogleIcon className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-                  Google
-                </LiquidButton>
-
-                <LiquidButton
+                  <GoogleIcon className="w-4 h-4"/> Google
+                </button>
+                <button
                   type="button"
-                  variant="outline"
                   onClick={() => {
                     setStage("phone");
                     setError(null);
                   }}
                   disabled={loading}
-                  className="group flex-1"
+                  className="h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 text-xs font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  <Phone className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300" />
-                  Phone
-                </LiquidButton>
+                  <Phone className="w-3.5 h-3.5 text-white/70"/> Phone
+                </button>
               </div>
 
               {/* Toggle register / sign-in */}
-              <div className="text-center">
+              <div className="mt-6 text-center text-xs text-white/50">
+                {isRegistering ? "Already have an account? " : "Need an account? "}
                 <button
                   type="button"
                   onClick={() => {
                     setIsRegistering(!isRegistering);
                     setError(null);
                   }}
-                  className="text-xs text-white/80 hover:text-white hover:underline underline-offset-4 transition-all"
+                  className="text-white hover:underline font-medium"
                 >
-                  {isRegistering
-                    ? "Already have an account? Sign in"
-                    : "Need an account? Register"}
+                  {isRegistering ? "Sign in" : "Register"}
                 </button>
               </div>
             </>
@@ -461,7 +453,8 @@ export default function Login() {
                   <label className="text-xs text-slate-400 font-medium">
                     Phone Number
                   </label>
-                  <div className="relative flex items-center rounded-xl bg-white/5 border border-white/10 focus-within:border-white/30 transition-all backdrop-blur-md">
+                  <div className="relative">
+                    <Phone className="absolute left-3.5 top-3.5 h-4 w-4 text-white/50"/>
                     <input
                       type="tel"
                       placeholder="+91 98765 43210"
@@ -477,10 +470,10 @@ export default function Login() {
                   </p>
                 </div>
 
-                <LiquidButton
+                <button
                   type="submit"
                   disabled={loading}
-                  className="w-full font-bold text-sm tracking-wide text-white"
+                  className="w-full h-11 rounded-xl bg-white text-black font-semibold hover:bg-neutral-200 transition-all text-sm flex items-center justify-center gap-2 shadow-lg mt-2 disabled:opacity-50"
                 >
                   {loading ? (
                     <>
@@ -488,9 +481,9 @@ export default function Login() {
                       Sending code…
                     </>
                   ) : (
-                    "Send Verification Code"
+                    <>Send Verification Code <ArrowRight className="w-4 h-4"/></>
                   )}
-                </LiquidButton>
+                </button>
               </form>
 
               <button
@@ -518,7 +511,7 @@ export default function Login() {
               </div>
 
               <form onSubmit={handleVerifyPhoneOtp} className="space-y-4">
-                <div className="relative flex items-center rounded-xl bg-white/5 border border-white/10 focus-within:border-white/30 transition-all backdrop-blur-md">
+                <div className="relative">
                   <input
                     type="text"
                     placeholder="000000"
@@ -535,10 +528,10 @@ export default function Login() {
                   />
                 </div>
 
-                <LiquidButton
+                <button
                   type="submit"
                   disabled={loading || otpCode.length < 6}
-                  className="w-full font-bold text-sm tracking-wide text-white"
+                  className="w-full h-11 rounded-xl bg-white text-black font-semibold hover:bg-neutral-200 transition-all text-sm flex items-center justify-center gap-2 shadow-lg mt-2 disabled:opacity-50"
                 >
                   {loading ? (
                     <>
@@ -546,9 +539,9 @@ export default function Login() {
                       Verifying…
                     </>
                   ) : (
-                    "Verify & Sign In"
+                    <>Verify & Sign In <ArrowRight className="w-4 h-4"/></>
                   )}
-                </LiquidButton>
+                </button>
               </form>
 
               <div className="flex items-center justify-between">
@@ -590,7 +583,7 @@ export default function Login() {
               </div>
 
               <form onSubmit={handleMfaVerify} className="space-y-4">
-                <div className="relative flex items-center rounded-xl bg-white/5 border border-white/10 focus-within:border-white/30 transition-all backdrop-blur-md">
+                <div className="relative">
                   <input
                     type="text"
                     placeholder="000000"
@@ -607,10 +600,10 @@ export default function Login() {
                   />
                 </div>
 
-                <LiquidButton
+                <button
                   type="submit"
                   disabled={loading || mfaCode.length < 6}
-                  className="w-full font-bold text-sm tracking-wide text-white"
+                  className="w-full h-11 rounded-xl bg-white text-black font-semibold hover:bg-neutral-200 transition-all text-sm flex items-center justify-center gap-2 shadow-lg mt-2 disabled:opacity-50"
                 >
                   {loading ? (
                     <>
@@ -618,9 +611,9 @@ export default function Login() {
                       Verifying…
                     </>
                   ) : (
-                    "Verify Identity"
+                    <>Verify Identity <ArrowRight className="w-4 h-4"/></>
                   )}
-                </LiquidButton>
+                </button>
               </form>
 
               <button
@@ -636,7 +629,7 @@ export default function Login() {
 
           {/* ════════ SUCCESS / REDIRECTING ════════ */}
           {stage === "success" && (
-            <div className="text-center py-4 space-y-3">
+            <div className="text-center py-4 space-y-3 mb-6">
               <Loader2 className="w-6 h-6 animate-spin text-white/80 mx-auto" />
               <p className="text-sm text-slate-300">
                 Signed in! Redirecting to dashboard…
@@ -644,7 +637,7 @@ export default function Login() {
             </div>
           )}
 
-          <p className="text-[10px] text-slate-500 text-center leading-relaxed mt-4">
+          <p className="text-[11px] text-white/40 text-center leading-relaxed mt-6">
             Secure sign-in powered by Firebase Authentication.
             <br />
             Your contracts and chats are stored privately and never shared.
