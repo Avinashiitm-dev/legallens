@@ -67,7 +67,7 @@
 }
 
 @layer base {
-  * { @apply border-border; }
+  * { @apply border-zinc-300; }
   html, body {
     margin: 0;
     padding: 0;
